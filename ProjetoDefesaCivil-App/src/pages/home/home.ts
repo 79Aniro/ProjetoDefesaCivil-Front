@@ -11,4 +11,10 @@ export class HomePage {
 
   }
 
+  login(){
+
+    this.navCtrl.setRoot('MenuPage');
+
+  }
+
 }
