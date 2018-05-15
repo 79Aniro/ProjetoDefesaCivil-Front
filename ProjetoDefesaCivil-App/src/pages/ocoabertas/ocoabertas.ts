@@ -23,7 +23,8 @@ export class OcoabertasPage {
 
   ionViewDidLoad() {
 
-    this.ocorrenciaService.findOcoAbertas().subscribe(response =>{
+    this.ocorrenciaService.findOcoAbertas()
+    .subscribe(response =>{
       console.log(response);
     },
     error => {console.log(error);

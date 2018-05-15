@@ -1,8 +1,19 @@
 export interface OcorrenciaDTO{
 
     id:string;
-    rua_nome:string;
-    numeroLocal:string;
+    dataAbertura:string;    
     status:string;
+    historicoInicial:string;
+    rua:string;
+    numeroLocal:string;
+    
+
+    
+
+
+	 
+
+ 
+    
 
 }
