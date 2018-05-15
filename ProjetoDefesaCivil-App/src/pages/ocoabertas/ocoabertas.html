@@ -7,12 +7,26 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Ocoabertas</ion-title>
+    <ion-title>Ocorrencias Abertas</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+<ion-list>
+  <button ion-item *ngFor="let item of items">
+    <ion-thumbnail item-start>
+      <img src="/assets/imgs/logo.png">
+    </ion-thumbnail>
+    <h2>Id: {{ item.id }}</h2>
+    <h2>Data Abertura:{{ item.dataAbertura }}</h2>
+    <h2>Status: {{ item.status }}</h2>
+    <h2>Historico:{{ item.historicoInicial}}</h2>
+    <h2>Rua:{{ item.rua}}</h2>
+    <h2>Numero:{{ item.numeroLocal}}</h2>
+    
+    
+  </button>
+</ion-list>
 </ion-content>

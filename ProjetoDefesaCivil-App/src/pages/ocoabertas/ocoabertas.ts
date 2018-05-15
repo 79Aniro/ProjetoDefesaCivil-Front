@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
+import { OcorrenciaDTO } from '../../models/ocorrencia.dto';
 
 /**
  * Generated class for the OcoabertasPage page.
@@ -16,6 +17,7 @@ import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
 })
 export class OcoabertasPage {
 
+  items: OcorrenciaDTO[];
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public ocorrenciaService: OcorrenciaService) {
@@ -25,7 +27,7 @@ export class OcoabertasPage {
 
     this.ocorrenciaService.findOcoAbertas()
     .subscribe(response =>{
-      console.log(response);
+      this.items=response;
     },
     error => {console.log(error);
     });
