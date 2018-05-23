@@ -33,6 +33,12 @@ export class MenuPage {
   
   }
 
+ relatoriosAll(){
+
+    this.navCtrl.push('RelatoriosPage');
+  
+  }
+
 }
 
 

@@ -1,0 +1,42 @@
+<!--
+  Generated template for the RelatoriosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"> </ion-icon>
+      </button>
+    <ion-title>Relatorios</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let item of items">
+      <ion-thumbnail item-start>
+        <img src="/assets/imgs/logo.png">
+      </ion-thumbnail>
+      <h2>Id: {{ item.id }}</h2>
+      <h2>croqui:{{ item.croqui }}</h2>
+      <h2>observacao: {{ item.observacao }}</h2>
+      <h2>pessoasAtingidas:{{ item.pessoasAtingidas}}</h2>
+      <h2>feridosLeves:{{ item.feridosLeves}}</h2>
+      <h2>obitos:{{ item.obitos}}</h2>
+      <h2>laje:{{ item.laje}}</h2>
+      <h2>piso:{{ item.piso}}</h2>
+      <h2>declividade:{{ item.declividade}}</h2>
+      <h2>taludeNaturalAltura:{{ item.taludeNaturalAltura}}</h2>
+      <h2>aterro:{{ item.aterro}}</h2>
+      <h2>rua:{{ item.rua.nome}}</h2>
+      <h2>ocorrencia:{{ item.ocorrencia.historicoInicial}}</h2>
+      
+      
+    </button>
+  </ion-list>
+  </ion-content>
