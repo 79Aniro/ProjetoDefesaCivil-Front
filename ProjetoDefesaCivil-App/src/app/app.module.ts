@@ -13,6 +13,7 @@ import { OcorrenciaService } from '../services/domain/ocorrencia.service';
 import { RelatorioService } from '../services/domain/relatorio.service';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { AuthService } from '../services/auth.service';
+import { StorageService } from '../services/storage.service';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { AuthService } from '../services/auth.service';
     OcorrenciaService,
     RelatorioService,
     ErrorInterceptorProvider,
-    AuthService
+    AuthService,
+    StorageService
   ]
 })
 export class AppModule {}
