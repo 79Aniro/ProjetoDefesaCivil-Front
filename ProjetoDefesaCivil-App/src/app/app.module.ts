@@ -11,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { OcorrenciaService } from '../services/domain/ocorrencia.service';
 import { RelatorioService } from '../services/domain/relatorio.service';
+import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { RelatorioService } from '../services/domain/relatorio.service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OcorrenciaService,
-    RelatorioService
+    RelatorioService,
+    ErrorInterceptorProvider
   ]
 })
 export class AppModule {}
