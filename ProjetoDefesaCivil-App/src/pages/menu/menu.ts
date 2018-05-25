@@ -39,6 +39,10 @@ export class MenuPage {
   
   }
 
+  signup() {
+    this.navCtrl.push('NovoFuncionarioPage');
+  }
+
 }
 
 
