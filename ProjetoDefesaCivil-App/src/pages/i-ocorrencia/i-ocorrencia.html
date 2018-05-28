@@ -1,9 +1,3 @@
-<!--
-  Generated template for the IOcorrenciaPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -16,56 +10,129 @@
 <ion-content padding>
 
 
-    <form>
+  <form [formGroup]="formGroup" (ngSubmit)="insereOco(); $event.preventDefault()">
 
-        <ion-item>
-            <ion-label floating>Regiao</ion-label>
-            <ion-select >
-              <ion-option value="1">Regiao Leste</ion-option>
-              <ion-option value="2">Regiao Oeste</ion-option>
-              <ion-option value="3">Regiao Norte</ion-option>
-              <ion-option value="4">Regiao Sul</ion-option>
-              <ion-option value="5">Regiao Central</ion-option>
-            </ion-select>
-          </ion-item>
 
-          <ion-item>
-              <ion-label floating>Rua</ion-label>
-              <ion-select >
-                <ion-option value="1">Rua Leste</ion-option>
-                <ion-option value="2">Rua Oeste</ion-option>
-                <ion-option value="3">Rua Norte</ion-option>
-                <ion-option value="4">Rua Sul</ion-option>
-                <ion-option value="5">Rua Central</ion-option>
-              </ion-select>
-            </ion-item>
 
-            <ion-item>
-        
-                <ion-label floating>Numero Local</ion-label>
-                <ion-input type="text"></ion-input>
-                
-                
-                </ion-item>
+    <ion-item>
+      <ion-label floating>Origem Ocorrencia</ion-label>
+      <ion-select formControlName="origemOcorrencia">
+        <ion-option value="1">PESSOALMENTE</ion-option>
+        <ion-option value="2">VIARADIO</ion-option>
+        <ion-option value="3">TEL_156</ion-option>
 
-        <ion-item>
-        
-        <ion-label floating>Historico Inicial</ion-label>
-        <ion-input type="text"></ion-input>
-        
-        
-        </ion-item>
-        <br><br>
-       
-        <br>
-        <br>
-        
-          <button ion-button full  >Gravar</button>
-        
-          
-        
-        
-        </form>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Tipo Ocorrencia</ion-label>
+      <ion-select formControlName="tipoOcorrencia">
+        <ion-option value="1">AA1</ion-option>
+        <ion-option value="2">AA2</ion-option>
+        <ion-option value="3">AA3</ion-option>
+
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label floating>Regiao</ion-label>
+      <ion-select formControlName="regiao">
+        <ion-option value="1">Regiao Leste</ion-option>
+        <ion-option value="2">Regiao Oeste</ion-option>
+        <ion-option value="3">Regiao Norte</ion-option>
+        <ion-option value="4">Regiao Sul</ion-option>
+        <ion-option value="5">Regiao Central</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Bairro</ion-label>
+      <ion-select formControlName="bairro">
+        <ion-option value="1">Bairro1</ion-option>
+        <ion-option value="2">Bairro2</ion-option>
+        <ion-option value="3">Bairro3</ion-option>
+        <ion-option value="4">Bairro4</ion-option>
+        <ion-option value="5">Bairro5</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Rua</ion-label>
+      <ion-select formControlName="ruaLocal">
+        <ion-option value="1">Rua Leste</ion-option>
+        <ion-option value="2">Rua Oeste</ion-option>
+        <ion-option value="3">Rua Norte</ion-option>
+        <ion-option value="4">Rua Sul</ion-option>
+        <ion-option value="5">Rua Central</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label floating>Numero Local</ion-label>
+      <ion-input formControlName="numeroLocal" type="text"></ion-input>
+
+
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Historico Inicial</ion-label>
+      <ion-input formControlName="historicoInicial" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Tipo Solicitante</ion-label>
+      <ion-select formControlName="tipoSolicitante">
+        <ion-option value="1">Municipe</ion-option>
+        <ion-option value="2">Departamento</ion-option>
+        <ion-option value="3">Funcionario</ion-option>
+
+      </ion-select>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label floating>Rua Solicitante</ion-label>
+      <ion-select formControlName="ruaSolicitante">
+        <ion-option value="1">Rua Leste</ion-option>
+        <ion-option value="2">Rua Oeste</ion-option>
+        <ion-option value="3">Rua Norte</ion-option>
+        <ion-option value="4">Rua Sul</ion-option>
+        <ion-option value="5">Rua Central</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Nome Solicitante</ion-label>
+      <ion-input formControlName="nomeSolicitante" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Email Solicitante</ion-label>
+      <ion-input formControlName="emailSolicitante" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Numero Residencia</ion-label>
+      <ion-input formControlName="numeroResidenciaSolicitante" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Celular</ion-label>
+      <ion-input formControlName="telefoneSolicitante" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Telefone Solicitante </ion-label>
+      <ion-input formControlName="telefoneSolicitante2" type="text"></ion-input>
+    </ion-item>
+    <br>
+    <br>
+
+    <br>
+    <br>
+
+    <button type="submit" ion-button full>Gravar</button>
+
+
+
+
+  </form>
 
 
 </ion-content>
