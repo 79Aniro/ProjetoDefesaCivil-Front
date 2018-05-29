@@ -13,9 +13,9 @@ export class RegiaoService {
     constructor(public http: HttpClient, public storage: StorageService) {
     }
 
-    findByEmail() : Observable<RegiaoDTO> {
+    findAll() : Observable<RegiaoDTO[]> {
 
-        return this.http.get<RegiaoDTO>(`${API_CONFIG.baseUrl}/regiao`);
+        return this.http.get<RegiaoDTO[]>(`${API_CONFIG.baseUrl}/regiao`);
     }
 
    
