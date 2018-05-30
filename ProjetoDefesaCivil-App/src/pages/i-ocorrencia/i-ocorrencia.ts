@@ -50,7 +50,7 @@ export class IOcorrenciaPage {
     this.regiaoService.findAll()
     .subscribe(response =>{
       this.regiao=response;
-      this.formGroup.controls.regiao.setValue(this.regiao[0]);
+      this.formGroup.controls.regiao.setValue(this.regiao[0].nome);
 
     })
   }
@@ -58,7 +58,9 @@ export class IOcorrenciaPage {
   insereOco() {
     this.ocorrenciaService.insert(this.formGroup.value)
       .subscribe(response => {
-        console.log("gravou")
+        console.log("gravou");
+        console.log(response.status);
+        this.navCtrl.setRoot('MenuPage');
       },
         error => { });
   }
