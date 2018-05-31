@@ -17,8 +17,9 @@ import { BairroDTO } from '../../models/bairro.dto';
 })
 export class IOcorrenciaPage {
 
+  alertCtrl: any;
   formGroup: FormGroup;
-  regiao: RegiaoDTO[];
+  regioes: RegiaoDTO[];
   bairros:BairroDTO[];
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -49,20 +50,51 @@ export class IOcorrenciaPage {
   ionViewDidLoad() {
     this.regiaoService.findAll()
     .subscribe(response =>{
-      this.regiao=response;
-      this.formGroup.controls.regiao.setValue(this.regiao[0].nome);
+      this.regioes=response;
+      this.formGroup.controls.regiao.setValue(this.regioes[0].id);
+      this.updateBairros();
 
-    })
+    },
+  error=>{});
   }
 
+
+  updateBairros(){
+let regiao_id =this.formGroup.value.regiao;
+this.bairroService.findByRegiaoId(regiao_id)
+.subscribe(response=>{
+  this.bairros=response;
+  this.formGroup.controls.bairro.setValue(null)
+},
+error=>{});
+
+}
+  
   insereOco() {
     this.ocorrenciaService.insert(this.formGroup.value)
       .subscribe(response => {
         console.log("gravou");
         console.log(response.status);
+        if(response.status){
+          this.handleOcorrenciaInserida();
+        }
         this.navCtrl.setRoot('MenuPage');
       },
         error => { });
   }
+
+  handleOcorrenciaInserida() {
+    let alert = this.alertCtrl.create({
+        title: 'Ocorrencia Inserida',
+        message: 'Ocorrencia Inserida com sucesso',
+        enableBackdropDismiss: false,
+        buttons: [
+            {
+                text: 'Ok'
+            }
+        ]
+    });
+    alert.present();
+}
 
 }

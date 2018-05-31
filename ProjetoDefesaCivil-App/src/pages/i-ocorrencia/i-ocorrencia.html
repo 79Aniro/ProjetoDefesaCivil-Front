@@ -39,23 +39,17 @@
 
     <ion-item>
       <ion-label floating>Regiao</ion-label>
-      <ion-select formControlName="regiao">
-        <ion-option value="1">Regiao Leste</ion-option>
-        <ion-option value="2">Regiao Oeste</ion-option>
-        <ion-option value="3">Regiao Norte</ion-option>
-        <ion-option value="4">Regiao Sul</ion-option>
-        <ion-option value="5">Regiao Central</ion-option>
+      <ion-select formControlName="regiao" (ionChange)="updateBairros()">
+        <ion-option *ngFor="let  regiao of regioes;first as f"[value]="regiao.id"[selected]="f">{{regiao.nome}}</ion-option>
+       
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Bairro</ion-label>
       <ion-select formControlName="bairro">
-        <ion-option value="1">Bairro1</ion-option>
-        <ion-option value="2">Bairro2</ion-option>
-        <ion-option value="3">Bairro3</ion-option>
-        <ion-option value="4">Bairro4</ion-option>
-        <ion-option value="5">Bairro5</ion-option>
+        <ion-option *ngFor="let  bairro of bairros"[value]="bairro.id"[selected]="f">{{bairro.nome}}</ion-option>
+        
       </ion-select>
     </ion-item>
 

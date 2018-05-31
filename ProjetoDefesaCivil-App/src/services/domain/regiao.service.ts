@@ -15,7 +15,7 @@ export class RegiaoService {
 
     findAll() : Observable<RegiaoDTO[]> {
 
-        return this.http.get<RegiaoDTO[]>(`${API_CONFIG.baseUrl}/regiao`);
+        return this.http.get<RegiaoDTO[]>(`${API_CONFIG.baseUrl}/regiao/regiaoOrder`);
     }
 
    
