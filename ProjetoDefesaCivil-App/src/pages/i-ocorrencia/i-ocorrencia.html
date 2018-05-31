@@ -47,7 +47,7 @@
 
     <ion-item>
       <ion-label floating>Bairro</ion-label>
-      <ion-select formControlName="bairro">
+      <ion-select formControlName="bairro" (ionChange)="updateRuas()">
         <ion-option *ngFor="let  bairro of bairros"[value]="bairro.id"[selected]="f">{{bairro.nome}}</ion-option>
         
       </ion-select>
@@ -56,11 +56,8 @@
     <ion-item>
       <ion-label floating>Rua</ion-label>
       <ion-select formControlName="ruaLocal">
-        <ion-option value="1">Rua Leste</ion-option>
-        <ion-option value="2">Rua Oeste</ion-option>
-        <ion-option value="3">Rua Norte</ion-option>
-        <ion-option value="4">Rua Sul</ion-option>
-        <ion-option value="5">Rua Central</ion-option>
+        <ion-option *ngFor="let  rua of ruas"[value]="rua.id"[selected]="f">{{rua.nome}}</ion-option>
+        
       </ion-select>
     </ion-item>
 
