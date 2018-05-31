@@ -24,6 +24,7 @@ export class IOcorrenciaPage {
   regioes: RegiaoDTO[];
   bairros: BairroDTO[];
   ruas: RuaDTO[];
+   ruasSol: RuaDTO[];
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
@@ -56,7 +57,9 @@ export class IOcorrenciaPage {
       .subscribe(response => {
         this.regioes = response;
         this.formGroup.controls.regiao.setValue(this.regioes[0].id);
+        
         this.updateBairros();
+        this.updateRuaAll();
 
       },
         error => { });
@@ -80,6 +83,18 @@ export class IOcorrenciaPage {
       .subscribe(response => {
         this.ruas = response;
         this.formGroup.controls.ruaLocal.setValue(null)
+      },
+        error => { });
+
+  }
+
+  updateRuaAll() {
+    let bairro_id = this.formGroup.value.bairro;
+    this.ruaService.findByBairroAll()
+   
+      .subscribe(response => {
+        this.ruasSol = response;
+        this.formGroup.controls.ruaSolicitante.setValue(null)
       },
         error => { });
 

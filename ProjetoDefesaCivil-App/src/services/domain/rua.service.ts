@@ -17,5 +17,8 @@ export class RuaService {
         return this.http.get<RuaDTO[]>(`${API_CONFIG.baseUrl}/ruas/ruasbairro/${bairro_id}`);
     }
 
-   
+    findByBairroAll() : Observable<RuaDTO[]> {
+
+        return this.http.get<RuaDTO[]>(`${API_CONFIG.baseUrl}/ruas`);
+    }
 }
