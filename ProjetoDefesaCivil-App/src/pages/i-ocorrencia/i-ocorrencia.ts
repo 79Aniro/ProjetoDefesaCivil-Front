@@ -62,7 +62,7 @@ export class IOcorrenciaPage {
       numeroResidenciaSolicitante: ['', [Validators.required]],
       telefoneSolicitante: ['', [Validators.required]],
       telefoneSolicitante2: ['', [Validators.required]],
-      funcionario: ['1', [Validators.required]]
+      funcionario: ['', [Validators.required]]
 
     });
   }
@@ -76,6 +76,11 @@ export class IOcorrenciaPage {
         this.updateBairros();
         this.updateRuaAll();
 
+        let varId = this.localStorage.getLocalUser();
+        this.id_user=varId.iduser;
+        console.log(this.id_user);
+
+        this.formGroup.controls.funcionario.setValue(this.id_user);
 
 
       },
@@ -120,10 +125,10 @@ export class IOcorrenciaPage {
   insereOco() {
     this.ocorrenciaService.insert(this.formGroup.value)
       .subscribe(response => {
-        console.log("gravou");
+        
         console.log(response.status);
         if (response.status) {
-          this.handleOcorrenciaInserida();
+          console.log("gravou");
         }
         this.navCtrl.setRoot('MenuPage');
       },
