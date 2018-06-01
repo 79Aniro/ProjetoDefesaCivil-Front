@@ -9,6 +9,10 @@ import { RegiaoDTO } from '../../models/regiao.dto';
 import { BairroDTO } from '../../models/bairro.dto';
 import { RuaDTO } from '../../models/rua.dto';
 import { RuaService } from '../../services/domain/rua.service';
+import { FuncionarioService } from '../../services/domain/funcionario.service';
+import { StorageService } from '../../services/storage.service';
+import { FuncionarioDTO } from '../../models/funcionario.dto';
+import { LocalUser } from '../../models/local_user';
 
 
 
@@ -24,14 +28,24 @@ export class IOcorrenciaPage {
   regioes: RegiaoDTO[];
   bairros: BairroDTO[];
   ruas: RuaDTO[];
-   ruasSol: RuaDTO[];
+  ruasSol: RuaDTO[];
+  funcionarioDto: FuncionarioDTO;
+
+  id_user: string;
+  email: string;
+
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public ocorrenciaService: OcorrenciaService,
     public regiaoService: RegiaoService,
     public bairroService: BairroService,
-    public ruaService: RuaService) {
+    public ruaService: RuaService,
+    public storage: StorageService,
+    public funcionarioService: FuncionarioService,
+    public localStorage: StorageService) {
+
 
     this.formGroup = this.formBuilder.group({
       origemOcorrencia: ['', [Validators.required]],
@@ -48,7 +62,7 @@ export class IOcorrenciaPage {
       numeroResidenciaSolicitante: ['', [Validators.required]],
       telefoneSolicitante: ['', [Validators.required]],
       telefoneSolicitante2: ['', [Validators.required]],
-      funcionario: ['1']
+      funcionario: ['1', [Validators.required]]
 
     });
   }
@@ -58,8 +72,11 @@ export class IOcorrenciaPage {
         this.regioes = response;
         this.formGroup.controls.regiao.setValue(this.regioes[0].id);
         
+
         this.updateBairros();
         this.updateRuaAll();
+
+
 
       },
         error => { });
@@ -89,9 +106,9 @@ export class IOcorrenciaPage {
   }
 
   updateRuaAll() {
-    let bairro_id = this.formGroup.value.bairro;
-    this.ruaService.findByBairroAll()
-   
+
+    this.ruaService.findByRuaAll()
+
       .subscribe(response => {
         this.ruasSol = response;
         this.formGroup.controls.ruaSolicitante.setValue(null)
@@ -113,6 +130,17 @@ export class IOcorrenciaPage {
         error => { });
   }
 
+
+  recuperaFuncionario() {
+    let localUser = this.storage.getLocalUser();
+    let emailV= this.funcionarioService.findByEmail(localUser.email)
+    .subscribe(response=>{
+
+      this.funcionarioDto=response;
+
+    })
+
+  }
   handleOcorrenciaInserida() {
     let alert = this.alertCtrl.create({
       title: 'Ocorrencia Inserida',

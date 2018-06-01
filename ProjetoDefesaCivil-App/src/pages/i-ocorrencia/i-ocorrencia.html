@@ -18,7 +18,7 @@
 
     <ion-item>
       <ion-label floating>Origem Ocorrencia</ion-label>
-      <ion-select formControlName="origemOcorrencia">
+      <ion-select formControlName="origemOcorrencia" >
         <ion-option value="1">PESSOALMENTE</ion-option>
         <ion-option value="2">VIARADIO</ion-option>
         <ion-option value="3">TEL_156</ion-option>
@@ -39,7 +39,7 @@
 
     <ion-item>
       <ion-label floating>Regiao</ion-label>
-      <ion-select formControlName="regiao" (ionChange)="updateBairros()">
+      <ion-select formControlName="regiao" (ionChange)="updateBairros()" (ionChange)="recuperaFuncionario()" >
         <ion-option *ngFor="let  regiao of regioes;first as f"[value]="regiao.id"[selected]="f">{{regiao.nome}}</ion-option>
        
       </ion-select>
@@ -76,7 +76,7 @@
 
     <ion-item>
       <ion-label floating>Tipo Solicitante</ion-label>
-      <ion-select formControlName="tipoSolicitante">
+      <ion-select formControlName="tipoSolicitante" (ionChange)="updateRuaAll()">
         <ion-option value="1">Municipe</ion-option>
         <ion-option value="2">Departamento</ion-option>
         <ion-option value="3">Funcionario</ion-option>
@@ -86,7 +86,7 @@
     
     <ion-item>
       <ion-label floating>Rua Solicitante</ion-label>
-      <ion-select formControlName="ruaSolicitante" (ionChange)="updateRuaAll()">
+      <ion-select formControlName="ruaSolicitante" >
         <ion-option *ngFor="let  rua of ruasSol f"[value]="rua.id"[selected]="f">{{rua.nome}}</ion-option>
       </ion-select>
     </ion-item>

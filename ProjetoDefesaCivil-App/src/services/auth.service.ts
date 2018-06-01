@@ -34,11 +34,14 @@ export class AuthService {
                     });
             }
 
-    successfulLogin(authorizationValue : string) {
+    successfulLogin(authorizationValue : string, iduserValue:string) {
         let tok = authorizationValue.substring(7);
+     
         let user : LocalUser = {
             token: tok,
-            email:this.jwtHelper.decodeToken(tok).sub
+            email:this.jwtHelper.decodeToken(tok).sub,
+            iduser:iduserValue
+            
         };
         this.storage.setLocalUser(user);
     }
