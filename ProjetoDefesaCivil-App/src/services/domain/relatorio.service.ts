@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { API_CONFIG } from "../../config/api.config";
 import { RelatorioDTO } from "../../models/relatorio.dto";
 import { Observable } from "rxjs/Rx";
+import { RelatorioNewDTO } from "../../models/relatorioNew.dto";
 
 
 
@@ -21,5 +22,16 @@ export class RelatorioService{
 
         return this.http.get<RelatorioDTO[]>(`${API_CONFIG.baseUrl}/relatorios`);
 
+    }
+
+    insert(obj : RelatorioNewDTO) {
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/relatorios`, 
+            obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
     }
 }

@@ -27,9 +27,9 @@ export class MenuPage {
   
   }
 
-  ocorrenciasAbertas(){
+  ocorrenciasPesquisas(){
 
-    this.navCtrl.push('OcoabertasPage');
+    this.navCtrl.push('MenuOcorrenciaPage');
   
   }
 

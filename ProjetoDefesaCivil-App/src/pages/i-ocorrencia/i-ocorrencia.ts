@@ -76,15 +76,15 @@ export class IOcorrenciaPage {
         this.updateBairros();
         this.updateRuaAll();
 
-        let varId = this.localStorage.getLocalUser();
-        this.id_user=varId.iduser;
-        console.log(this.id_user);
-
-        this.formGroup.controls.funcionario.setValue(this.id_user);
+        
 
 
       },
         error => { });
+        let varId = this.localStorage.getLocalUser();
+        this.id_user=varId.iduser;       
+
+        this.formGroup.controls.funcionario.setValue(this.id_user);
   }
 
 

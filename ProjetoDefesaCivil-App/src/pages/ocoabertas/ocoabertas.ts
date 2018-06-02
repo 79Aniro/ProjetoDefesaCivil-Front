@@ -3,12 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
 import { OcorrenciaDTO } from '../../models/ocorrencia.dto';
 
-/**
- * Generated class for the OcoabertasPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
