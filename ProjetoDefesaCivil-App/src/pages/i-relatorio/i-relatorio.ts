@@ -18,19 +18,20 @@ export class IRelatorioPage {
   formGroup: FormGroup;
   ruas: RuaDTO[];
   id_user: string;
-  constructor(public navCtrl: NavController, 
+  oco_id: string;
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
-  public relatorioService:RelatorioService,
-  public formBuilder: FormBuilder,
-  public ruaService: RuaService,
-  public localStorage: StorageService) {
+    public relatorioService: RelatorioService,
+    public formBuilder: FormBuilder,
+    public ruaService: RuaService,
+    public localStorage: StorageService) {
 
     this.formGroup = this.formBuilder.group({
       rua: ['', [Validators.required]],
       numeroLocal: ['', [Validators.required]],
       croqui: ['', [Validators.required]],
       aterro: ['', [Validators.required]],
-      pessoasAtingidas: ['', [Validators.required]],      
+      pessoasAtingidas: ['', [Validators.required]],
       feridosLeves: ['', [Validators.required]],
       obitos: ['', [Validators.required]],
       laje: ['', [Validators.required]],
@@ -39,7 +40,7 @@ export class IRelatorioPage {
       taludeNaturalAltura: ['', [Validators.required]],
       observacao: ['', [Validators.required]],
       funcionario: ['', [Validators.required]],
-      ocorrencia: ['1', [Validators.required]]
+      ocorrencia: ['', [Validators.required]]
 
     });
 
@@ -49,18 +50,25 @@ export class IRelatorioPage {
 
   ionViewDidLoad() {
 
-    let varId = this.localStorage.getLocalUser();
-        this.id_user=varId.iduser;    
+    let ocorrenciaId = this.navParams.get('ocorrencia_id');
+    this.oco_id = ocorrenciaId;
+    this.formGroup.controls.ocorrencia.setValue(this.oco_id);
 
-        this.formGroup.controls.funcionario.setValue(this.id_user);
-        this.updateRuaAll();
+    let varId = this.localStorage.getLocalUser();
+    this.id_user=varId.iduser;       
+
+    this.formGroup.controls.funcionario.setValue(this.id_user);
+
+  
+    
+    this.updateRuaAll();
   }
 
 
   insereRelatorio() {
     this.relatorioService.insert(this.formGroup.value)
       .subscribe(response => {
-        
+
         console.log(response.status);
         if (response.status) {
           console.log("gravou");

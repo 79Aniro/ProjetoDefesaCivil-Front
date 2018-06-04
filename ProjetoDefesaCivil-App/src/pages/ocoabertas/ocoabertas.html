@@ -18,7 +18,7 @@
 
 <ion-content padding>
 <ion-list>
-  <button ion-item *ngFor="let item of items">
+  <button ion-item *ngFor="let item of items" (click)="abreRelatorios(item.id)">
     <ion-thumbnail item-start>
       <img src="/assets/imgs/logo.png">
     </ion-thumbnail>
