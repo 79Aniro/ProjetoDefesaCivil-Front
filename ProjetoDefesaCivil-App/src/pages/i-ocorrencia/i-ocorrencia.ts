@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { variable } from '@angular/compiler/src/output/output_ast';
 import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
@@ -23,7 +23,7 @@ import { LocalUser } from '../../models/local_user';
 })
 export class IOcorrenciaPage {
 
-  alertCtrl: any;
+ 
   formGroup: FormGroup;
   regioes: RegiaoDTO[];
   bairros: BairroDTO[];
@@ -44,7 +44,8 @@ export class IOcorrenciaPage {
     public ruaService: RuaService,
     public storage: StorageService,
     public funcionarioService: FuncionarioService,
-    public localStorage: StorageService) {
+    public localStorage: StorageService,
+  public alertCrtl: AlertController) {
 
 
     this.formGroup = this.formBuilder.group({
@@ -126,11 +127,8 @@ export class IOcorrenciaPage {
     this.ocorrenciaService.insert(this.formGroup.value)
       .subscribe(response => {
         
-        console.log(response.status);
-        if (response.status) {
-          console.log("gravou");
-        }
-        this.navCtrl.setRoot('MenuPage');
+        this.handleOcorrenciaInserida();
+       
       },
         error => { });
   }
@@ -147,13 +145,16 @@ export class IOcorrenciaPage {
 
   }
   handleOcorrenciaInserida() {
-    let alert = this.alertCtrl.create({
+    let alert = this.alertCrtl.create({
       title: 'Ocorrencia Inserida',
       message: 'Ocorrencia Inserida com sucesso',
       enableBackdropDismiss: false,
       buttons: [
         {
-          text: 'Ok'
+          text: 'Ok',
+          handler:()=>{
+            this.navCtrl.pop();
+          }
         }
       ]
     });
