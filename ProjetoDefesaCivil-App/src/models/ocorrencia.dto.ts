@@ -1,7 +1,9 @@
 export interface OcorrenciaDTO{
 
     id:string;
-    dataAbertura:string;    
+    dataAbertura:string;   
+    dataAtendimento:string;
+    dataConclusao:string; 
     status:string;
     historicoInicial:string;
     regiao:string;

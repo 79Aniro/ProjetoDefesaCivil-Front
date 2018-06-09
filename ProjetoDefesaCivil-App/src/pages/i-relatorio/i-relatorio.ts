@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RelatorioService } from '../../services/domain/relatorio.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RuaService } from '../../services/domain/rua.service';
@@ -24,7 +24,8 @@ export class IRelatorioPage {
     public relatorioService: RelatorioService,
     public formBuilder: FormBuilder,
     public ruaService: RuaService,
-    public localStorage: StorageService) {
+    public localStorage: StorageService,
+    public alertCrtl: AlertController) {
 
     this.formGroup = this.formBuilder.group({
       rua: ['', [Validators.required]],
@@ -55,12 +56,12 @@ export class IRelatorioPage {
     this.formGroup.controls.ocorrencia.setValue(this.oco_id);
 
     let varId = this.localStorage.getLocalUser();
-    this.id_user=varId.iduser;       
+    this.id_user = varId.iduser;
 
     this.formGroup.controls.funcionario.setValue(this.id_user);
 
-  
-    
+
+
     this.updateRuaAll();
   }
 
@@ -69,11 +70,7 @@ export class IRelatorioPage {
     this.relatorioService.insert(this.formGroup.value)
       .subscribe(response => {
 
-        console.log(response.status);
-        if (response.status) {
-          console.log("gravou");
-        }
-        this.navCtrl.setRoot('MenuPage');
+      this.handleRelatorioInserido();
       },
         error => { });
   }
@@ -88,6 +85,23 @@ export class IRelatorioPage {
       },
         error => { });
 
+  }
+
+  handleRelatorioInserido() {
+    let alert = this.alertCrtl.create({
+      title: 'Relatorio Inserido',
+      message: 'Relatorio Inserido  com sucesso',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

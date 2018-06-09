@@ -23,18 +23,15 @@ export class MenuOcorrenciaPage {
   
   }
 
-  ocorrenciaDataAbertura(){
+  ocorrenciasFechadas(){
+    this.navCtrl.push('OcofechadasPage');
 
   }
-  ocorrenciasRegiao(){
 
-
-  }
-  ocorrenciasBairro(){
+  ocorrenciasLocalidade(){
+    this.navCtrl.push('OcolocalidadePage');
 
   }
-  ocorrenciasRua(){
-
-  }
+ 
 
 }
