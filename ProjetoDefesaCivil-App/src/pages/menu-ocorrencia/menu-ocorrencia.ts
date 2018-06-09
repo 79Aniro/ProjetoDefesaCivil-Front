@@ -32,6 +32,10 @@ export class MenuOcorrenciaPage {
     this.navCtrl.push('OcolocalidadePage');
 
   }
+  fecharOcorrencias(){
+    this.navCtrl.push('OcolocalidadePage');
+
+  }
  
 
 }
