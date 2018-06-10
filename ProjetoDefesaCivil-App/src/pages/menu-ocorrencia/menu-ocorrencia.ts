@@ -28,12 +28,9 @@ export class MenuOcorrenciaPage {
 
   }
 
-  ocorrenciasLocalidade(){
-    this.navCtrl.push('OcolocalidadePage');
-
-  }
+  
   fecharOcorrencias(){
-    this.navCtrl.push('OcolocalidadePage');
+    this.navCtrl.push('OcoatendidasPage');
 
   }
  

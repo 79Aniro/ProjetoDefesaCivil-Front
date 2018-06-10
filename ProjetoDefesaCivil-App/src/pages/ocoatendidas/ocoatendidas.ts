@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { OcorrenciaDTO } from '../../models/ocorrencia.dto';
+import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
 
-/**
- * Generated class for the OcoatendidasPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -14,12 +11,49 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'ocoatendidas.html',
 })
 export class OcoatendidasPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  items: OcorrenciaDTO[];
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public ocorrenciaService: OcorrenciaService,
+    public alertCrtl: AlertController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OcoatendidasPage');
+
+    this.ocorrenciaService.findOcoAtendidas()
+      .subscribe(response => {
+        this.items = response;
+      },
+        error => { });
+
+  }
+
+  fecharOcorrencias(id: string) {
+    this.ocorrenciaService.fecharOco(id)
+    .subscribe(response => {
+        
+      this.handleOcorrenciaFechada();
+      
+     
+    },
+      error => { });
+  }
+
+  handleOcorrenciaFechada() {
+    let alert = this.alertCrtl.create({
+      title: 'Ocorrencia Fechada',
+      message: 'Ocorrencia Fechada com sucesso',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.setRoot('MenuPage');
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

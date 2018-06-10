@@ -29,6 +29,18 @@ export class OcorrenciaService{
         return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.baseUrl}/ocorrencias/fechadas`);
 
     }
+
+    findOcoAtendidas(): Observable<OcorrenciaDTO[]>{
+
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.baseUrl}/ocorrencias/atendidas`);
+
+    }
+
+    fecharOco(id:string): Observable<OcorrenciaDTO[]>{
+
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.baseUrl}/ocorrencias/fechar/${id}`);
+
+    }
    
 
 
