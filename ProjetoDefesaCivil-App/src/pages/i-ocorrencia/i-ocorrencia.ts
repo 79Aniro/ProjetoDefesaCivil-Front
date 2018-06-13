@@ -59,7 +59,7 @@ export class IOcorrenciaPage {
       tipoSolicitante: ['', [Validators.required]],
       ruaSolicitante: ['', [Validators.required]],
       nomeSolicitante: ['', [Validators.required]],
-      emailSolicitante: ['', [Validators.required]],
+      emailSolicitante: ['', [Validators.required, Validators.email]],
       numeroResidenciaSolicitante: ['', [Validators.required]],
       telefoneSolicitante: ['', [Validators.required]],
       telefoneSolicitante2: ['', [Validators.required]],

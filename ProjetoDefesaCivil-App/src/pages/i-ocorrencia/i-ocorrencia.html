@@ -22,7 +22,6 @@
         <ion-option value="1">PESSOALMENTE</ion-option>
         <ion-option value="2">VIARADIO</ion-option>
         <ion-option value="3">TEL_156</ion-option>
-
       </ion-select>
     </ion-item>
 
@@ -40,8 +39,7 @@
     <ion-item>
       <ion-label floating>Regiao</ion-label>
       <ion-select formControlName="regiao" (ionChange)="updateBairros()" (ionChange)="recuperaFuncionario()" >
-        <ion-option *ngFor="let  regiao of regioes;first as f"[value]="regiao.id"[selected]="f">{{regiao.nome}}</ion-option>
-       
+        <ion-option *ngFor="let  regiao of regioes;first as f"[value]="regiao.id"[selected]="f">{{regiao.nome}}</ion-option>       
       </ion-select>
     </ion-item>
 
@@ -94,10 +92,12 @@
       <ion-label floating>Nome Solicitante</ion-label>
       <ion-input formControlName="nomeSolicitante" type="text"></ion-input>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.nomeSolicitante.dirty && formGroup.controls.nomeSolicitante.errors" margin-left>Valor inválido</p>
     <ion-item>
       <ion-label floating>Email Solicitante</ion-label>
       <ion-input formControlName="emailSolicitante" type="text"></ion-input>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.emailSolicitante.dirty && formGroup.controls.emailSolicitante.errors" margin-left>Valor inválido</p>
     <ion-item>
       <ion-label floating>Numero Residencia</ion-label>
       <ion-input formControlName="numeroResidenciaSolicitante" type="text"></ion-input>

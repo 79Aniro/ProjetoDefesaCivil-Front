@@ -34,4 +34,10 @@ export class RelatorioService{
             }
         ); 
     }
+
+    getSmallImageFromBucket(id : string,n:string) : Observable<any> {
+        let url = `${API_CONFIG.bucketBaseUrl}/relatorio${id}-${n}.jpg`
+        return this.http.get(url, {responseType : 'blob'});
+      }
+
 }

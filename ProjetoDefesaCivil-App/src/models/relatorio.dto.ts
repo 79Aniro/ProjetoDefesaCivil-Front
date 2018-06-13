@@ -17,6 +17,10 @@ export interface RelatorioDTO {
     funcionario: string;
     rua: string;
     ocorrencia: string;
+    foto1:string;
+    foto2:string;
+    foto3:string;
+    foto4:string;
 
 }
 

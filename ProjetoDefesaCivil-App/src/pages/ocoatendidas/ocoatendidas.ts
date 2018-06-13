@@ -23,6 +23,9 @@ export class OcoatendidasPage {
     this.ocorrenciaService.findOcoAtendidas()
       .subscribe(response => {
         this.items = response;
+        if(this.items.length==0){
+          this.handleOcoFechadasAll();
+        }
       },
         error => { });
 
@@ -43,6 +46,23 @@ export class OcoatendidasPage {
     let alert = this.alertCrtl.create({
       title: 'Ocorrencia Fechada',
       message: 'Ocorrencia Fechada com sucesso',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.setRoot('MenuPage');
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  handleOcoFechadasAll() {
+    let alert = this.alertCrtl.create({
+      title: 'Ocorrencias Atendidas',
+      message: 'Não há ocorrências para serem fechadas',
       enableBackdropDismiss: false,
       buttons: [
         {
