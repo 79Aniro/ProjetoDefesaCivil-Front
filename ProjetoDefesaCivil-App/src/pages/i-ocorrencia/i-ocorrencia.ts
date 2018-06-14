@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { variable } from '@angular/compiler/src/output/output_ast';
+
 import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
 import { RegiaoService } from '../../services/domain/regiao.service';
 import { BairroService } from '../../services/domain/bairro.service';
@@ -12,7 +12,7 @@ import { RuaService } from '../../services/domain/rua.service';
 import { FuncionarioService } from '../../services/domain/funcionario.service';
 import { StorageService } from '../../services/storage.service';
 import { FuncionarioDTO } from '../../models/funcionario.dto';
-import { LocalUser } from '../../models/local_user';
+
 
 
 

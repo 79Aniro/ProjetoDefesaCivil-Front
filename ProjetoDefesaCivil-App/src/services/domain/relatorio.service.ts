@@ -13,6 +13,8 @@ import { RelatorioNewDTO } from "../../models/relatorioNew.dto";
 @Injectable()
 export class RelatorioService{
 
+    rel: Observable<RelatorioDTO[]>;
+    arr:Observable<Blob>;
     constructor(public http: HttpClient){
 
 
@@ -35,9 +37,6 @@ export class RelatorioService{
         ); 
     }
 
-    getSmallImageFromBucket(id : string,n:string) : Observable<any> {
-        let url = `${API_CONFIG.bucketBaseUrl}/relatorio${id}-${n}.jpg`
-        return this.http.get(url, {responseType : 'blob'});
-      }
+  
 
 }

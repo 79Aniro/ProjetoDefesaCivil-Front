@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RuaService } from '../../services/domain/rua.service';
 import { RuaDTO } from '../../models/rua.dto';
 import { StorageService } from '../../services/storage.service';
+import { CameraOptions, Camera } from '@ionic-native/camera';
 
 
 
@@ -19,13 +20,17 @@ export class IRelatorioPage {
   ruas: RuaDTO[];
   id_user: string;
   oco_id: string;
+  picture: string;
+  cameraOn: boolean = false;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public relatorioService: RelatorioService,
     public formBuilder: FormBuilder,
     public ruaService: RuaService,
     public localStorage: StorageService,
-    public alertCrtl: AlertController) {
+    public alertCrtl: AlertController,
+    public camera: Camera) {
 
     this.formGroup = this.formBuilder.group({
       rua: ['', [Validators.required]],
@@ -102,6 +107,24 @@ export class IRelatorioPage {
       ]
     });
     alert.present();
+  }
+
+  getCameraPicture() {
+
+    this.cameraOn = true;
+
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     this.picture = 'data:image/png;base64,' + imageData;
+     this.cameraOn = false;
+    }, (err) => {
+    });
   }
 
 }

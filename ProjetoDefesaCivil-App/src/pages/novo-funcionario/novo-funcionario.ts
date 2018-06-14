@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder,Validators } from '@angular/forms';
-import { variable } from '@angular/compiler/src/output/output_ast';
+
 import { FuncionarioService } from '../../services/domain/funcionario.service';
 
 
