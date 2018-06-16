@@ -1,0 +1,47 @@
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"> </ion-icon>
+      </button>
+    <ion-title>Relatorios-Gerar PDF</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let item of items">
+     
+      <ion-thumbnail item-start>
+        <img src="https://s3-sa-east-1.amazonaws.com/projeto-defesacivil-sjc/relatorio{{item.id}}-{{1}}.jpg">
+        <br>
+        <img src="https://s3-sa-east-1.amazonaws.com/projeto-defesacivil-sjc/relatorio{{item.id}}-{{2}}.jpg">
+      </ion-thumbnail>
+     
+      <ion-thumbnail item-start>
+        <img src="https://s3-sa-east-1.amazonaws.com/projeto-defesacivil-sjc/relatorio{{item.id}}-{{3}}.jpg">
+        <br>
+        <img src="https://s3-sa-east-1.amazonaws.com/projeto-defesacivil-sjc/relatorio{{item.id}}-{{4}}.jpg">
+      </ion-thumbnail>
+      
+      <p>Numero Relatorio: {{ item.id }}</p>
+      <p>Croqui:{{ item.croqui }}</p>
+      <p>Observacao: {{ item.observacao }}</p>
+      <p>Pessoas Atingidas:{{ item.pessoasAtingidas}}</p>
+      <p>FeridosLeves:{{ item.feridosLeves}}</p>
+      <p>Obitos:{{ item.obitos}}</p>
+      <p>Laje:{{ item.laje}}</p>
+      <p>Piso:{{ item.piso}}</p>
+      <p>Declividade:{{ item.declividade}}</p>
+      <p>Talude Natural Altura:{{ item.taludeNaturalAltura}}</p>
+      <p>Aterro:{{ item.aterro}}</p>
+      <p>Rua:{{ item.rua.nome}}</p>     
+       <p>Ocorrencia:{{ item.ocorrencia.historicoInicial}}</p>
+     
+      
+      
+    </button>
+  </ion-list>
+  </ion-content>

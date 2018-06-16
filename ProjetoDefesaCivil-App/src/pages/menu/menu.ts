@@ -33,9 +33,9 @@ export class MenuPage {
   
   }
 
- relatoriosAll(){
+ menuRelatorio(){
 
-    this.navCtrl.push('RelatoriosPage');
+    this.navCtrl.push('MenuRelatorioPage');
   
   }
 

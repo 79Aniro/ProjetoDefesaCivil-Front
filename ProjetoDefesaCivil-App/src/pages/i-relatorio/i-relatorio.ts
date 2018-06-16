@@ -56,6 +56,12 @@ export class IRelatorioPage {
 
   ionViewDidLoad() {
 
+    this.loadData();
+  
+  }
+
+  loadData(){
+
     let ocorrenciaId = this.navParams.get('ocorrencia_id');
     this.oco_id = ocorrenciaId;
     this.formGroup.controls.ocorrencia.setValue(this.oco_id);
@@ -125,6 +131,20 @@ export class IRelatorioPage {
      this.cameraOn = false;
     }, (err) => {
     });
+  }
+
+  sendPicture() {
+    this.relatorioService.uploadPicture(this.picture)
+      .subscribe(response => {
+        this.picture = null;
+        this.loadData();
+      },
+      error => {
+      });
+  }
+
+  cancel() {
+    this.picture = null;
   }
 
 }

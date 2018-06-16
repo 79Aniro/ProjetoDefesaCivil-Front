@@ -4,6 +4,7 @@ import { API_CONFIG } from "../../config/api.config";
 import { RelatorioDTO } from "../../models/relatorio.dto";
 import { Observable } from "rxjs/Rx";
 import { RelatorioNewDTO } from "../../models/relatorioNew.dto";
+import { ImageUtilService } from "../image-util.service";
 
 
 
@@ -15,7 +16,8 @@ export class RelatorioService{
 
     rel: Observable<RelatorioDTO[]>;
     arr:Observable<Blob>;
-    constructor(public http: HttpClient){
+    constructor(public http: HttpClient,
+        public imageUtilService: ImageUtilService){
 
 
     }
@@ -37,6 +39,23 @@ export class RelatorioService{
         ); 
     }
 
-  
+    buscaoRelatoriosIdOco(id_ocorrencia : String) {
+        
+            return this.http.get<RelatorioDTO[]>(`${API_CONFIG.baseUrl}/relatorios/ocorrencia${id_ocorrencia}`);
+    }
+
+    uploadPicture(picture) {
+        let pictureBlob = this.imageUtilService.dataUriToBlob(picture);
+        let formData : FormData = new FormData();
+        formData.set('file', pictureBlob, 'file.png');
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/relatorios/picture`, 
+            formData,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
 
 }

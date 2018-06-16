@@ -6,7 +6,7 @@ import { Observable } from "rxjs/Rx";
 import{OcorrenciaNewDTO} from "../../models/ocorrenciaNew.dto"
 
 import { FuncionarioService } from "./funcionario.service";
-import { FuncionarioDTO } from "../../models/funcionario.dto";
+
 
 @Injectable()
 export class OcorrenciaService{
