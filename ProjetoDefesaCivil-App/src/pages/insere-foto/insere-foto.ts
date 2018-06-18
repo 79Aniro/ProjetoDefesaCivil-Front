@@ -59,5 +59,11 @@ export class InsereFotoPage {
   cancel() {
     this.picture = null;
   }
+  menuRelatorios(){
+
+    this.navCtrl.setRoot('MenuRelatorioPage');
+  }
+  
+  
 
 }

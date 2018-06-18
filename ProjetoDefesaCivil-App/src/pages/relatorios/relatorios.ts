@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RelatorioDTO } from '../../models/relatorio.dto';
 import { RelatorioService } from '../../services/domain/relatorio.service';
 import { API_CONFIG } from '../../config/api.config';
+import { Observable } from 'rxjs';
 
 
 
@@ -14,6 +15,7 @@ import { API_CONFIG } from '../../config/api.config';
 export class RelatoriosPage {
 
   items: RelatorioDTO[];
+ url:string;
   constructor(public navCtrl: NavController, public navParams: NavParams,public relatorioService: RelatorioService) {
   }
 
@@ -21,6 +23,8 @@ export class RelatoriosPage {
     this.relatorioService.findRelatorios()
     .subscribe(response =>{
       this.items=response;
+      this.buscaUrl();
+      
      
     },
     error => { });
@@ -29,6 +33,11 @@ export class RelatoriosPage {
 
  
 
-  
+  buscaUrl(): string{
 
+    this.url = `${API_CONFIG.bucketBaseUrl}`
+    return this.url;
+  }
+
+ 
 }

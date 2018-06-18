@@ -13,18 +13,18 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let item of items">
+    <button ion-item *ngFor="let item of items" >
      
       <ion-thumbnail item-start>
-        <img src="https://s3-sa-east-1.amazonaws.com/projeto-defesacivil-sjc/relatorio{{item.id}}-{{1}}.jpg">
+        <img src="{{url}}/relatorio{{item.id}}-{{1}}.jpg">
         <br>
-        <img src="https://s3-sa-east-1.amazonaws.com/projeto-defesacivil-sjc/relatorio{{item.id}}-{{2}}.jpg">
+        <img src="{{url}}/relatorio{{item.id}}-{{2}}.jpg">
       </ion-thumbnail>
      
       <ion-thumbnail item-start>
-        <img src="https://s3-sa-east-1.amazonaws.com/projeto-defesacivil-sjc/relatorio{{item.id}}-{{3}}.jpg">
+        <img src="{{url}}/relatorio{{item.id}}-{{3}}.jpg">
         <br>
-        <img src="https://s3-sa-east-1.amazonaws.com/projeto-defesacivil-sjc/relatorio{{item.id}}-{{4}}.jpg">
+        <img src="{{url}}/relatorio{{item.id}}-{{4}}.jpg">
       </ion-thumbnail>
       
       <p>Numero Relatorio: {{ item.id }}</p>
