@@ -34,4 +34,9 @@ export class MenuRelatorioPage {
     this.navCtrl.push('OcorrenciaBuscaRelatoriosPage');
   }
 
+  buscaRelatoriosFoto(){
+
+    this.navCtrl.push('BuscaRelatoriosFotoPage');
+  }
+
 }

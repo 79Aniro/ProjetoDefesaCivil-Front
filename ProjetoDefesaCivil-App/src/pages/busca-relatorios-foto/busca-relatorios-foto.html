@@ -4,7 +4,7 @@
       <button ion-button menuToggle>
           <ion-icon name="menu"> </ion-icon>
       </button>
-    <ion-title>Relatorios-Gerar PDF</ion-title>
+    <ion-title>Relatorios-Insere Fotos</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -12,7 +12,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let item of items" >
+    <button ion-item *ngFor="let item of items" (click)="insereFotoRelatorio(item.id)">
      
       <ion-thumbnail item-start>
         <img src="https://s3-sa-east-1.amazonaws.com/projeto-defesacivil-sjc/relatorio{{item.id}}-{{1}}.jpg">

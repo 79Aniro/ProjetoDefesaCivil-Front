@@ -115,36 +115,6 @@ export class IRelatorioPage {
     alert.present();
   }
 
-  getCameraPicture() {
-
-    this.cameraOn = true;
-
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.PNG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    
-    this.camera.getPicture(options).then((imageData) => {
-     this.picture = 'data:image/png;base64,' + imageData;
-     this.cameraOn = false;
-    }, (err) => {
-    });
-  }
-
-  sendPicture() {
-    this.relatorioService.uploadPicture(this.picture)
-      .subscribe(response => {
-        this.picture = null;
-        this.loadData();
-      },
-      error => {
-      });
-  }
-
-  cancel() {
-    this.picture = null;
-  }
+  
 
 }

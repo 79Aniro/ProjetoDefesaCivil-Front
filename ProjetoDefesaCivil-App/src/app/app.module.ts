@@ -17,6 +17,7 @@ import { StorageService } from '../services/storage.service';
 import { FuncionarioService } from '../services/domain/funcionario.service';
 import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ImageUtilService } from '../services/image-util.service';
+import { InsereFotoPage } from '../pages/insere-foto/insere-foto';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ImageUtilService } from '../services/image-util.service';
     AuthService,
     StorageService,
     FuncionarioService,
-    ImageUtilService
+    ImageUtilService,
+    InsereFotoPage
   ]
 })
 export class AppModule {}

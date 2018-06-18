@@ -41,15 +41,15 @@ export class RelatorioService{
 
     buscaoRelatoriosIdOco(id_ocorrencia : String) {
         
-            return this.http.get<RelatorioDTO[]>(`${API_CONFIG.baseUrl}/relatorios/ocorrencia${id_ocorrencia}`);
+            return this.http.get<RelatorioDTO[]>(`${API_CONFIG.baseUrl}/relatorios/ocorrencia/${id_ocorrencia}`);
     }
 
-    uploadPicture(picture) {
+    uploadPicture(picture, id_relatorio) {
         let pictureBlob = this.imageUtilService.dataUriToBlob(picture);
         let formData : FormData = new FormData();
         formData.set('file', pictureBlob, 'file.png');
         return this.http.post(
-            `${API_CONFIG.baseUrl}/relatorios/picture`, 
+            `${API_CONFIG.baseUrl}/relatorios/picture/${id_relatorio}`, 
             formData,
             { 
                 observe: 'response', 
