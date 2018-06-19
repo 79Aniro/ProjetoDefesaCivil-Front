@@ -44,6 +44,16 @@ export class RelatorioService{
             return this.http.get<RelatorioDTO[]>(`${API_CONFIG.baseUrl}/relatorios/ocorrencia/${id_ocorrencia}`);
     }
 
+    gerarPdfRelatorio(id_relarorio : String) {
+        
+        return this.http.get<RelatorioDTO[]>(`${API_CONFIG.baseUrl}/relatorios/gerandoRelatorio/${id_relarorio}`);
+}
+
+    buscaoRelatoriosFunc() {
+        
+        return this.http.get<RelatorioDTO[]>(`${API_CONFIG.baseUrl}/relatorios/idfuncionario`);
+}
+
     uploadPicture(picture, id_relatorio) {
         let pictureBlob = this.imageUtilService.dataUriToBlob(picture);
         let formData : FormData = new FormData();

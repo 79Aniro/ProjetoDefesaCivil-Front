@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RelatorioService } from '../../services/domain/relatorio.service';
 
 import { RelatorioDTO } from '../../models/relatorio.dto';
@@ -13,7 +13,7 @@ import { RelatorioDTO } from '../../models/relatorio.dto';
 export class RelatoriosOcorrenciaPage {
 
   items: RelatorioDTO[];
-  constructor(public navCtrl: NavController, public navParams: NavParams,public relatorioService: RelatorioService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public relatorioService: RelatorioService,public alertCrtl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -26,6 +26,36 @@ export class RelatoriosOcorrenciaPage {
     },
     error => { });
     
+  }
+
+  geraPdf(id_relatorio){
+    
+    this.relatorioService.gerarPdfRelatorio(id_relatorio)
+    .subscribe(response => {
+        
+      this.handleRelatorioPDFCriado();
+     
+    },
+      error => { });
+
+    
+  }
+
+  handleRelatorioPDFCriado() {
+    let alert = this.alertCrtl.create({
+      title: 'Relatorio PDF',
+      message: 'Relatorio PDF criando com Sucesso',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler:()=>{
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

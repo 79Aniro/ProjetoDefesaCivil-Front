@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RelatorioService } from '../../services/domain/relatorio.service';
 import { RelatorioDTO } from '../../models/relatorio.dto';
+import { API_CONFIG } from '../../config/api.config';
 
 
 
@@ -13,15 +14,17 @@ import { RelatorioDTO } from '../../models/relatorio.dto';
 export class BuscaRelatoriosFotoPage {
 
   items: RelatorioDTO[];
+  url:string;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public relatorioService: RelatorioService) {
   }
 
   ionViewDidLoad() {
-    this.relatorioService.findRelatorios()
+    this.relatorioService.buscaoRelatoriosFunc()
     .subscribe(response =>{
       this.items=response;
+      this.buscaUrl();
      
     },
     error => { });
@@ -34,6 +37,11 @@ export class BuscaRelatoriosFotoPage {
 
   }
 
+  buscaUrl(): string{
+
+    this.url = `${API_CONFIG.bucketBaseUrl}`
+    return this.url;
+  }
 
   
 }

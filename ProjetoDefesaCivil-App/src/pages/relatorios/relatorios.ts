@@ -20,7 +20,7 @@ export class RelatoriosPage {
   }
 
   ionViewDidLoad() {
-    this.relatorioService.findRelatorios()
+    this.relatorioService.buscaoRelatoriosFunc()
     .subscribe(response =>{
       this.items=response;
       this.buscaUrl();
