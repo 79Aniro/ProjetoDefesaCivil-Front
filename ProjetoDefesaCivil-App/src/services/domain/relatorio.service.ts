@@ -46,8 +46,16 @@ export class RelatorioService{
 
     gerarPdfRelatorio(id_relarorio : String) {
         
-        return this.http.get<RelatorioDTO[]>(`${API_CONFIG.baseUrl}/relatorios/gerandoRelatorio/${id_relarorio}`);
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/relatorios/gerandoRelatorio/${id_relarorio}`,
+        
+    {
+        observe: 'response', 
+        responseType: 'text'
+    });
 }
+
+
 
     buscaoRelatoriosFunc() {
         

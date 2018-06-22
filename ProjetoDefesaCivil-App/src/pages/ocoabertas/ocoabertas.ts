@@ -19,8 +19,13 @@ export class OcoabertasPage {
   }
 
   ionViewDidLoad() {
-
+this.loadData();
     
+   
+  }
+
+  loadData(){
+
     this.ocorrenciaService.findOcoAbertas()
     .subscribe(response =>{
       this.items=response;
@@ -31,6 +36,13 @@ export class OcoabertasPage {
 
   abreRelatorios(ocorrencia_id : string) {
     this.navCtrl.push('IRelatorioPage', {ocorrencia_id: ocorrencia_id});    
+  }
+
+  doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
   }
 
 }

@@ -22,7 +22,7 @@ export class OcorrenciaBuscaRelatoriosPage {
   }
 
   ionViewDidLoad() {
-    this.ocorrenciaService.findOcoAbertas()
+    this.ocorrenciaService.findOcoAtendidas()
       .subscribe(response => {
         this.items = response;
         if (this.items.length == 0) {
@@ -41,8 +41,8 @@ export class OcorrenciaBuscaRelatoriosPage {
   
   handleOcoAbertasAll() {
     let alert = this.alertCrtl.create({
-      title: 'Ocorrencias Abertas',
-      message: 'Não há ocorrências Abertas',
+      title: 'Ocorrencias Atendidas',
+      message: 'Não há ocorrências Atendidas',
       enableBackdropDismiss: false,
       buttons: [
         {
