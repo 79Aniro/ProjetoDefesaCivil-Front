@@ -21,4 +21,5 @@ export class RuaService {
 
         return this.http.get<RuaDTO[]>(`${API_CONFIG.baseUrl}/ruas`);
     }
+  
 }

@@ -32,6 +32,7 @@ import { InsereFotoPage } from '../pages/insere-foto/insere-foto';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -55,4 +56,5 @@ import { InsereFotoPage } from '../pages/insere-foto/insere-foto';
     InsereFotoPage
   ]
 })
+
 export class AppModule {}

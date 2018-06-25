@@ -1,3 +1,5 @@
+
+
 <ion-header>
 
   <ion-navbar>
@@ -13,9 +15,7 @@
 
 
   <form [formGroup]="formGroup" (ngSubmit)="insereOco(); $event.preventDefault()">
-
-
-
+   
     <ion-item>
       <ion-label floating>Origem Ocorrencia</ion-label>
       <ion-select formControlName="origemOcorrencia" >
@@ -35,7 +35,7 @@
       </ion-select>
     </ion-item>
 
-
+    
     <ion-item>
       <ion-label floating>Regiao</ion-label>
       <ion-select formControlName="regiao" (ionChange)="updateBairros()" (ionChange)="recuperaFuncionario()" >
