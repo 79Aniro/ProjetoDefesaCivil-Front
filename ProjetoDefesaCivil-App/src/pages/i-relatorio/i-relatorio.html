@@ -12,29 +12,13 @@
 <ion-content padding>
 
 
-  <form [formGroup]="formGroup"  (ngSubmit)="insereRelatorio(); $event.preventDefault()">
+  <form [formGroup]="formGroup" (ionChange)="updateRuaAll()" (ngSubmit)="insereRelatorio(); $event.preventDefault()">
 
 
     <ion-item>
-      <ion-label floating>Regiao</ion-label>
-      <ion-select formControlName="regiao" (ionChange)="updateBairros()"  >
-        <ion-option *ngFor="let  regiao of regioes;first as f"[value]="regiao.id"[selected]="f">{{regiao.nome}}</ion-option>       
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Bairro</ion-label>
-      <ion-select formControlName="bairro" (ionChange)="updateRuas()">
-        <ion-option *ngFor="let  bairro of bairros"[value]="bairro.id"[selected]="f">{{bairro.nome}}</ion-option>
-        
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Rua</ion-label>
-      <ion-select formControlName="ruaLocal">
-        <ion-option *ngFor="let  rua of ruas"[value]="rua.id"[selected]="f">{{rua.nome}}</ion-option>
-        
+      <ion-label floating>Rua </ion-label>
+      <ion-select formControlName="rua">
+        <ion-option *ngFor="let  rua of ruas f" [value]="rua.id" [selected]="f">{{rua.nome}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
@@ -45,6 +29,7 @@
       <ion-label floating>Croqui</ion-label>
       <ion-input formControlName="croqui" type="text"></ion-input>
     </ion-item>
+
 
     <ion-item>
       <ion-label floating>Aterro</ion-label>
@@ -89,7 +74,11 @@
     </ion-item>
 
 
-    
+    <br>
+    <br>
+
+    <br>
+    <br>
 
     <button type="submit" ion-button full>Gravar</button>
 

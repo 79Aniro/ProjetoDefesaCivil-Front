@@ -25,13 +25,13 @@ export class NovoFuncionarioPage {
         nome:['',[Validators.required,Validators.minLength(5),Validators.maxLength(120)]],
         email:['',[Validators.required,Validators.email]],
         senha:['',[Validators.required]],
-        tipo:['',[Validators.required]]
+        perfil:['',[Validators.required]]
 
       });
   }
 
   funcionarioUser() {
-    console.log("enviou o form");
+    
     this.funcionarioService.insert(this.formGroup.value)
      .subscribe(response => {
         this.showInsert();

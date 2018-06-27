@@ -35,7 +35,7 @@
     Tipo de Funcionario
     <ion-item>
       <ion-label stacked>Tipo Funcionario*</ion-label>
-      <ion-select formControlName="tipo" (ionChange)="funcionarioUser()">
+      <ion-select formControlName="perfil" >
         <ion-option value="1">Administrador</ion-option>
         <ion-option value="2">Cadastrador</ion-option>
         <ion-option value="3">Agente</ion-option>
@@ -44,6 +44,6 @@
     
     <br> 
     <br> 
-    <button ion-button block type="submit">Criar usuario</button>
+    <button ion-button block type="submit" (ionChange)="funcionarioUser()">Criar usuario</button>
   </form>
 </ion-content>
