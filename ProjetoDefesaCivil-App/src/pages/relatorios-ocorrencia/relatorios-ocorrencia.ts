@@ -18,6 +18,7 @@ export class RelatoriosOcorrenciaPage {
 
   ionViewDidLoad() {
     let id_ocorrencia  = this.navParams.get('id_ocorrencia');
+    
 
     this.relatorioService.buscaoRelatoriosIdOco(id_ocorrencia)
     .subscribe(response =>{

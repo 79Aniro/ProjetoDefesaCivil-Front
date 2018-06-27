@@ -89,6 +89,7 @@ export class IRelatorioPage {
 
   }
 
+ 
   handleRelatorioInserido() {
     let alert = this.alertCrtl.create({
       title: 'Relatorio Inserido',

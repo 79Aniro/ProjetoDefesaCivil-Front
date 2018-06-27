@@ -18,6 +18,7 @@ import { FuncionarioService } from '../services/domain/funcionario.service';
 import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ImageUtilService } from '../services/image-util.service';
 import { InsereFotoPage } from '../pages/insere-foto/insere-foto';
+import { TesteAutocompletePage } from '../pages/teste-autocomplete/teste-autocomplete';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { InsereFotoPage } from '../pages/insere-foto/insere-foto';
     StorageService,
     FuncionarioService,
     ImageUtilService,
-    InsereFotoPage
+    InsereFotoPage,
+    TesteAutocompletePage
   ]
 })
 

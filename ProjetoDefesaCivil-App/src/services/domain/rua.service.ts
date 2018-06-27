@@ -21,5 +21,11 @@ export class RuaService {
 
         return this.http.get<RuaDTO[]>(`${API_CONFIG.baseUrl}/ruas`);
     }
+
+
+    getRuaNome(rua:RuaDTO){
+
+        return rua.nome;
+    }
   
 }

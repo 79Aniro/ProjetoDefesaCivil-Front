@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>TesteAutocomplete</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+
+
+  <ion-searchbar placeholder="Cidade" (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let rua of ruas" (click)="send(rua,rua.nome)">
+      {{ rua.nome}}
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

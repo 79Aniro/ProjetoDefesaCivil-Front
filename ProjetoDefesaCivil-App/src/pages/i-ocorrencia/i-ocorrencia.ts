@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
@@ -12,6 +12,7 @@ import { RuaService } from '../../services/domain/rua.service';
 import { FuncionarioService } from '../../services/domain/funcionario.service';
 import { StorageService } from '../../services/storage.service';
 import { FuncionarioDTO } from '../../models/funcionario.dto';
+import { TesteAutocompletePage } from '../teste-autocomplete/teste-autocomplete';
 
 
 
@@ -45,7 +46,8 @@ export class IOcorrenciaPage {
     public storage: StorageService,
     public funcionarioService: FuncionarioService,
     public localStorage: StorageService,
-  public alertCrtl: AlertController) {
+  public alertCrtl: AlertController,
+  public modalCtrl: ModalController) {
 
 
     this.formGroup = this.formBuilder.group({
@@ -76,7 +78,7 @@ export class IOcorrenciaPage {
 
         this.updateBairros();
         this.updateRuaAll();
-
+        
         
 
 
@@ -160,5 +162,70 @@ export class IOcorrenciaPage {
     });
     alert.present();
   }
+
+
+  initializeItems() {
+    this.ruaService.findByRuaAll().
+    subscribe(response =>{
+      this.ruas=response;
+      
+      
+     
+    },
+    error => { });
+    
+
+  }
+
+  getItems(ev: any) {
+    // Reset items back to all of the items
+    
+    
+    // set val to the value of the searchbar
+    const val = ev.target.value;
+   
+    
+    
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.ruas = this.ruas.filter((rua) => {
+        
+        return (this.ruaService.getRuaNome(rua).toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+    else{
+      this.initializeItems();
+    }
+   
+    
+   
+  }
+
+  send(item,itemNome){
+
+    console.log(item,itemNome);
+    
+   
+    this.insereRuaSol();
+    
+  }
+
+
+  presentModal() {
+  
+    this.navCtrl.push('TesteAutocompletePage');
+    
+  }
+
+  insereRuaSol(){
+
+    let varRua =this.localStorage.getRuaDTO();
+    
+    this.formGroup.controls.ruaSolicitante.setValue(varRua.nome);
+    
+  }
+
+
 
 }

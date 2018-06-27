@@ -5,6 +5,7 @@ import { RuaService } from '../../services/domain/rua.service';
 import { Camera } from '@ionic-native/camera';
 import { RegiaoService } from '../../services/domain/regiao.service';
 import { BairroService } from '../../services/domain/bairro.service';
+import { TesteAutocompletePage } from '../teste-autocomplete/teste-autocomplete';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { BairroService } from '../../services/domain/bairro.service';
     Camera,
     RegiaoService,
     BairroService,
+    TesteAutocompletePage
   ]
 })
 export class IRelatorioPageModule {}

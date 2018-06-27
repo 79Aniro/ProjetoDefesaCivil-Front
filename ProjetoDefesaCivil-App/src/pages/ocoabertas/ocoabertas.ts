@@ -35,7 +35,8 @@ this.loadData();
   }
 
   abreRelatorios(ocorrencia_id : string) {
-    this.navCtrl.push('IRelatorioPage', {ocorrencia_id: ocorrencia_id});    
+    this.navCtrl.push('IRelatorioPage', {ocorrencia_id: ocorrencia_id});   
+   
   }
 
   doRefresh(refresher) {

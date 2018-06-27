@@ -47,6 +47,12 @@ export class MenuPage {
   
   }
 
+  teste(){
+
+    this.navCtrl.push('TesteAutocompletePage');
+  
+  }
+
   ocorrenciasPesquisas(){
 
     this.navCtrl.push('MenuOcorrenciaPage');

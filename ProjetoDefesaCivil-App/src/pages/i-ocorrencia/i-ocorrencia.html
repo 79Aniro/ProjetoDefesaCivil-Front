@@ -74,23 +74,30 @@
 
     <ion-item>
       <ion-label floating>Tipo Solicitante</ion-label>
-      <ion-select formControlName="tipoSolicitante" (ionChange)="updateRuaAll()">
+      <ion-select formControlName="tipoSolicitante" (ionChange)="presentModal()"  >
         <ion-option value="1">Municipe</ion-option>
         <ion-option value="2">Departamento</ion-option>
         <ion-option value="3">Funcionario</ion-option>
 
       </ion-select>
     </ion-item>
+
+
     
     <ion-item>
       <ion-label floating>Rua Solicitante</ion-label>
-      <ion-select formControlName="ruaSolicitante" >
-        <ion-option *ngFor="let  rua of ruasSol f"[value]="rua.id"[selected]="f">{{rua.nome}}</ion-option>
-      </ion-select>
-    </ion-item>
+      
+          <ion-input formControlName="ruaSolicitante"  type="text" (ionChange)="insereRuaSol()"></ion-input>
+        
+      </ion-item>
+ 
+
+  
+
+
     <ion-item>
       <ion-label floating>Nome Solicitante</ion-label>
-      <ion-input formControlName="nomeSolicitante" type="text"></ion-input>
+      <ion-input formControlName="nomeSolicitante" type="text" (ionChange)="insereRuaSol()"></ion-input>
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls.nomeSolicitante.dirty && formGroup.controls.nomeSolicitante.errors" margin-left>Valor inválido</p>
     <ion-item>
