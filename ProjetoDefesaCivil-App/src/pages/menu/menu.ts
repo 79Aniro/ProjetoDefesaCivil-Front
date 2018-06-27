@@ -29,8 +29,6 @@ export class MenuPage {
   ionViewDidLoad() {
    
         
-
-
       
         let varId = this.localStorage.getLocalUser();
         this.id_user=varId.iduser;       

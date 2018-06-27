@@ -17,10 +17,8 @@
       </ion-refresher>
 <ion-list>
   <button ion-item *ngFor="let item of items" (click)="abreRelatorios(item.id)">
-    <ion-thumbnail item-start>
-      <img src="/assets/imgs/logo.png">
-    </ion-thumbnail>
-    <h2>Id: {{ item.id }}</h2>
+   
+    <h2>Ocorrencia: {{ item.id }}</h2>
     <h2>Data Abertura:{{ item.dataAbertura }}</h2>
     <h2>Data Atendimento:{{ item.dataAtendimento }}</h2>
     <h2>Status: {{ item.status }}</h2>
