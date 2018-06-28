@@ -20,9 +20,12 @@ export class TesteAutocompletePage {
   formGroup: FormGroup;
   pais:string;
   ruas:RuaDTO[]
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public formBuilder: FormBuilder,public ruaService: RuaService,
-    public auth: AuthService) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public formBuilder: FormBuilder,
+    public ruaService: RuaService,
+    public auth: AuthService,
+  ) {
 
     this.formGroup = this.formBuilder.group({
       item: ['', [Validators.required]],
@@ -78,7 +81,9 @@ export class TesteAutocompletePage {
     
    
     this.auth.storage.setLocalRua(item);
+    
     this.navCtrl.pop();
+  
     
   }
 

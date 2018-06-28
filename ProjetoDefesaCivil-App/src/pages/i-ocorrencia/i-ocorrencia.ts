@@ -34,6 +34,7 @@ export class IOcorrenciaPage {
 
   id_user: string;
   email: string;
+  rua:RuaDTO;
 
 
   constructor(public navCtrl: NavController,
@@ -60,6 +61,7 @@ export class IOcorrenciaPage {
       historicoInicial: ['', [Validators.required]],
       tipoSolicitante: ['', [Validators.required]],
       ruaSolicitante: ['', [Validators.required]],
+      ruaSol: ['', [Validators.required]],
       nomeSolicitante: ['', [Validators.required]],
       emailSolicitante: ['', [Validators.required, Validators.email]],
       numeroResidenciaSolicitante: ['', [Validators.required]],
@@ -155,7 +157,7 @@ export class IOcorrenciaPage {
         {
           text: 'Ok',
           handler:()=>{
-            this.navCtrl.pop();
+            this.navCtrl.push('MenuPage');
           }
         }
       ]
@@ -222,7 +224,9 @@ export class IOcorrenciaPage {
 
     let varRua =this.localStorage.getRuaDTO();
     
-    this.formGroup.controls.ruaSolicitante.setValue(varRua.nome);
+    
+    this.formGroup.controls.ruaSol.setValue(varRua.nome);
+    this.formGroup.controls.ruaSolicitante.setValue(varRua.id);
     
   }
 

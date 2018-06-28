@@ -12,18 +12,18 @@
 <ion-content padding>
 
 
-  <form [formGroup]="formGroup" (ionChange)="updateRuaAll()" (ngSubmit)="insereRelatorio(); $event.preventDefault()">
+  <form [formGroup]="formGroup"  (ngSubmit)="insereRelatorio(); $event.preventDefault()">
 
 
     <ion-item>
-      <ion-label floating>Rua </ion-label>
-      <ion-select formControlName="rua">
-        <ion-option *ngFor="let  rua of ruas f" [value]="rua.id" [selected]="f">{{rua.nome}}</ion-option>
-      </ion-select>
-    </ion-item>
+      <ion-label floating>Rua Solicitante</ion-label>
+      
+          <ion-input formControlName="ruaSol"  type="text"  ></ion-input>
+        
+      </ion-item>
     <ion-item>
       <ion-label floating>Numero</ion-label>
-      <ion-input formControlName="numeroLocal" type="text"></ion-input>
+      <ion-input formControlName="numeroLocal" type="text" (ionChange)="insereRuaSol()"  ></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Croqui</ion-label>

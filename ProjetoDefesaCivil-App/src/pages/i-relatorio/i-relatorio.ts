@@ -31,6 +31,7 @@ export class IRelatorioPage {
 
     this.formGroup = this.formBuilder.group({
       rua: ['', [Validators.required]],
+      ruaSol: ['', [Validators.required]],
       numeroLocal: ['', [Validators.required]],
       croqui: ['', [Validators.required]],
       aterro: ['', [Validators.required]],
@@ -62,9 +63,10 @@ export class IRelatorioPage {
 
     this.formGroup.controls.funcionario.setValue(this.id_user);
 
+   
+    this.presentModal();
 
-
-    this.updateRuaAll();
+   
   }
 
 
@@ -83,7 +85,7 @@ export class IRelatorioPage {
 
       .subscribe(response => {
         this.ruas = response;
-        this.formGroup.controls.rua.setValue(null)
+        
       },
         error => { });
 
@@ -105,6 +107,29 @@ export class IRelatorioPage {
       ]
     });
     alert.present();
+  }
+
+
+
+
+  
+
+
+
+
+  presentModal() {
+  
+    this.navCtrl.push('TesteAutocompletePage');
+    
+  }
+
+  insereRuaSol(){
+
+    let varRua =this.localStorage.getRuaDTO();   
+    
+    this.formGroup.controls.ruaSol.setValue(varRua.nome);
+    this.formGroup.controls.rua.setValue(varRua.id);
+    
   }
 
 }
