@@ -33,4 +33,8 @@ export class FuncionarioService {
             }
         ); 
     }
+
+    buscaPerfil(id:string) {
+        return this.http.get<FuncionarioDTO> (`${API_CONFIG.baseUrl}/funcionarios/perfil/${id}`);
+    }
 }

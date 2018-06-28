@@ -27,4 +27,9 @@ export class OcofechadasPage {
     
   }
 
+  buscarRelatoriosIdOco(id_ocorrencia: string) {
+
+    this.navCtrl.push('RelatoriosOcorrenciaPage', {id_ocorrencia: id_ocorrencia});  
+  }
+
 }

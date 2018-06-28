@@ -16,11 +16,14 @@ import { FormBuilder } from '@angular/forms';
 export class MenuPage {
   id_user: string;
   funcionarioDto: FuncionarioDTO;
+  perfil_user:string;
+  
   constructor(public navCtrl: NavController,
     public storage: StorageService,
     public funcionarioService: FuncionarioService,
     public localStorage: StorageService,
     public formBuilder: FormBuilder,
+    
    
     public navParams: NavParams,) {
       
@@ -31,7 +34,15 @@ export class MenuPage {
         
       
         let varId = this.localStorage.getLocalUser();
-        this.id_user=varId.iduser;       
+        this.id_user=varId.iduser; 
+        
+    this.funcionarioService.buscaPerfil(this.id_user).
+    subscribe(response => {
+      this.funcionarioDto = response;
+      this.perfil_user=this.funcionarioDto.perfil;
+    },
+    error => {});
+        
 
         
   }
@@ -67,6 +78,11 @@ export class MenuPage {
 
   signup() {
     this.navCtrl.push('NovoFuncionarioPage');
+  }
+
+  buscaPerfil(id:string){
+
+    return this.funcionarioService.buscaPerfil(id);
   }
 
 }

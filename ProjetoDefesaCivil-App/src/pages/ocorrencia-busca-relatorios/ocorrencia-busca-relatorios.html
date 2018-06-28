@@ -4,7 +4,7 @@
       <button ion-button menuToggle>
           <ion-icon name="menu"> </ion-icon>
       </button>
-    <ion-title>Ocorrencias-Busca Relatorios</ion-title>
+    <ion-title>Busca de Relatorios por Ocorrencia</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -13,10 +13,8 @@
 <ion-content padding>
 <ion-list>
   <button ion-item *ngFor="let item of items" (click)="buscarRelatoriosIdOco(item.id)">
-    <ion-thumbnail item-start>
-      <img src="/assets/imgs/logo.png">
-    </ion-thumbnail>
-    <h2>Id: {{ item.id }}</h2>
+    <h2>Ocorrencia: {{ item.ocorrencia }}</h2>
+    <h2>Relatorio: {{ item.id }}</h2>
     <h2>Data Abertura:{{ item.dataAbertura }}</h2>
     <h2>Data Atendimento:{{ item.dataAtendimento }}</h2>
     <h2>Data Conclusao:{{ item.dataConclusao}}</h2>
