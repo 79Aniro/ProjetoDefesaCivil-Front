@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { StorageService } from '../../services/storage.service';
+import { FuncionarioService } from '../../services/domain/funcionario.service';
+import { FuncionarioDTO } from '../../models/funcionario.dto';
 
 
 
@@ -9,12 +12,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'menu-ocorrencia.html',
 })
 export class MenuOcorrenciaPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  id_user: string;
+  funcionarioDto: FuncionarioDTO;
+  perfil_user: string;
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+     public storage: StorageService,
+     public funcionarioService: FuncionarioService,
+     public localStorage: StorageService,
+     public alertCrtl: AlertController,) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MenuOcorrenciaPage');
+    let varId = this.localStorage.getLocalUser();
+    this.id_user=varId.iduser; 
+    
+this.funcionarioService.buscaPerfil(this.id_user).
+subscribe(response => {
+  this.funcionarioDto = response;
+  this.perfil_user=this.funcionarioDto.perfil;
+},
+error => {});
+    
   }
 
   ocorrenciasAbertas(){
@@ -33,6 +52,7 @@ export class MenuOcorrenciaPage {
     this.navCtrl.push('OcoatendidasPage');
 
   }
+
  
 
 }
