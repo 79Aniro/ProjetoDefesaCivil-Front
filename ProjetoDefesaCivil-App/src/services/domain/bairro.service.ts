@@ -14,7 +14,7 @@ export class BairroService {
 
     findByRegiaoId(regiao_id: string) : Observable<BairroDTO[]> {
 
-        return this.http.get<BairroDTO[]>(`${API_CONFIG.baseUrl}/defesabairros/bairrosregiao/${regiao_id}`);
+        return this.http.get<BairroDTO[]>(`${API_CONFIG.herokuBaseUrl}/defesabairros/bairrosregiao/${regiao_id}`);
     }
 
    

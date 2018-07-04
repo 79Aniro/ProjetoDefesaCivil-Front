@@ -13,7 +13,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let item of items" >
+    <button ion-item *ngFor="let item of items" (click)="geraPdf(item.id)">
      
       <ion-thumbnail item-start>
         <img src="{{url}}/relatorio{{item.id}}-{{1}}.jpg">

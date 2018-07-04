@@ -37,6 +37,7 @@ export class InsereFotoPage {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.PNG,
       mediaType: this.camera.MediaType.PICTURE
+      
     }
 
     this.camera.getPicture(options).then((imageData) => {

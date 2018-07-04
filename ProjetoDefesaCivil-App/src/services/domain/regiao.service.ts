@@ -15,7 +15,7 @@ export class RegiaoService {
 
     findAll() : Observable<RegiaoDTO[]> {
 
-        return this.http.get<RegiaoDTO[]>(`${API_CONFIG.baseUrl}/regiao/regiaoOrder`);
+        return this.http.get<RegiaoDTO[]>(`${API_CONFIG.herokuBaseUrl}/regiao/regiaoOrder`);
     }
 
    

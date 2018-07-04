@@ -13,7 +13,7 @@ export class FuncionarioService {
 
     findByEmail(email: string) : Observable<FuncionarioDTO> {
 
-        return this.http.get<FuncionarioDTO>(`${API_CONFIG.baseUrl}/funcionarios/email?value=${email}`);
+        return this.http.get<FuncionarioDTO>(`${API_CONFIG.herokuBaseUrl}/funcionarios/email?value=${email}`);
     }
 
     
@@ -25,7 +25,7 @@ export class FuncionarioService {
 
     insert(obj : FuncionarioDTO) {
         return this.http.post(
-            `${API_CONFIG.baseUrl}/funcionarios`, 
+            `${API_CONFIG.herokuBaseUrl}/funcionarios`, 
             obj,
             { 
                 observe: 'response', 
@@ -35,6 +35,6 @@ export class FuncionarioService {
     }
 
     buscaPerfil(id:string) {
-        return this.http.get<FuncionarioDTO> (`${API_CONFIG.baseUrl}/funcionarios/perfil/${id}`);
+        return this.http.get<FuncionarioDTO> (`${API_CONFIG.herokuBaseUrl}/funcionarios/perfil/${id}`);
     }
 }

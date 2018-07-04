@@ -14,12 +14,12 @@ export class RuaService {
 
     findByBairroId(bairro_id: string) : Observable<RuaDTO[]> {
 
-        return this.http.get<RuaDTO[]>(`${API_CONFIG.baseUrl}/ruas/ruasbairro/${bairro_id}`);
+        return this.http.get<RuaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ruas/ruasbairro/${bairro_id}`);
     }
 
     findByRuaAll() : Observable<RuaDTO[]> {
 
-        return this.http.get<RuaDTO[]>(`${API_CONFIG.baseUrl}/ruas`);
+        return this.http.get<RuaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ruas`);
     }
 
 

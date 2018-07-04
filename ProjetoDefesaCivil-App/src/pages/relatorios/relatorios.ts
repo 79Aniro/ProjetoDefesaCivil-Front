@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RelatorioDTO } from '../../models/relatorio.dto';
 import { RelatorioService } from '../../services/domain/relatorio.service';
 import { API_CONFIG } from '../../config/api.config';
-import { Observable } from 'rxjs';
 import { FuncionarioService } from '../../services/domain/funcionario.service';
 import { StorageService } from '../../services/storage.service';
 import { FuncionarioDTO } from '../../models/funcionario.dto';
@@ -26,7 +25,8 @@ export class RelatoriosPage {
      public navParams: NavParams,
      public relatorioService: RelatorioService,
      public funcionarioService: FuncionarioService,
-     public localStorage: StorageService,) {
+     public localStorage: StorageService,
+     public alertCrtl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -49,8 +49,8 @@ export class RelatoriosPage {
   }
 loadData(){
 
-  if(this.perfil_user== "2")   {
-    console.log(this.perfil_user);
+  
+ 
     this.relatorioService.findRelatorios()
     .subscribe(response =>{
       this.items=response;
@@ -58,19 +58,13 @@ loadData(){
       
      
     },
-    error => { });
-   }
-   else{
-    console.log("nao");
-    this.relatorioService.buscaoRelatoriosFunc()
-    .subscribe(response =>{
-      this.items=response;
-      this.buscaUrl();
-      
-     
-    },
-    error => { });
-   }
+    error => {
+      if (error.status == 403) {
+        this.navCtrl.setRoot('HomePage');
+      }
+    });
+   
+  
 }
  
 
@@ -78,6 +72,53 @@ loadData(){
 
     this.url = `${API_CONFIG.bucketBaseUrl}`
     return this.url;
+  }
+
+  handlePermissaoNegada() {
+    let alert = this.alertCrtl.create({
+      title: 'Relatorio PDF',
+      message: 'Não autorizado a gerar relatorio',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler:()=>{
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  geraPdf(id_relatorio){
+    
+    this.relatorioService.gerarPdfRelatorio(id_relatorio)
+    .subscribe(response => {
+        
+      this.handleRelatorioPDFCriado();
+     
+    },
+      error => { });
+
+    
+  }
+
+  handleRelatorioPDFCriado() {
+    let alert = this.alertCrtl.create({
+      title: 'Relatorio PDF',
+      message: 'Relatorio PDF criando com Sucesso',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler:()=>{
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
  

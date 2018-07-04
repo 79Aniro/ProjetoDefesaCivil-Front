@@ -24,13 +24,13 @@ export class RelatorioService{
 
     findRelatorios(): Observable<RelatorioDTO[]>{
 
-        return this.http.get<RelatorioDTO[]>(`${API_CONFIG.baseUrl}/relatorios`);
+        return this.http.get<RelatorioDTO[]>(`${API_CONFIG.herokuBaseUrl}/relatorios`);
 
     }
 
     insert(obj : RelatorioNewDTO) {
         return this.http.post(
-            `${API_CONFIG.baseUrl}/relatorios`, 
+            `${API_CONFIG.herokuBaseUrl}/relatorios`, 
             obj,
             { 
                 observe: 'response', 
@@ -41,13 +41,13 @@ export class RelatorioService{
 
     buscaoRelatoriosIdOco(id_ocorrencia : String) {
         
-            return this.http.get<RelatorioDTO[]>(`${API_CONFIG.baseUrl}/relatorios/ocorrencia/${id_ocorrencia}`);
+            return this.http.get<RelatorioDTO[]>(`${API_CONFIG.herokuBaseUrl}/relatorios/ocorrencia/${id_ocorrencia}`);
     }
 
     gerarPdfRelatorio(id_relarorio : String) {
         
         return this.http.post(
-            `${API_CONFIG.baseUrl}/relatorios/gerandoRelatorio/${id_relarorio}`,
+            `${API_CONFIG.herokuBaseUrl}/relatorios/gerandoRelatorio/${id_relarorio}`,
         
     {
         observe: 'response', 
@@ -57,9 +57,9 @@ export class RelatorioService{
 
 
 
-    buscaoRelatoriosFunc() {
+    buscaoRelatoriosFunc(id_funcionario : String) {
         
-        return this.http.get<RelatorioDTO[]>(`${API_CONFIG.baseUrl}/relatorios/idfuncionario`);
+        return this.http.get<RelatorioDTO[]>(`${API_CONFIG.herokuBaseUrl}/relatorios/idfuncionario/${id_funcionario}`);
 }
 
     uploadPicture(picture, id_relatorio) {
@@ -67,7 +67,7 @@ export class RelatorioService{
         let formData : FormData = new FormData();
         formData.set('file', pictureBlob, 'file.png');
         return this.http.post(
-            `${API_CONFIG.baseUrl}/relatorios/picture/${id_relatorio}`, 
+            `${API_CONFIG.herokuBaseUrl}/relatorios/picture/${id_relatorio}`, 
             formData,
             { 
                 observe: 'response', 

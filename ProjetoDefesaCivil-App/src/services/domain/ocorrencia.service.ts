@@ -20,25 +20,25 @@ export class OcorrenciaService{
 
     findOcoAbertas(): Observable<OcorrenciaDTO[]>{
 
-        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.baseUrl}/ocorrencias/abertas`);
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/abertas`);
 
     }
 
     findOcoFechadas(): Observable<OcorrenciaDTO[]>{
 
-        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.baseUrl}/ocorrencias/fechadas`);
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/fechadas`);
 
     }
 
     findOcoAtendidas(): Observable<OcorrenciaDTO[]>{
 
-        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.baseUrl}/ocorrencias/atendidas`);
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/atendidas`);
 
     }
 
     fecharOco(id:string): Observable<OcorrenciaDTO[]>{
 
-        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.baseUrl}/ocorrencias/fechar/${id}`);
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/fechar/${id}`);
 
     }
    
@@ -46,7 +46,7 @@ export class OcorrenciaService{
 
     insert(obj : OcorrenciaNewDTO) {
         return this.http.post(
-            `${API_CONFIG.baseUrl}/ocorrencias`, 
+            `${API_CONFIG.herokuBaseUrl}/ocorrencias`, 
             obj,
             { 
                 observe: 'response', 

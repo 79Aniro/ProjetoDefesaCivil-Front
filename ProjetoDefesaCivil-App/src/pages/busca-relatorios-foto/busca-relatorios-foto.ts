@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RelatorioService } from '../../services/domain/relatorio.service';
 import { RelatorioDTO } from '../../models/relatorio.dto';
 import { API_CONFIG } from '../../config/api.config';
+import { StorageService } from '../../services/storage.service';
 
 
 
@@ -17,11 +18,14 @@ export class BuscaRelatoriosFotoPage {
   url:string;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public relatorioService: RelatorioService) {
+    public relatorioService: RelatorioService,
+    public storage: StorageService) {
   }
 
   ionViewDidLoad() {
-    this.relatorioService.buscaoRelatoriosFunc()
+    let localUser = this.storage.getLocalUser();
+    
+    this.relatorioService.buscaoRelatoriosFunc(localUser.iduser)
     .subscribe(response =>{
       this.items=response;
       this.buscaUrl();
