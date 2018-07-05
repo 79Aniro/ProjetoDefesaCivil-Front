@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx'; // IMPORTANTE: IMPORT ATUALIZADO
 import { StorageService } from '../services/storage.service';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { FieldMessage } from '../models/fieldmessage';
+
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
@@ -11,42 +12,39 @@ export class ErrorInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
         return next.handle(req)
-            .catch((error, caught) => {
+        .catch((error, caught) => {
 
-                let errorObj = error;
-                if (errorObj.error) {
-                    errorObj = errorObj.error;
-                }
-                if (!errorObj.status) {
-                    errorObj = JSON.parse(errorObj);
-                }
+            let errorObj = error;
+            if (errorObj.error) {
+                errorObj = errorObj.error;
+            }
+            if (!errorObj.status) {
+                errorObj = JSON.parse(errorObj);
+            }
 
-                console.log("Erro detectado pelo interceptor:");
-                console.log(errorObj);
-                switch (errorObj.status) {
-                    case 401:
-                        this.handle401();
-                        break;
+            console.log("Erro detectado pelo interceptor:");
+            console.log(errorObj);
 
-                    case 403:
-                        this.handle403();
-                        break;
-                    case 422:
-                        this.handle422(errorObj);
-                        break;
+            switch(errorObj.status) {
+                case 401:
+                this.handle401();
+                break;
 
-                    case 400:
-                        this.handle400();
-                        break;
+                case 403:
+                this.handle403();
+                break;
 
-                    default:
-                        this.handleDefaultEror(errorObj);
-                }
+                case 422:
+                this.handle422(errorObj);
+                break;
 
-                return Observable.throw(errorObj);
-            }) as any;
+                default:
+                this.handleDefaultEror(errorObj);
+            }
+
+            return Observable.throw(errorObj);
+        }) as any;
     }
 
     handle403() {
@@ -57,20 +55,6 @@ export class ErrorInterceptor implements HttpInterceptor {
         let alert = this.alertCtrl.create({
             title: 'Erro 401: falha de autenticação',
             message: 'Email ou senha incorretos',
-            enableBackdropDismiss: false,
-            buttons: [
-                {
-                    text: 'Ok'
-                }
-            ]
-        });
-        alert.present();
-    }
-
-    handle400() {
-        let alert = this.alertCtrl.create({
-            title: 'Erro 400: Solicitação impropria',
-            message: 'Erro na URL ',
             enableBackdropDismiss: false,
             buttons: [
                 {
@@ -106,20 +90,20 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
             ]
         });
-        alert.present();
+        alert.present();        
     }
 
-private listErrors(messages : FieldMessage[]) : string {
-    let s : string = '';
-    for (var i=0; i<messages.length; i++) {
-        s = s + '<p><strong>' + messages[i].fieldName + "</strong>: " + messages[i].message + '</p>';
+    private listErrors(messages : FieldMessage[]) : string {
+        let s : string = '';
+        for (var i=0; i<messages.length; i++) {
+            s = s + '<p><strong>' + messages[i].fieldName + "</strong>: " + messages[i].message + '</p>';
+        }
+        return s;
     }
-    return s;
-}
 }
 
 export const ErrorInterceptorProvider = {
-provide: HTTP_INTERCEPTORS,
-useClass: ErrorInterceptor,
-multi: true,
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptor,
+    multi: true,
 };

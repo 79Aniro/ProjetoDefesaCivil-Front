@@ -21,6 +21,11 @@ import { InsereFotoPage } from '../pages/insere-foto/insere-foto';
 import { TesteAutocompletePage } from '../pages/teste-autocomplete/teste-autocomplete';
 
 
+import{File} from '@ionic-native/file';
+import{FileOpener} from '@ionic-native/file-opener';
+
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -55,7 +60,12 @@ import { TesteAutocompletePage } from '../pages/teste-autocomplete/teste-autocom
     FuncionarioService,
     ImageUtilService,
     InsereFotoPage,
-    TesteAutocompletePage
+    TesteAutocompletePage,
+    File,
+    FileOpener
+    
+    
+    
   ]
 })
 

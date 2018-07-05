@@ -44,6 +44,10 @@ export class RelatorioService{
             return this.http.get<RelatorioDTO[]>(`${API_CONFIG.herokuBaseUrl}/relatorios/ocorrencia/${id_ocorrencia}`);
     }
 
+    buscaoRelatoriosIdRel(id_relatorio : String) {
+        
+        return this.http.get<RelatorioDTO>(`${API_CONFIG.herokuBaseUrl}/relatorios/${id_relatorio}`);
+}
     gerarPdfRelatorio(id_relarorio : String) {
         
         return this.http.post(

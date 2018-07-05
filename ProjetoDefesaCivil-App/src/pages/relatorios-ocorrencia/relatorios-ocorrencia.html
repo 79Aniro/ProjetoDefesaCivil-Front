@@ -12,7 +12,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="geraPdf(item.id)" >
+    <button ion-item *ngFor="let item of items" (click)=" buscarRelatoriosIdRel(item.id)" >
      
       <ion-thumbnail item-start>
         <img src="https://s3-sa-east-1.amazonaws.com/projeto-defesacivil-sjc/relatorio{{item.id}}-{{1}}.jpg">

@@ -13,7 +13,10 @@ import { RelatorioDTO } from '../../models/relatorio.dto';
 export class RelatoriosOcorrenciaPage {
 
   items: RelatorioDTO[];
-  constructor(public navCtrl: NavController, public navParams: NavParams,public relatorioService: RelatorioService,public alertCrtl: AlertController) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public relatorioService: RelatorioService,
+    public alertCrtl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -40,6 +43,11 @@ export class RelatoriosOcorrenciaPage {
       error => { });
 
     
+  }
+
+  buscarRelatoriosIdRel(id_relatorio: string) {
+
+    this.navCtrl.push('RelatorioPdfPage', {id_relatorio: id_relatorio});  
   }
 
   handleRelatorioPDFCriado() {
