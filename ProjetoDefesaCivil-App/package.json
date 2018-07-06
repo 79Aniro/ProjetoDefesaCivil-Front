@@ -32,6 +32,7 @@
     "angular2-jwt": "^0.2.3",
     "bowser": "1.9.4",
     "cordova-android": "7.0.0",
+    "cordova-android-support-gradle-release": "^1.4.4",
     "cordova-browser": "5.0.3",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
@@ -67,7 +68,10 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-camera": {},
       "cordova-plugin-file": {},
-      "cordova-plugin-file-opener2": {}
+      "cordova-plugin-file-opener2": {},
+      "cordova-android-support-gradle-release": {
+        "ANDROID_SUPPORT_VERSION": "27.+"
+      }
     },
     "platforms": [
       "browser",
