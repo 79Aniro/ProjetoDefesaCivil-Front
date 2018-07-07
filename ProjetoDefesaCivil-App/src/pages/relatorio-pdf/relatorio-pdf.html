@@ -7,7 +7,14 @@
 </ion-header>
  
 <ion-content padding>
- 
+  <ion-item>
+    <ion-label stacked>COMDEC</ion-label>
+    <ion-label stacked>COORDENADORIA MUNICIPAL DE DEFESA CIVL</ion-label>
+    <ion-label stacked>SÃO JOSÉ DOS CAMPOS</ion-label>
+    <ion-label stacked>R.O- Relatorio de Ocorrência</ion-label>
+    
+   
+     </ion-item>
   <ion-item>
     <ion-label stacked>From</ion-label>
     <ion-input [(ngModel)]="letterObj.from"></ion-input>
@@ -20,7 +27,7 @@
     <ion-label stacked>Text</ion-label>
     <ion-textarea [(ngModel)]="letterObj.text" rows="10"></ion-textarea>
   </ion-item>
- 
+
   <button ion-button full (click)="createPdf()">Create PDF</button>
   <br><br>
   <button ion-button full (click)="downloadPdf()" color="secondary" [disabled]="!pdfObj">Download PDF</button>

@@ -29,7 +29,7 @@ export class HomePage {
     this.menu.swipeEnable(true);
   }
 
-  ionViewDidEnter() {
+ /* ionViewDidEnter() {
       this.auth.refreshToken()
          .subscribe(response => {
            this.auth.successfulLogin(response.headers.get('Authorization'),response.headers.get('idUser'));
@@ -37,7 +37,7 @@ export class HomePage {
            this.navCtrl.setRoot('MenuPage');
           },
           error => {});  
-      }
+      }*/
     
 
 

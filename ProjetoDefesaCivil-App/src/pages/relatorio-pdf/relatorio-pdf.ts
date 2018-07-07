@@ -21,22 +21,53 @@ letterObj = {
   from: '',
   text: ''
 }
+
+cabecalho={
+  sigla:"COMDEC",
+  secretaria:'COORDENADORIA MUNICIPAL DE DEFESA CIVL',
+  cidade:"SÃO JOSÉ DOS CAMPOS",
+  rel:"R.O- Relatorio de Ocorrência"
+
+}
 pdfObj=null;
+body = [];
+myDate = new Date().toLocaleDateString();
+hora=new Date().toLocaleTimeString();
+id_relatorio:string;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public relatorioService: RelatorioService,
     private file:File,
   private plt:Platform,
 private fileOpener:FileOpener) {
+  
+  }
+
+  ionViewDidLoad() {
+    this.id_relatorio  = this.navParams.get('id_relatorio');
+    this.relatorioService.buscaoRelatoriosIdRel(this.id_relatorio)
+    .subscribe(response =>{
+      this.item=response;
+      console.log(this.id_relatorio);
+     
+    },
+    error => { });
+    
   }
 
   createPdf() {
     var docDefinition = {
       content: [
+        { text: 'COMDEC', style: 'header',alignment: 'center' },
+        { text: 'COORDENADORIA MUNICIPAL DE DEFESA CIVL', style: 'header',alignment: 'center' },
+        { text: 'SÃO JOSÉ DOS CAMPOS', style: 'header',alignment: 'center' },
+        { text: 'R.O- Relatorio de Ocorrência', style: 'header',alignment: 'center' },
+       
+        
         { text: 'REMINDER', style: 'header' },
         { text: new Date().toTimeString(), alignment: 'right' },
  
-        { text: 'From', style: 'subheader' },
+        { text: 'From-teste', style: 'subheader' },
         { text: this.letterObj.from },
  
         { text: 'To', style: 'subheader' },
@@ -44,14 +75,59 @@ private fileOpener:FileOpener) {
  
         { text: this.letterObj.text, style: 'story', margin: [0, 20, 0, 20] },
  
+
         {
-          ul: [
-            'Bacon',
-            'Rips',
-            'BBQ',
-          ]
-        }
+         // layout: 'lightHorizontalLines', // optional
+          table: {
+            // headers are automatically repeated if the table spans over multiple pages
+            // you can declare how many rows should be treated as headers
+            headerRows: 1,
+            widths: [ '*', '*', '*' ],
+    
+            body: [
+             
+              [ { text: "Data "+this.myDate, bold: true  }, { text: "Horario "+this.hora, bold: true  }, { text: "Relatorio  "+this.id_relatorio, bold: true  }],           
+             
+            ]
+          }
+        },
+        {
+          // layout: 'lightHorizontalLines', // optional
+           table: {
+             // headers are automatically repeated if the table spans over multiple pages
+             // you can declare how many rows should be treated as headers
+             headerRows: 1,
+             widths: [ '*', '*' ],
+     
+             body: [             
+               
+               [ { text: "Solicitante "  },  { text: "Telefone  ", bold: true  }],
+              
+             ]
+           }
+         },
+         {
+          // layout: 'lightHorizontalLines', // optional
+           table: {
+             // headers are automatically repeated if the table spans over multiple pages
+             // you can declare how many rows should be treated as headers
+             headerRows: 1,
+             widths: [ '*', '*' ],
+     
+             body: [             
+               
+               [ { text: "Local da Ocorrencia "  },  { text: "Numero ", bold: true  }],
+              
+             ]
+           }
+         },
+
+        
+        
+      
+        
       ],
+      
       styles: {
         header: {
           fontSize: 18,
@@ -88,17 +164,7 @@ private fileOpener:FileOpener) {
       this.pdfObj.download();
     }
   }
-  ionViewDidLoad() {
-    let id_relatorio  = this.navParams.get('id_relatorio');
-    this.relatorioService.buscaoRelatoriosIdRel(id_relatorio)
-    .subscribe(response =>{
-      this.item=response;
-      console.log(this.item);
-     
-    },
-    error => { });
-    
-  }
+
 }
  
  
