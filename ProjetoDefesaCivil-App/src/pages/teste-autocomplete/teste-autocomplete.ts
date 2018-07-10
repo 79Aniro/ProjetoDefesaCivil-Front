@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { RuaService } from '../../services/domain/rua.service';
-import { RuaDTO } from '../../models/rua.dto';
+
 import { AuthService } from '../../services/auth.service';
+import { EnderecoDTO } from '../../models/endereco.dto';
+import { EnderecoService } from '../../services/domain/endereco.service';
 
 
 
@@ -19,11 +20,11 @@ export class TesteAutocompletePage {
   items: string[];
   formGroup: FormGroup;
   pais:string;
-  ruas:RuaDTO[]
+  ruas:EnderecoDTO[]
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public formBuilder: FormBuilder,
-    public ruaService: RuaService,
+    public ruaService: EnderecoService,
     public auth: AuthService,
   ) {
 
@@ -38,7 +39,7 @@ export class TesteAutocompletePage {
   }
 
   initializeItems() {
-    this.ruaService.findByRuaAll().
+    this.ruaService.findByEnderecoAll().
     subscribe(response =>{
       this.ruas=response;
       
@@ -90,7 +91,7 @@ export class TesteAutocompletePage {
 
   updateRuaAll() {
 
-    this.ruaService.findByRuaAll()
+    this.ruaService.findByEnderecoAll()
 
       .subscribe(response => {
         this.ruas= response;

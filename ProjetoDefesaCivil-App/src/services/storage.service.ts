@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { STORAGE_KEYS } from "../config/storage_keys.config";
 import { LocalUser } from "../models/local_user";
-import { RuaDTO } from "../models/rua.dto";
+import { EnderecoDTO } from "../models/endereco.dto";
+
 
 @Injectable()
 export class StorageService {
@@ -25,19 +26,30 @@ export class StorageService {
         }
     }
 
-    setLocalRua(obj:RuaDTO){
+    setLocalRua(obj:EnderecoDTO){
 
         if (obj == null) {
-            localStorage.removeItem(STORAGE_KEYS.ruaDTO);
+            localStorage.removeItem(STORAGE_KEYS.endeDTO);
         }
         else {
-            localStorage.setItem(STORAGE_KEYS.ruaDTO, JSON.stringify(obj));
+            localStorage.setItem(STORAGE_KEYS.endeDTO, JSON.stringify(obj));
         }
        
     }
 
-    getRuaDTO() : RuaDTO {
-        let rua = localStorage.getItem(STORAGE_KEYS.ruaDTO);
+    setLocalEnderecos(obj:EnderecoDTO[]){
+
+        if (obj == null) {
+            localStorage.removeItem(STORAGE_KEYS.endeDTO);
+        }
+        else {
+            localStorage.setItem(STORAGE_KEYS.endeDTO, JSON.stringify(obj));
+        }
+       
+    }
+
+    getRuaDTO() : EnderecoDTO {
+        let rua = localStorage.getItem(STORAGE_KEYS.endeDTO);
         if (rua == null) {
             return null;
         }

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { IOcorrenciaPage } from './i-ocorrencia';
-import { RegiaoService } from '../../services/domain/regiao.service';
-import { BairroService } from '../../services/domain/bairro.service';
-import { RuaService } from '../../services/domain/rua.service';
+
+
 import { TesteAutocompletePage } from '../teste-autocomplete/teste-autocomplete';
+import { EnderecoService } from '../../services/domain/endereco.service';
 
 @NgModule({
   declarations: [
@@ -15,9 +15,8 @@ import { TesteAutocompletePage } from '../teste-autocomplete/teste-autocomplete'
     
   ],
   providers:[
-    RegiaoService,
-    BairroService,
-    RuaService,
+    
+    EnderecoService,
     TesteAutocompletePage
   ]
 })

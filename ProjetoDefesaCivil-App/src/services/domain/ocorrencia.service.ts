@@ -4,7 +4,6 @@ import { API_CONFIG } from "../../config/api.config";
 import { OcorrenciaDTO } from "../../models/ocorrencia.dto";
 import { Observable } from "rxjs/Rx";
 import{OcorrenciaNewDTO} from "../../models/ocorrenciaNew.dto"
-
 import { FuncionarioService } from "./funcionario.service";
 
 

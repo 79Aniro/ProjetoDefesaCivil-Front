@@ -4,9 +4,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RelatorioService } from '../../services/domain/relatorio.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { RuaService } from '../../services/domain/rua.service';
-import { RuaDTO } from '../../models/rua.dto';
+
+
 import { StorageService } from '../../services/storage.service';
+import { EnderecoDTO } from '../../models/endereco.dto';
+import { EnderecoService } from '../../services/domain/endereco.service';
 
 
 
@@ -18,14 +20,14 @@ import { StorageService } from '../../services/storage.service';
 export class IRelatorioPage {
 
   formGroup: FormGroup;
-  ruas: RuaDTO[];
+  ruas: EnderecoDTO[];
   id_user: string;
   oco_id: string;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public relatorioService: RelatorioService,
     public formBuilder: FormBuilder,
-    public ruaService: RuaService,
+    public ruaService: EnderecoService,
     public localStorage: StorageService,
     public alertCrtl: AlertController) {
 
@@ -81,7 +83,7 @@ export class IRelatorioPage {
 
   updateRuaAll() {
 
-    this.ruaService.findByRuaAll()
+    this.ruaService.findByEnderecoAll()
 
       .subscribe(response => {
         this.ruas = response;

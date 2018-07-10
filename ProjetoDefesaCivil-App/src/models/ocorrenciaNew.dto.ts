@@ -5,7 +5,7 @@ export interface OcorrenciaNewDTO {
     historicoInicial: string,
     origemOcorrencia: string,
     tipoOcorrencia: string,
-    ruaLocal: string,
+    endereco: string,
     numeroLocal: string,
     funcionario: string,
     nomeSolicitante: string,
@@ -14,7 +14,7 @@ export interface OcorrenciaNewDTO {
     numeroResidenciaSolicitante: string,
     telefoneSolicitante: string,
     telefoneSolicitante2: string,
-    ruaSolicitante: string
+    endSolicitante: string
 
 
 

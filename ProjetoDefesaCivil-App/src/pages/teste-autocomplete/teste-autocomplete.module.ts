@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { TesteAutocompletePage } from './teste-autocomplete';
-import { RuaService } from '../../services/domain/rua.service';
+import { EnderecoService } from '../../services/domain/endereco.service';
+
 
 @NgModule({
   declarations: [
@@ -11,7 +12,7 @@ import { RuaService } from '../../services/domain/rua.service';
     IonicPageModule.forChild(TesteAutocompletePage),
   ],
 providers:[
-  RuaService
+  EnderecoService
 ]
 })
 export class TesteAutocompletePageModule {}

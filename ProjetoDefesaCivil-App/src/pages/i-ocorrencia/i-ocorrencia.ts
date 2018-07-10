@@ -3,16 +3,13 @@ import { IonicPage, NavController, NavParams, AlertController, ModalController }
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
-import { RegiaoService } from '../../services/domain/regiao.service';
-import { BairroService } from '../../services/domain/bairro.service';
-import { RegiaoDTO } from '../../models/regiao.dto';
-import { BairroDTO } from '../../models/bairro.dto';
-import { RuaDTO } from '../../models/rua.dto';
-import { RuaService } from '../../services/domain/rua.service';
+
 import { FuncionarioService } from '../../services/domain/funcionario.service';
 import { StorageService } from '../../services/storage.service';
 import { FuncionarioDTO } from '../../models/funcionario.dto';
 import { TesteAutocompletePage } from '../teste-autocomplete/teste-autocomplete';
+import { EnderecoDTO } from '../../models/endereco.dto';
+import { EnderecoService } from '../../services/domain/endereco.service';
 
 
 
@@ -26,24 +23,19 @@ export class IOcorrenciaPage {
 
  
   formGroup: FormGroup;
-  regioes: RegiaoDTO[];
-  bairros: BairroDTO[];
-  ruas: RuaDTO[];
-  ruasSol: RuaDTO[];
+ruas:EnderecoDTO[];
   funcionarioDto: FuncionarioDTO;
 
   id_user: string;
   email: string;
-  rua:RuaDTO;
+ 
 
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
-    public ocorrenciaService: OcorrenciaService,
-    public regiaoService: RegiaoService,
-    public bairroService: BairroService,
-    public ruaService: RuaService,
+    public ocorrenciaService: OcorrenciaService,   
+    public ruaService: EnderecoService,
     public storage: StorageService,
     public funcionarioService: FuncionarioService,
     public localStorage: StorageService,
@@ -53,14 +45,13 @@ export class IOcorrenciaPage {
 
     this.formGroup = this.formBuilder.group({
       origemOcorrencia: ['', [Validators.required]],
-      tipoOcorrencia: ['', [Validators.required]],
-      regiao: ['', [Validators.required]],
-      bairro: ['', [Validators.required]],
-      ruaLocal: ['', [Validators.required]],
+      tipoOcorrencia: ['', [Validators.required]],     
+      endereco: ['', [Validators.required]],
+      ruaLocalidade: ['', [Validators.required]],
       numeroLocal: ['', [Validators.required]],
       historicoInicial: ['', [Validators.required]],
       tipoSolicitante: ['', [Validators.required]],
-      ruaSolicitante: ['', [Validators.required]],
+      endSolicitante: ['', [Validators.required]],
       ruaSol: ['', [Validators.required]],
       nomeSolicitante: ['', [Validators.required]],
       emailSolicitante: ['', [Validators.required, Validators.email]],
@@ -72,20 +63,7 @@ export class IOcorrenciaPage {
     });
   }
   ionViewDidLoad() {
-    this.regiaoService.findAll()
-      .subscribe(response => {
-        this.regioes = response;
-        this.formGroup.controls.regiao.setValue(this.regioes[0].id);
-        
-
-        this.updateBairros();
-        this.updateRuaAll();
-        
-        
-
-
-      },
-        error => { });
+    this.presentModal();;
         let varId = this.localStorage.getLocalUser();
         this.id_user=varId.iduser;       
 
@@ -93,39 +71,11 @@ export class IOcorrenciaPage {
   }
 
 
-  updateBairros() {
-    let regiao_id = this.formGroup.value.regiao;
-    this.bairroService.findByRegiaoId(regiao_id)
-      .subscribe(response => {
-        this.bairros = response;
-        this.formGroup.controls.bairro.setValue(null)
-      },
-        error => { });
 
-  }
 
-  updateRuas() {
-    let bairro_id = this.formGroup.value.bairro;
-    this.ruaService.findByBairroId(bairro_id)
-      .subscribe(response => {
-        this.ruas = response;
-        this.formGroup.controls.ruaLocal.setValue(null)
-      },
-        error => { });
+ 
 
-  }
 
-  updateRuaAll() {
-
-    this.ruaService.findByRuaAll()
-
-      .subscribe(response => {
-        this.ruasSol = response;
-        this.formGroup.controls.ruaSolicitante.setValue(null)
-      },
-        error => { });
-
-  }
 
   insereOco() {
     this.ocorrenciaService.insert(this.formGroup.value)
@@ -167,7 +117,7 @@ export class IOcorrenciaPage {
 
 
   initializeItems() {
-    this.ruaService.findByRuaAll().
+    this.ruaService.findByEnderecoAll().
     subscribe(response =>{
       this.ruas=response;
       
@@ -226,7 +176,17 @@ export class IOcorrenciaPage {
     
     
     this.formGroup.controls.ruaSol.setValue(varRua.nome);
-    this.formGroup.controls.ruaSolicitante.setValue(varRua.id);
+    this.formGroup.controls.endSolicitante.setValue(varRua.id);
+    
+  }
+
+  insereRuaLocal(){
+
+    let varRua =this.localStorage.getRuaDTO();
+    
+    
+    this.formGroup.controls.ruaLocalidade.setValue(varRua.nome);
+    this.formGroup.controls.endereco.setValue(varRua.id);
     
   }
 
