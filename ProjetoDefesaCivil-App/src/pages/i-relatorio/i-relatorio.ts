@@ -32,7 +32,7 @@ export class IRelatorioPage {
     public alertCrtl: AlertController) {
 
     this.formGroup = this.formBuilder.group({
-      rua: ['', [Validators.required]],
+      endereco: ['', [Validators.required]],
       ruaSol: ['', [Validators.required]],
       numeroLocal: ['', [Validators.required]],
       vistoria: ['', [Validators.required]],
@@ -50,6 +50,7 @@ export class IRelatorioPage {
 
     let ocorrenciaId = this.navParams.get('ocorrencia_id');
     this.oco_id = ocorrenciaId;
+    console.log(this.oco_id);
     this.formGroup.controls.ocorrencia.setValue(this.oco_id);
 
     let varId = this.localStorage.getLocalUser();
@@ -122,7 +123,7 @@ export class IRelatorioPage {
     let varRua =this.localStorage.getRuaDTO();   
     
     this.formGroup.controls.ruaSol.setValue(varRua.nome);
-    this.formGroup.controls.rua.setValue(varRua.id);
+    this.formGroup.controls.endereco.setValue(varRua.id);
     
   }
 

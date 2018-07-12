@@ -40,6 +40,12 @@ export class OcorrenciaService{
         return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/fechar/${id}`);
 
     }
+
+    ocoRegiao(regiao:string): Observable<OcorrenciaDTO[]>{
+
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/regiao/${regiao}`);
+
+    }
    
 
 

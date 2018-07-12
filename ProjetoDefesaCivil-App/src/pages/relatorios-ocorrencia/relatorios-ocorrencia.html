@@ -26,19 +26,14 @@
         <img src="https://s3-sa-east-1.amazonaws.com/projeto-defesacivil-sjc/relatorio{{item.id}}-{{4}}.jpg">
       </ion-thumbnail>
       
-      <p>Numero Relatorio: {{ item.id }}</p>
-      <p>Croqui:{{ item.croqui }}</p>
-      <p>Observacao: {{ item.observacao }}</p>
-      <p>Pessoas Atingidas:{{ item.pessoasAtingidas}}</p>
-      <p>FeridosLeves:{{ item.feridosLeves}}</p>
-      <p>Obitos:{{ item.obitos}}</p>
-      <p>Laje:{{ item.laje}}</p>
-      <p>Piso:{{ item.piso}}</p>
-      <p>Declividade:{{ item.declividade}}</p>
-      <p>Talude Natural Altura:{{ item.taludeNaturalAltura}}</p>
-      <p>Aterro:{{ item.aterro}}</p>
-      <p>Rua:{{ item.rua.nome}}</p>     
-       <p>Ocorrencia:{{ item.ocorrencia.historicoInicial}}</p>
+      <p>Numero Relatorio: {{ item.id }}</p>      
+      <p>Regiao:{{ item.endereco.regiao }}</p>
+      <p>Bairro:{{ item.endereco.bairro }}</p>
+      <p>Rua:{{ item.endereco.nome }}</p>
+      <p>Vistoria:{{ item.vistoria }}</p>
+      <p>Observacao: {{ item.observacao }}</p>        
+         
+       <p>Ocorrencia:{{ item.ocorrencia}}</p>
      
       
       
