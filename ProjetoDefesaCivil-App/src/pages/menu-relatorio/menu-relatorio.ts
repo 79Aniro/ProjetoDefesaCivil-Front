@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { RelatorioService } from '../../services/domain/relatorio.service';
 
 /**
  * Generated class for the MenuRelatorioPage page.
@@ -14,8 +15,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'menu-relatorio.html',
 })
 export class MenuRelatorioPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+ 
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public relatorioService: RelatorioService, ) {
   }
 
   ionViewDidLoad() {

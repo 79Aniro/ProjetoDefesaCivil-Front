@@ -12,72 +12,82 @@ import { ImageUtilService } from "../image-util.service";
 
 
 @Injectable()
-export class RelatorioService{
+export class RelatorioService {
 
     rel: Observable<RelatorioDTO[]>;
-    arr:Observable<Blob>;
+    arr: Observable<Blob>;
+    urlsFotos: string[];
     constructor(public http: HttpClient,
-        public imageUtilService: ImageUtilService){
+        public imageUtilService: ImageUtilService) {
 
 
     }
 
-    findRelatorios(): Observable<RelatorioDTO[]>{
+    findRelatorios(): Observable<RelatorioDTO[]> {
 
         return this.http.get<RelatorioDTO[]>(`${API_CONFIG.herokuBaseUrl}/relatorios`);
 
     }
 
-    insert(obj : RelatorioNewDTO) {
+    insert(obj: RelatorioNewDTO) {
         return this.http.post(
-            `${API_CONFIG.herokuBaseUrl}/relatorios`, 
+            `${API_CONFIG.herokuBaseUrl}/relatorios`,
             obj,
-            { 
-                observe: 'response', 
+            {
+                observe: 'response',
                 responseType: 'text'
             }
-        ); 
+        );
     }
 
-    buscaoRelatoriosIdOco(id_ocorrencia : String) {
-        
-            return this.http.get<RelatorioDTO[]>(`${API_CONFIG.herokuBaseUrl}/relatorios/ocorrencia/${id_ocorrencia}`);
+    buscaoRelatoriosIdOco(id_ocorrencia: String) {
+
+        return this.http.get<RelatorioDTO[]>(`${API_CONFIG.herokuBaseUrl}/relatorios/ocorrencia/${id_ocorrencia}`);
     }
 
-    buscaoRelatoriosIdRel(id_relatorio : String) {
-        
+    buscaoRelatoriosIdRel(id_relatorio: String) {
+
         return this.http.get<RelatorioDTO>(`${API_CONFIG.herokuBaseUrl}/relatorios/${id_relatorio}`);
-}
-    gerarPdfRelatorio(id_relarorio : String) {
-        
+    }
+
+
+    buscaoUrlsFoto(id_relatorio: String) {
+
+        return this.http.get<string[]>(`${API_CONFIG.herokuBaseUrl}/relatorios/geturlFoto/${id_relatorio}`);
+    }
+
+    gerarPdfRelatorio(id_relarorio: String) {
+
         return this.http.post(
             `${API_CONFIG.herokuBaseUrl}/relatorios/gerandoRelatorio/${id_relarorio}`,
-        
-    {
-        observe: 'response', 
-        responseType: 'text'
-    });
-}
+
+            {
+                observe: 'response',
+                responseType: 'text'
+            });
+    }
 
 
 
-    buscaoRelatoriosFunc(id_funcionario : String) {
-        
+    buscaoRelatoriosFunc(id_funcionario: String) {
+
         return this.http.get<RelatorioDTO[]>(`${API_CONFIG.herokuBaseUrl}/relatorios/idfuncionario/${id_funcionario}`);
-}
+    }
 
     uploadPicture(picture, id_relatorio) {
+        console.log(picture);
         let pictureBlob = this.imageUtilService.dataUriToBlob(picture);
-        let formData : FormData = new FormData();
+        let formData: FormData = new FormData();
         formData.set('file', pictureBlob, 'file.png');
+        formData.set('base',picture);
         return this.http.post(
-            `${API_CONFIG.herokuBaseUrl}/relatorios/picture/${id_relatorio}`, 
+            `${API_CONFIG.herokuBaseUrl}/relatorios/picture/${id_relatorio}`,
             formData,
-            { 
-                observe: 'response', 
+            {
+                observe: 'response',
                 responseType: 'text'
             }
-        ); 
+        );
     }
 
 }

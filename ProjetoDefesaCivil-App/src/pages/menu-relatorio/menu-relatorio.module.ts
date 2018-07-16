@@ -9,5 +9,6 @@ import { MenuRelatorioPage } from './menu-relatorio';
   imports: [
     IonicPageModule.forChild(MenuRelatorioPage),
   ],
+  
 })
 export class MenuRelatorioPageModule {}

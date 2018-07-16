@@ -47,8 +47,28 @@ export class OcorrenciaService{
 
     }
    
+    ocoDataAbertura(dataAbertura:string): Observable<OcorrenciaDTO[]>{
 
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/dataAbertura/${dataAbertura}`);
 
+    }
+
+    ocoDataAtendimento(dataAtendimento:string): Observable<OcorrenciaDTO[]>{
+
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/dataAtendimento/${dataAtendimento}`);
+
+    }
+
+    ocoDataFechamento(dataFechamento:string): Observable<OcorrenciaDTO[]>{
+
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/dataFechamento/${dataFechamento}`);
+
+    }
+    ocoDataAberturaBetween(dataStart:string,dataEnd:string): Observable<OcorrenciaDTO[]>{
+
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/dataAberturaBetween/${dataStart}/${dataEnd}`);
+
+    }
     insert(obj : OcorrenciaNewDTO) {
         return this.http.post(
             `${API_CONFIG.herokuBaseUrl}/ocorrencias`, 

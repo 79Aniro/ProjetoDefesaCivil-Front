@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 
+
 @Injectable()
 export class ImageUtilService {
 
@@ -13,4 +14,10 @@ export class ImageUtilService {
         }
         return new Blob([ab], { type: mimeString });
     }
+
+
+   
+
+
+  
 }

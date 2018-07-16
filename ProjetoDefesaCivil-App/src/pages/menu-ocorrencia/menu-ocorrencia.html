@@ -25,6 +25,23 @@
       <br>
       <br>
       <br>
+      <ion-item>
+        <ion-label>Data Inicial</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="dataInicial">
+        </ion-datetime>
+      </ion-item>
+      <br>
+      <br>
+      <ion-item>
+        <ion-label>Data Final</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="dataFinal">
+        </ion-datetime>
+      </ion-item>
+      <br>
+      <br>
+      <button ion-button full (click)="ocorrenciasPeriodo()">Ocorrencias por Periodo</button>
+      <br>
+      <br>
       <br>
       <button ion-button full (click)="fecharOcorrencias()"[disabled]="perfil_user==2" >Fechar Ocorrencias</button>
      

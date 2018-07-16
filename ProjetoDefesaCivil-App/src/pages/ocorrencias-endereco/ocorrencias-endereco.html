@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"> </ion-icon>
+      </button>
+    <ion-title>Busca de Relatorios por Endereco</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-list>
+  <button ion-item *ngFor="let item of items" (click)="buscarRelatoriosIdOco(item.id)">
+    <h2>Ocorrencia: {{ item.ocorrencia }}</h2>
+    <h2>Relatorio: {{ item.id }}</h2>
+    <h2>Data Abertura:{{ item.dataAbertura }}</h2>
+    <h2>Data Atendimento:{{ item.dataAtendimento }}</h2>
+    <h2>Data Conclusao:{{ item.dataConclusao}}</h2>
+    <h2>Status: {{ item.status }}</h2>
+    <h2>Historico:{{ item.historicoInicial}}</h2>
+    <h2>Regiao:{{ item.regiao}}</h2>
+    <h2>Bairro:{{ item.bairro}}</h2>
+    <h2>Rua:{{ item.rua}}</h2>
+    
+    <h2>Numero:{{ item.numeroLocal}}</h2>
+    
+    
+  </button>
+</ion-list>
+
+</ion-content>

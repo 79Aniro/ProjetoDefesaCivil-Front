@@ -1,20 +1,23 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-    Relatorio PDF
+      Relatorio PDF
     </ion-title>
   </ion-navbar>
 </ion-header>
- 
+
 <ion-content padding>
-  <ion-item>
-    <ion-label stacked>COMDEC</ion-label>
-    <ion-label stacked>COORDENADORIA MUNICIPAL DE DEFESA CIVL</ion-label>
-    <ion-label stacked>SÃO JOSÉ DOS CAMPOS</ion-label>
-    <ion-label stacked>R.O- Relatorio de Ocorrência</ion-label>
     
-   
-     </ion-item>
+ 
+  <div>
+    <ion-item >
+      <ion-label stacked >COMDEC</ion-label>
+      <ion-label stacked>COORDENADORIA MUNICIPAL DE DEFESA CIVL</ion-label>
+      <ion-label stacked>SÃO JOSÉ DOS CAMPOS</ion-label>
+      <ion-label stacked>R.O- Relatorio de Ocorrência</ion-label>
+    </ion-item>
+  </div>
+
   <ion-item>
     <ion-label stacked>From</ion-label>
     <ion-input [(ngModel)]="letterObj.from"></ion-input>
@@ -28,8 +31,11 @@
     <ion-textarea [(ngModel)]="letterObj.text" rows="10"></ion-textarea>
   </ion-item>
 
+  <br>
+  <br>
   <button ion-button full (click)="createPdf()">Create PDF</button>
-  <br><br>
+  <br>
+  <br>
   <button ion-button full (click)="downloadPdf()" color="secondary" [disabled]="!pdfObj">Download PDF</button>
- 
+
 </ion-content>

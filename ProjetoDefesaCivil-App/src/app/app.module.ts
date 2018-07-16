@@ -23,6 +23,7 @@ import { TesteAutocompletePage } from '../pages/teste-autocomplete/teste-autocom
 
 import{File} from '@ionic-native/file';
 import{FileOpener} from '@ionic-native/file-opener';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 
 
 
@@ -62,7 +63,12 @@ import{FileOpener} from '@ionic-native/file-opener';
     InsereFotoPage,
     TesteAutocompletePage,
     File,
-    FileOpener
+    FileOpener,
+    FileTransfer,
+     FileTransferObject ,
+   
+    
+    
     
     
     

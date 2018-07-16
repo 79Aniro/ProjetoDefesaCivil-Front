@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { StorageService } from '../../services/storage.service';
 import { FuncionarioService } from '../../services/domain/funcionario.service';
 import { FuncionarioDTO } from '../../models/funcionario.dto';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 
@@ -16,12 +17,23 @@ export class MenuOcorrenciaPage {
   funcionarioDto: FuncionarioDTO;
   perfil_user: string;
   regiao:string;
+  regiaoPar:string;
+  buscaPar:string;
+  formGroup: FormGroup;
+  dataInicial:string;
+  dataFinal:string;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      public storage: StorageService,
      public funcionarioService: FuncionarioService,
      public localStorage: StorageService,
-     public alertCrtl: AlertController,) {
+     public alertCrtl: AlertController,
+     public formBuilder: FormBuilder) {
+      this.formGroup = this.formBuilder.group({
+        dataInicial: ['', [Validators.required]],
+        dataFinal: ['', [Validators.required]],
+      });
+
   }
 
   ionViewDidLoad() {
@@ -56,6 +68,22 @@ error => {});
   ocorrenciasRegiao(){
 
     this.handleRegioes();
+    this.buscaPar="Regiao";
+
+    
+  }
+
+  ocorrenciasPeriodo(){
+
+   console.log(this.dataInicial);
+   console.log(this.dataFinal);
+    var x=this.dataFinal.toString().split("-");
+    console.log(x);
+    var dat=x[2]+"-"+x[1]+"-"+x[0]
+    console.log(dat);
+
+
+    
   }
   handleRegioes() {
     let alert = this.alertCrtl.create({
@@ -66,38 +94,44 @@ error => {});
         {
           text: 'Centro',
           handler: () => {
-            this.regiao="Centro"
+            this.regiao="Centro",
+            this.navCtrl.push('OcorrenciasEnderecoPage', {parametro:this.buscaPar,regiaoPar:this.regiao}); 
           }
         },
         {
           text: 'Leste',
           handler: () => {
-            this.regiao="Leste"
+            this.regiao="Leste",
+            this.navCtrl.push('OcorrenciasEnderecoPage', {parametro:this.buscaPar,regiaoPar:this.regiao}); 
           }
         },
         {
           text: 'Oeste',
           handler: () => {
-            this.regiao="Oeste"
+            this.regiao="Oeste",
+            this.navCtrl.push('OcorrenciasEnderecoPage', {parametro:this.buscaPar,regiaoPar:this.regiao}); 
           }
         },
         {
           text: 'Norte',
           handler: () => {
-            this.regiao="Norte"
+            this.regiao="Norte",
+            this.navCtrl.push('OcorrenciasEnderecoPage', {parametro:this.buscaPar,regiaoPar:this.regiao}); 
           }
         },
         {
           text: 'Sul',
           handler: () => {
-            this.regiao="Sul"
+            this.regiao="Sul",
+            this.navCtrl.push('OcorrenciasEnderecoPage', {parametro:this.buscaPar,regiaoPar:this.regiao}); 
           }
         },
         
         {
           text: 'Sudeste',
           handler: () => {
-            this.regiao="Sudeste"
+            this.regiao="Sudeste",
+            this.navCtrl.push('OcorrenciasEnderecoPage', {parametro:this.buscaPar,regiaoPar:this.regiao}); 
           }
         }
       ]
