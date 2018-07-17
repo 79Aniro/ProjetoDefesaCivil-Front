@@ -74,12 +74,10 @@ export class RelatorioService {
         return this.http.get<RelatorioDTO[]>(`${API_CONFIG.herokuBaseUrl}/relatorios/idfuncionario/${id_funcionario}`);
     }
 
-    uploadPicture(picture, id_relatorio) {
-        console.log(picture);
+    uploadPicture(picture, id_relatorio) {        
         let pictureBlob = this.imageUtilService.dataUriToBlob(picture);
         let formData: FormData = new FormData();
-        formData.set('file', pictureBlob, 'file.png');
-        formData.set('base',picture);
+        formData.set('file', pictureBlob, 'file.png');        
         return this.http.post(
             `${API_CONFIG.herokuBaseUrl}/relatorios/picture/${id_relatorio}`,
             formData,

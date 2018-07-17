@@ -10,6 +10,12 @@ export interface RelatorioDTO {
     numeroLocal: string;
     vistoria: string;
     observacao: string;
+    solicitante:string;
+    telefone:string;
+    origemOcorrencia:string;
+    anoOcorrencia:string;
+    tramitacao:string;
+    
 
 
 

@@ -9,6 +9,7 @@ import { RelatorioDTO } from '../../models/relatorio.dto';
 import { Platform } from 'ionic-angular/platform/platform';
 import { FileOpener } from '@ionic-native/file-opener';
 import { API_CONFIG } from '../../config/api.config';
+import { LogoDto } from '../../models/logo.dto';
 
 
 @IonicPage()
@@ -36,13 +37,15 @@ export class RelatorioPdfPage {
   pdfObj = null;
   body = [];
   myDate = new Date().toLocaleDateString();
-  hora = new Date().toLocaleTimeString();
+  hora = new Date().toTimeString().substr(0, 8);
   id_relatorio: string;
   img1: string;
   img2: string;
   img3: string;
   img4: string;
   url: string;
+  logo: LogoDto;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public relatorioService: RelatorioService,
@@ -57,13 +60,28 @@ export class RelatorioPdfPage {
     this.relatorioService.buscaoRelatoriosIdRel(this.id_relatorio)
       .subscribe(response => {
         this.items = response;
-        console.log(this.items);
+        
 
         this.relatorioService.buscaoUrlsFoto(this.id_relatorio).
           subscribe(response => {
             this.urlFotos = response;
-            this.img1 = this.urlFotos[0]
-            console.log(this.img1)
+            this.img1 = 'data:image/jpeg;base64,'+this.urlFotos[0]
+            this.img2 = 'data:image/jpeg;base64,'+this.urlFotos[1];
+            this.img3 = 'data:image/jpeg;base64,'+this.urlFotos[2];
+            this.img4 = 'data:image/jpeg;base64,'+this.urlFotos[3];
+            console.log(this.urlFotos)
+            if (this.urlFotos == []) {
+              this.img1 = this.logo.base;
+            }
+            if (this.urlFotos == []) {
+              this.img2 = this.logo.base;
+            }
+            if (this.urlFotos == []) {
+              this.img3 = this.logo.base;
+            }
+            if (this.urlFotos == []) {
+              this.img4 = this.logo.base;
+            }
           });
 
 
@@ -78,28 +96,28 @@ export class RelatorioPdfPage {
 
   createPdf() {
     var docDefinition = {
+      footer: function(currentPage, pageCount) { return { text: 'Rua Saigiro Nakamura, 10- Vila Industrial-São José dos Campos-São Paulo\nCEP:12220-280-Fone/Fax:(012)3913-2926 EMERGENCIA 190- COI', style: 'story', alignment: 'center' } },
+     
       content: [
         { text: 'COMDEC', style: 'header', alignment: 'center' },
         { text: 'COORDENADORIA MUNICIPAL DE DEFESA CIVL', style: 'header', alignment: 'center' },
         { text: 'SÃO JOSÉ DOS CAMPOS', style: 'header', alignment: 'center' },
-        { text: 'R.O- Relatorio de Ocorrência', style: 'header', alignment: 'center' },
+        { text: 'R.O- Relatorio de Ocorrência\n', style: 'header', alignment: 'center' },
 
 
-        { text: 'Relatorio nº ' + this.items.id + "/2018", style: 'header' },
-        { text: new Date().toTimeString(), alignment: 'right' },
+        
+        { text: 'Data: ' + new Date().toLocaleDateString(), alignment: 'right' },
+        { text: 'Hora: ' + this.hora, alignment: 'right' },
 
-        { text: 'From-teste', style: 'subheader' },
+        { text: 'Relatorio nº ' + this.items.id + "/2018", style: 'subheader' },
         { text: this.letterObj.from },
 
-        { text: 'To', style: 'subheader' },
+        { text: 'Origem da Ocorrência:  '+this.items.origemOcorrencia, style: 'subheader' },        
         this.letterObj.to,
 
         { text: this.letterObj.text, style: 'story', margin: [0, 20, 0, 20] },
-        {
-          image: this.img1,
-          width: 100
-        },
-      
+
+
         {
           // layout: 'lightHorizontalLines', // optional
           table: {
@@ -121,11 +139,11 @@ export class RelatorioPdfPage {
             // headers are automatically repeated if the table spans over multiple pages
             // you can declare how many rows should be treated as headers
             headerRows: 1,
-            widths: ['*', '*'],
+            widths: [350, '*'],
 
             body: [
 
-              [{ text: "Solicitante " }, { text: "Telefone  ", bold: true }],
+              [{ text: "Solicitante " + this.items.solicitante }, { text: "Telefone  " + this.items.telefone, bold: true }],
 
             ]
           }
@@ -136,16 +154,62 @@ export class RelatorioPdfPage {
             // headers are automatically repeated if the table spans over multiple pages
             // you can declare how many rows should be treated as headers
             headerRows: 1,
-            widths: ['*', '*'],
+            widths: [350, '*'],
 
             body: [
 
-              [{ text: "Local da Ocorrencia " }, { text: "Numero ", bold: true }],
+              [{ text: "Local da Ocorrencia: " + this.items.rua + " Bairro: " + this.items.bairro }, { text: "Numero " + this.items.numeroLocal, bold: true }],
 
             ]
           }
         },
+        {
+          // layout: 'lightHorizontalLines', // optional
+          table: {
+            // headers are automatically repeated if the table spans over multiple pages
+            // you can declare how many rows should be treated as headers
+            headerRows: 1,
+            widths: ['*', '*', '*', '*'],
 
+            body: [
+
+              [{ image: this.img1, width: 120 }, { image: this.img2, width: 120 }, { image: this.img3, width: 120 }, { image: this.img4, width: 120 }],
+
+            ]
+          }
+        },
+        {
+          // layout: 'lightHorizontalLines', // optional
+          table: {
+            // headers are automatically repeated if the table spans over multiple pages
+            // you can declare how many rows should be treated as headers
+            headerRows: 1,
+            widths: ['*'],
+
+            body: [
+
+              [{ text: "Vistoria: \n" + this.items.vistoria }],
+
+            ]
+          }
+        },
+        {
+          // layout: 'lightHorizontalLines', // optional
+          table: {
+            // headers are automatically repeated if the table spans over multiple pages
+            // you can declare how many rows should be treated as headers
+            headerRows: 1,
+            widths: ['*'],
+
+            body: [
+
+              [{ text: "Observação: \n" + this.items.observacao }],
+
+            ]
+          }
+        },
+        { text: '\n\nTramitacao:  \n'+this.items.tramitacao, style: 'footer' },  
+        { text: '\n\nConcluido por :  \n', style: 'subheader' },  
 
 
 
@@ -166,7 +230,14 @@ export class RelatorioPdfPage {
           italic: true,
           alignment: 'center',
           width: '50%',
-        }
+        },
+        footer: {
+          italic: true,          
+          width: '50%',
+          fontSize: 10,
+          
+        },
+
       }
     }
     this.pdfObj = pdfMake.createPdf(docDefinition);
