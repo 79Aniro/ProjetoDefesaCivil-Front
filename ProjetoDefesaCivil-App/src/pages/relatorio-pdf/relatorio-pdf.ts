@@ -38,6 +38,9 @@ export class RelatorioPdfPage {
   body = [];
   myDate = new Date().toLocaleDateString();
   hora = new Date().toTimeString().substr(0, 8);
+  dia = new Date().getDay();
+  mes= new Date().getMonth.toString();
+  
   id_relatorio: string;
   img1: string;
   img2: string;
@@ -60,7 +63,7 @@ export class RelatorioPdfPage {
     this.relatorioService.buscaoRelatoriosIdRel(this.id_relatorio)
       .subscribe(response => {
         this.items = response;
-        
+        console.log(this.items);
 
         this.relatorioService.buscaoUrlsFoto(this.id_relatorio).
           subscribe(response => {
@@ -102,14 +105,13 @@ export class RelatorioPdfPage {
         { text: 'COMDEC', style: 'header', alignment: 'center' },
         { text: 'COORDENADORIA MUNICIPAL DE DEFESA CIVL', style: 'header', alignment: 'center' },
         { text: 'SÃO JOSÉ DOS CAMPOS', style: 'header', alignment: 'center' },
-        { text: 'R.O- Relatorio de Ocorrência\n', style: 'header', alignment: 'center' },
+        { text: 'R.O- Relatorio de Ocorrência'+ this.items.id +'\n', style: 'header', alignment: 'center' },
 
 
         
-        { text: 'Data: ' + new Date().toLocaleDateString(), alignment: 'right' },
-        { text: 'Hora: ' + this.hora, alignment: 'right' },
+        
 
-        { text: 'Relatorio nº ' + this.items.id + "/2018", style: 'subheader' },
+        { text: 'Relatorio nº ' + this.items.id + this.items.anoOcorrencia, style: 'subheader' },
         { text: this.letterObj.from },
 
         { text: 'Origem da Ocorrência:  '+this.items.origemOcorrencia, style: 'subheader' },        
@@ -158,7 +160,22 @@ export class RelatorioPdfPage {
 
             body: [
 
-              [{ text: "Local da Ocorrencia: " + this.items.rua + " Bairro: " + this.items.bairro }, { text: "Numero " + this.items.numeroLocal, bold: true }],
+              [{ text: "Local da Ocorrencia: \n" + this.items.rua + " Bairro: " + this.items.bairro }, { text: "Numero " + this.items.numeroLocal, bold: true }],
+
+            ]
+          }
+        },
+        {
+          // layout: 'lightHorizontalLines', // optional
+          table: {
+            // headers are automatically repeated if the table spans over multiple pages
+            // you can declare how many rows should be treated as headers
+            headerRows: 1,
+            widths: ['*'],
+
+            body: [
+
+              [{ text: "Historico Inicial: \n" + this.items.historicoInicial}],
 
             ]
           }
@@ -208,7 +225,8 @@ export class RelatorioPdfPage {
             ]
           }
         },
-        { text: '\n\nTramitacao:  \n'+this.items.tramitacao, style: 'footer' },  
+        { text: '\n\nTramitacao:  '+this.items.tramitacao, style: 'footer' },  
+        
         { text: '\n\nConcluido por :  \n', style: 'subheader' },  
 
 

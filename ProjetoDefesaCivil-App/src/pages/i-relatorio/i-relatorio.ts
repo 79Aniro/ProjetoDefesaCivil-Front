@@ -32,9 +32,8 @@ export class IRelatorioPage {
     public alertCrtl: AlertController) {
 
     this.formGroup = this.formBuilder.group({
-      endereco: ['', [Validators.required]],
-      ruaSol: ['', [Validators.required]],
-      numeroLocal: ['', [Validators.required]],
+      endereco: ['', [Validators.required]],  
+      
       vistoria: ['', [Validators.required]],
       observacao: ['', [Validators.required]],
       funcionario: ['', [Validators.required]],
@@ -58,8 +57,8 @@ export class IRelatorioPage {
 
     this.formGroup.controls.funcionario.setValue(this.id_user);
 
-   
-    this.presentModal();
+  
+  
 
    
   }

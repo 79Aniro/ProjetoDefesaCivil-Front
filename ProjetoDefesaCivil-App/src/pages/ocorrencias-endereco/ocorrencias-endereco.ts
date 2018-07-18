@@ -21,6 +21,8 @@ export class OcorrenciasEnderecoPage {
   regiao: string;
   items: OcorrenciaDTO[];
   formGroup: FormGroup;
+  dataInicial:string;
+  dataFinal:string;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public ocorrenciaService: OcorrenciaService,
@@ -48,6 +50,18 @@ export class OcorrenciasEnderecoPage {
           }
         },
           error => { });
+    }
+    else if(this.parametro=="Periodo"){
+
+      this.dataInicial=this.navParams.get('dataInicial');
+      this.dataFinal=this.navParams.get('dataFinal');
+      this.ocorrenciaService.ocoDataAberturaBetween(this.dataInicial,this.dataFinal).
+      subscribe(response=>{
+        this.items=response;
+        if (this.items.length == 0) {
+          this.handleOcoPerido();
+        }
+      })
     }
 
   }

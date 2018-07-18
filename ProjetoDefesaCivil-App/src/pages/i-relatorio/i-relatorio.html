@@ -15,16 +15,8 @@
   <form [formGroup]="formGroup"  (ngSubmit)="insereRelatorio(); $event.preventDefault()">
 
 
-    <ion-item>
-      <ion-label floating>Rua Solicitante</ion-label>
-      
-          <ion-input formControlName="ruaSol"  type="text"  ></ion-input>
-        
-      </ion-item>
-    <ion-item>
-      <ion-label floating>Numero</ion-label>
-      <ion-input formControlName="numeroLocal" type="text" (ionChange)="insereRuaSol()"  ></ion-input>
-    </ion-item>
+    
+  
     <ion-item>
       <ion-label floating>Vistoria</ion-label>
       <ion-textarea rows="6"t formControlName="vistoria" type="text"></ion-textarea>

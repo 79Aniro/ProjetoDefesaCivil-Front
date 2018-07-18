@@ -6,7 +6,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding >
     
  
   <div>
@@ -18,18 +18,15 @@
     </ion-item>
   </div>
 
-  <ion-item>
-    <ion-label stacked>From</ion-label>
-    <ion-input [(ngModel)]="letterObj.from"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label stacked>To</ion-label>
-    <ion-input [(ngModel)]="letterObj.to"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label stacked>Text</ion-label>
-    <ion-textarea [(ngModel)]="letterObj.text" rows="10"></ion-textarea>
-  </ion-item>
+  <p>Numero Relatorio: {{ items?.id }}</p>  
+  <p>Ocorrencia:{{ items?.ocorrencia}}</p>    
+  <p>Regiao:{{ items?.regiao }}</p>
+  <p>Bairro:{{ items?.bairro }}</p>
+  <p>Rua:{{ items?.rua }}</p>
+  <p>Vistoria:{{ items?.vistoria }}</p>
+  <p>Observacao: {{ items?.observacao }}</p>        
+     
+   
 
   <br>
   <br>

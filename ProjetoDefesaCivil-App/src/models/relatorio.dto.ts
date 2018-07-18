@@ -15,7 +15,8 @@ export interface RelatorioDTO {
     origemOcorrencia:string;
     anoOcorrencia:string;
     tramitacao:string;
-    
+    historicoInicial:string;
+    endereco:string;
 
 
 

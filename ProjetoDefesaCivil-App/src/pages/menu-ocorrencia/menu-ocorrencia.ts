@@ -75,12 +75,22 @@ error => {});
 
   ocorrenciasPeriodo(){
 
-   console.log(this.dataInicial);
-   console.log(this.dataFinal);
-    var x=this.dataFinal.toString().split("-");
-    console.log(x);
-    var dat=x[2]+"-"+x[1]+"-"+x[0]
-    console.log(dat);
+    console.log(this.dataInicial);
+    console.log(this.dataFinal);
+   this.buscaPar="Periodo";
+
+   var z=this.dataInicial.toString().split("-");    
+   var dat2=z[2]+"-"+z[1]+"-"+z[0];
+   this.dataInicial=dat2;
+   
+
+    var x=this.dataFinal.toString().split("-");    
+    var dat=x[2]+"-"+x[1]+"-"+x[0];
+    this.dataFinal=dat;
+  
+  console.log(this.dataInicial);
+  console.log(this.dataFinal);
+    this.navCtrl.push('OcorrenciasEnderecoPage', {parametro:this.buscaPar,dataInicial:this.dataInicial,dataFinal:this.dataFinal});
 
 
     
