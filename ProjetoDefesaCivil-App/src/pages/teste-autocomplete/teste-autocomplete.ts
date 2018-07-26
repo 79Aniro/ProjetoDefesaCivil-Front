@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { EnderecoDTO } from '../../models/endereco.dto';
 import { EnderecoService } from '../../services/domain/endereco.service';
+import { StorageService } from '../../services/storage.service';
 
 
 
@@ -21,11 +22,13 @@ export class TesteAutocompletePage {
   formGroup: FormGroup;
   pais:string;
   ruas:EnderecoDTO[]
+  ruasString:string;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public ruaService: EnderecoService,
     public auth: AuthService,
+    public localStorage: StorageService
   ) {
 
     this.formGroup = this.formBuilder.group({
@@ -39,14 +42,16 @@ export class TesteAutocompletePage {
   }
 
   initializeItems() {
-    this.ruaService.findByEnderecoAll().
+   /* this.ruaService.findByEnderecoAll().
     subscribe(response =>{
       this.ruas=response;
       
       
      
     },
-    error => { });
+    error => { });*/
+    console.log("local");
+    this.ruas=this.localStorage.getRuasDTO()
     
 
   }

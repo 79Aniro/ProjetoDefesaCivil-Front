@@ -13,7 +13,7 @@ export interface RelatorioDTO {
     solicitante:string;
     telefone:string;
     origemOcorrencia:string;
-    anoOcorrencia:string;
+    ano:string;
     tramitacao:string;
     historicoInicial:string;
     endereco:string;

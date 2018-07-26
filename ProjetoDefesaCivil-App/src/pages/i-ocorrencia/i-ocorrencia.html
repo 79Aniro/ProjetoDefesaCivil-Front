@@ -14,35 +14,31 @@
 <ion-content padding>
 
 
-  <form [formGroup]="formGroup" (ngSubmit)="insereOco(); $event.preventDefault()">
+  <form [formGroup]="formGroup"  (ngSubmit)="insereOco(); $event.preventDefault()">
    
     <ion-item>
       <ion-label floating>Rua do Local</ion-label>
       
-          <ion-input formControlName="endereco"  type="text"  ></ion-input>
+          <ion-input formControlName="enderecoLocal"  type="text"  ></ion-input>
         
       </ion-item>
 
+   
+   
     <ion-item>
       <ion-label floating>Origem Ocorrencia</ion-label>
       <ion-select formControlName="origemOcorrencia" (ionChange)="insereRuaLocal()">
-        <ion-option value="1">PESSOALMENTE</ion-option>
-        <ion-option value="2">VIARADIO</ion-option>
-        <ion-option value="3">TEL_156</ion-option>
+        <ion-option *ngFor="let  origemOcorrencia of origemOco;first as f"[value]="origemOcorrencia.cod"[selected]="f"  >{{origemOcorrencia.descricao}}</ion-option>
+       
       </ion-select>
     </ion-item>
-
     <ion-item>
       <ion-label floating>Tipo Ocorrencia</ion-label>
-      <ion-select formControlName="tipoOcorrencia">
-        <ion-option value="1">AA1</ion-option>
-        <ion-option value="2">AA2</ion-option>
-        <ion-option value="3">AA3</ion-option>
-
+      <ion-select formControlName="tipoOcorrencia" >
+        <ion-option *ngFor="let  tipoOcorrencia of tiposOco;first as f"[value]="tipoOcorrencia.cod"[selected]="f">{{tipoOcorrencia.descricao}}</ion-option>
+       
       </ion-select>
     </ion-item>
-
-    
     
 
     <ion-item>
@@ -60,7 +56,7 @@
 
     <ion-item>
       <ion-label floating>Tipo Solicitante</ion-label>
-      <ion-select formControlName="tipoSolicitante" (ionChange)="presentModal()"  >
+      <ion-select formControlName="tipoSolicitante"  (ionChange)="getDepartamentos()" >
         <ion-option value="1">Municipe</ion-option>
         <ion-option value="2">Departamento</ion-option>
         <ion-option value="3">Funcionario</ion-option>
@@ -68,6 +64,13 @@
       </ion-select>
     </ion-item>
 
+    <ion-item>
+      <ion-label floating>Departamento</ion-label>
+      <ion-select formControlName="departamento" (ionChange)="chamaRuasSol()"  >
+        <ion-option *ngFor="let  departamento of departamentos;first as f"[value]="departamento.id"[selected]="f" >{{departamento.nome}}</ion-option>
+
+      </ion-select>
+    </ion-item>
 
     
     <ion-item>

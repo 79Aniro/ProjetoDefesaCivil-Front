@@ -1,5 +1,7 @@
 export const STORAGE_KEYS = {
     localUser: "localUser",
     endeDTO:"endDTO",
-    perfil:"perfil"
+    perfil:"perfil",
+    endDTO:'end',
+    
 }

@@ -5,13 +5,17 @@ import { OcorrenciaDTO } from "../../models/ocorrencia.dto";
 import { Observable } from "rxjs/Rx";
 import{OcorrenciaNewDTO} from "../../models/ocorrenciaNew.dto"
 import { FuncionarioService } from "./funcionario.service";
+import { TipoOcorrenciaDTO } from "../../models/tipoOcorrencia.dto";
+import { OrigemOcorrenciaDTO } from "../../models/origemOcorenciaDTO";
+import { DepartamentoDTO } from "../../models/departamento.dto";
 
 
 @Injectable()
 export class OcorrenciaService{
 
     funcionarioService: FuncionarioService
-
+    deps:Observable<DepartamentoDTO[]>
+    dep:Observable<DepartamentoDTO>
     constructor(public http: HttpClient){
 
 
@@ -64,11 +68,33 @@ export class OcorrenciaService{
         return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/dataFechamento/${dataFechamento}`);
 
     }
+
+    tiposocorrenciaAll(): Observable<TipoOcorrenciaDTO[]>{
+
+        return this.http.get<TipoOcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/tipoOcorrencia/tipos`);
+
+    }
+
+    origemOcorrenciaAll(): Observable<OrigemOcorrenciaDTO[]>{
+
+        return this.http.get<OrigemOcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/origemOcorrencia/tipos`);
+
+    }
     ocoDataAberturaBetween(dataStart:string,dataEnd:string): Observable<OcorrenciaDTO[]>{
 
         return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/dataAberturaBetween/${dataStart}/${dataEnd}`);
 
     }
+
+
+    departamentos(): Observable<DepartamentoDTO[]>{
+
+        return this.http.get<DepartamentoDTO[]>(`${API_CONFIG.herokuBaseUrl}/departamentos/dto`);
+
+    }
+
+   
+
     insert(obj : OcorrenciaNewDTO) {
         return this.http.post(
             `${API_CONFIG.herokuBaseUrl}/ocorrencias`, 

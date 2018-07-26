@@ -10,6 +10,9 @@ import { FuncionarioDTO } from '../../models/funcionario.dto';
 import { TesteAutocompletePage } from '../teste-autocomplete/teste-autocomplete';
 import { EnderecoDTO } from '../../models/endereco.dto';
 import { EnderecoService } from '../../services/domain/endereco.service';
+import { TipoOcorrenciaDTO } from '../../models/tipoOcorrencia.dto';
+import { OrigemOcorrenciaDTO } from '../../models/origemOcorenciaDTO';
+import { DepartamentoDTO } from '../../models/departamento.dto';
 
 
 
@@ -29,8 +32,10 @@ ruas:EnderecoDTO[];
   id_user: string;
   email: string;
  
-
-
+  tiposOco:TipoOcorrenciaDTO[];
+  origemOco:OrigemOcorrenciaDTO[];
+  departamentos:DepartamentoDTO[];
+  dep:DepartamentoDTO;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
@@ -46,8 +51,8 @@ ruas:EnderecoDTO[];
     this.formGroup = this.formBuilder.group({
       origemOcorrencia: ['', [Validators.required]],
       tipoOcorrencia: ['', [Validators.required]],     
-      endereco: ['', [Validators.required]],
-      ruaLocalidade: ['', [Validators.required]],
+      endereco: ['', [Validators.required]], 
+      enderecoLocal:   ['', [Validators.required]], 
       numeroLocal: ['', [Validators.required]],
       historicoInicial: ['', [Validators.required]],
       tipoSolicitante: ['', [Validators.required]],
@@ -58,18 +63,22 @@ ruas:EnderecoDTO[];
       numeroResidenciaSolicitante: ['', [Validators.required]],
       telefoneSolicitante: ['', [Validators.required]],
       telefoneSolicitante2: ['', [Validators.required]],
-      funcionario: ['', [Validators.required]]
+      funcionario: ['', [Validators.required]],
+      departamento:['', [Validators.required]],
 
     });
   }
   ionViewDidLoad() {
-    this.presentModal();;
+    this.presentModal();
         let varId = this.localStorage.getLocalUser();
         this.id_user=varId.iduser;       
 
         this.formGroup.controls.funcionario.setValue(this.id_user);
+        this.tiposOcorrencia();
+        this.origemOcorrencia();
+       
+       
   }
-
 
 
 
@@ -98,6 +107,67 @@ ruas:EnderecoDTO[];
     })
 
   }
+
+  tiposOcorrencia(){
+
+    this.ocorrenciaService.tiposocorrenciaAll().
+    subscribe(response=>{
+      this.tiposOco=response;
+
+    })
+  }
+
+  getDepartamentos(){
+    this.ocorrenciaService.departamentos().
+    subscribe(response=>{
+      this.departamentos=response;
+      
+      
+    })
+
+  }
+
+  getDep(){
+
+    for(let x in this.departamentos){
+      if(this.departamentos[x].id=this.formGroup.controls.departamento.value)
+      {
+        this.dep=this.departamentos[x];
+      }
+    }
+   
+    console.log(this.formGroup.controls.departamento.value);
+  }
+
+  chamaRuasSol(){
+    for(let x in this.departamentos){
+      if(this.departamentos[x].id==this.formGroup.controls.departamento.value)
+      {
+        this.dep=this.departamentos[x];
+        break;
+      }
+    }
+    if(this.formGroup.controls.tipoSolicitante.value==2){
+      this.formGroup.controls.ruaSol.setValue(this.dep.rua);
+      this.formGroup.controls.endSolicitante.setValue(this.dep.id_rua);
+      this.formGroup.controls.emailSolicitante.setValue(this.dep.email);
+      this.formGroup.controls.nomeSolicitante.setValue(this.dep.nome);
+      this.formGroup.controls.telefoneSolicitante.setValue(this.dep.telefone);
+      this.formGroup.controls.telefoneSolicitante2.setValue(this.dep.telefone);
+
+    }
+    else{
+      this.presentModal();
+    }
+  
+  }
+  origemOcorrencia(){
+    this.ocorrenciaService.origemOcorrenciaAll().
+    subscribe(response=>{
+      this.origemOco=response;
+    })
+  }
+ 
   handleOcorrenciaInserida() {
     let alert = this.alertCrtl.create({
       title: 'Ocorrencia Inserida',
@@ -129,30 +199,6 @@ ruas:EnderecoDTO[];
 
   }
 
-  getItems(ev: any) {
-    // Reset items back to all of the items
-    
-    
-    // set val to the value of the searchbar
-    const val = ev.target.value;
-   
-    
-    
-
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.ruas = this.ruas.filter((rua) => {
-        
-        return (this.ruaService.getRuaNome(rua).toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    }
-    else{
-      this.initializeItems();
-    }
-   
-    
-   
-  }
 
   send(item,itemNome){
 
@@ -167,6 +213,8 @@ ruas:EnderecoDTO[];
   presentModal() {
   
     this.navCtrl.push('TesteAutocompletePage');
+
+   
     
   }
 
@@ -177,16 +225,18 @@ ruas:EnderecoDTO[];
     
     this.formGroup.controls.ruaSol.setValue(varRua.nome);
     this.formGroup.controls.endSolicitante.setValue(varRua.id);
-    
+    console.log(this.formGroup.value.tipoSolicitante);
   }
 
   insereRuaLocal(){
 
     let varRua =this.localStorage.getRuaDTO();
     
+   
     
-    this.formGroup.controls.ruaLocalidade.setValue(varRua.nome);
     this.formGroup.controls.endereco.setValue(varRua.id);
+    this.formGroup.controls.enderecoLocal.setValue(varRua.nome);
+   
     
   }
 

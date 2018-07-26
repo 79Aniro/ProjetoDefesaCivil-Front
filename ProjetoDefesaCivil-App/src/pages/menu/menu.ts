@@ -5,6 +5,8 @@ import { StorageService } from '../../services/storage.service';
 import { FuncionarioDTO } from '../../models/funcionario.dto';
 import { FuncionarioService } from '../../services/domain/funcionario.service';
 import { FormBuilder } from '@angular/forms';
+import { EnderecoDTO } from '../../models/endereco.dto';
+import { EnderecoService } from '../../services/domain/endereco.service';
 
 
 
@@ -17,13 +19,15 @@ export class MenuPage {
   id_user: string;
   funcionarioDto: FuncionarioDTO;
   perfil_user: string;
+  ruas:EnderecoDTO[];
 
   constructor(public navCtrl: NavController,
     public storage: StorageService,
     public funcionarioService: FuncionarioService,
     public localStorage: StorageService,
     public formBuilder: FormBuilder,
-    public navParams: NavParams, ) {
+    public navParams: NavParams,
+  public endService:EnderecoService ) {
 
 
   }
@@ -39,6 +43,13 @@ export class MenuPage {
         this.funcionarioDto = response;
         this.perfil_user = this.funcionarioDto.perfil;
       },
+        error => { });
+
+        this.endService.findByEnderecoAll().
+        subscribe(response=>{
+          this.ruas=response;
+          this.storage.setLocalEnderecos(this.ruas);
+        },
         error => { });
 
 

@@ -24,6 +24,7 @@ import { TesteAutocompletePage } from '../pages/teste-autocomplete/teste-autocom
 import{File} from '@ionic-native/file';
 import{FileOpener} from '@ionic-native/file-opener';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { EnderecoService } from '../services/domain/endereco.service';
 
 
 
@@ -66,6 +67,7 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
     FileOpener,
     FileTransfer,
      FileTransferObject ,
+     EnderecoService
    
     
     

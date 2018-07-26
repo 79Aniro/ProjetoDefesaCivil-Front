@@ -10,6 +10,8 @@ export interface OcorrenciaDTO{
     bairro:string;
     rua:string;
     numeroLocal:string;
+    tipo:string;
+    origem;
     
 
     

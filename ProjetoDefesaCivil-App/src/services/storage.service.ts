@@ -40,10 +40,10 @@ export class StorageService {
     setLocalEnderecos(obj:EnderecoDTO[]){
 
         if (obj == null) {
-            localStorage.removeItem(STORAGE_KEYS.endeDTO);
+            localStorage.removeItem(STORAGE_KEYS.endDTO);
         }
         else {
-            localStorage.setItem(STORAGE_KEYS.endeDTO, JSON.stringify(obj));
+            localStorage.setItem(STORAGE_KEYS.endDTO, JSON.stringify(obj));
         }
        
     }
@@ -55,6 +55,16 @@ export class StorageService {
         }
         else {
             return JSON.parse(rua);
+        }
+    }
+
+    getRuasDTO() : EnderecoDTO[] {
+        let ruas = localStorage.getItem(STORAGE_KEYS.endDTO);
+        if (ruas == null) {
+            return null;
+        }
+        else {
+            return JSON.parse(ruas);
         }
     }
 }

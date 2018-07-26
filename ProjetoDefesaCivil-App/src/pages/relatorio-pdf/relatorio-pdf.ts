@@ -21,6 +21,9 @@ export class RelatorioPdfPage {
   items: RelatorioDTO;
   img = new Image;
   urlFotos: string[];
+  myIcon: string = "home";
+  tramitacao:string;
+  tramitacaoCod:string;
   letterObj = {
     to: '',
     from: '',
@@ -111,7 +114,7 @@ export class RelatorioPdfPage {
         
         
 
-        { text: 'Relatorio nº ' + this.items.id + this.items.anoOcorrencia, style: 'subheader' },
+        { text: 'Relatorio nº ' + this.items.id + '/'+this.items.ano, style: 'subheader' },
         { text: this.letterObj.from },
 
         { text: 'Origem da Ocorrência:  '+this.items.origemOcorrencia, style: 'subheader' },        
@@ -225,9 +228,9 @@ export class RelatorioPdfPage {
             ]
           }
         },
-        { text: '\n\nTramitacao:  '+this.items.tramitacao, style: 'footer' },  
+        { text: '\nTramitacao:  '+this.items.tramitacao, style: 'footer' },  
         
-        { text: '\n\nConcluido por :  \n', style: 'subheader' },  
+        { text: 'Concluido por :  \n', style: 'subheader' },  
 
 
 
@@ -281,7 +284,11 @@ export class RelatorioPdfPage {
 
 
 
+  updateTramitacao(){
 
+    
+
+  }
 
 
 

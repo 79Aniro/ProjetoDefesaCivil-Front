@@ -23,8 +23,25 @@
   <p>Regiao:{{ items?.regiao }}</p>
   <p>Bairro:{{ items?.bairro }}</p>
   <p>Rua:{{ items?.rua }}</p>
-  <p>Vistoria:{{ items?.vistoria }}</p>
-  <p>Observacao: {{ items?.observacao }}</p>        
+  <p> <ion-list>
+    <ion-item>
+      <ion-label>TRAMITACAO</ion-label>
+      <ion-select [(ngModel)]="tramitacao" (ionChange)="updateTramitacao()">
+        <ion-option value="PENDENTE">PENDENTE</ion-option>
+        <ion-option value="PARA_PROV_DC">PARA_PROV_DC</ion-option>
+        <ion-option value="RESOLVIDO">RESOLVIDO</ion-option>
+        <ion-option value="ARQUIVO">ARQUIVO</ion-option>
+        <ion-option value="PARA_PROV_OUTROS">PARA_PROV_OUTROS</ion-option>
+      
+      </ion-select>
+    </ion-item>
+  </ion-list></p>
+  <ion-label stacked>Vistoria:</ion-label>
+  <br>
+  <p>{{ items?.vistoria }}</p>
+
+  <ion-label stacked>Observacao: </ion-label>  <br>
+  <p>{{ items?.observacao }}</p>        
      
    
 
