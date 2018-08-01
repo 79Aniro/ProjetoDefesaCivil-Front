@@ -101,167 +101,326 @@ export class RelatorioPdfPage {
   }
 
   createPdf() {
-    var docDefinition = {
-      footer: function(currentPage, pageCount) { return { text: 'Rua Saigiro Nakamura, 10- Vila Industrial-São José dos Campos-São Paulo\nCEP:12220-280-Fone/Fax:(012)3913-2926 EMERGENCIA 190- COI', style: 'story', alignment: 'center' } },
-     
-      content: [
-        { text: 'COMDEC', style: 'header', alignment: 'center' },
-        { text: 'COORDENADORIA MUNICIPAL DE DEFESA CIVL', style: 'header', alignment: 'center' },
-        { text: 'SÃO JOSÉ DOS CAMPOS', style: 'header', alignment: 'center' },
-        { text: 'R.O- Relatorio de Ocorrência'+ this.items.id +'\n', style: 'header', alignment: 'center' },
-
-
-        
-        
-
-        { text: 'Relatorio nº ' + this.items.id + '/'+this.items.ano, style: 'subheader' },
-        { text: this.letterObj.from },
-
-        { text: 'Origem da Ocorrência:  '+this.items.origemOcorrencia, style: 'subheader' },        
-        this.letterObj.to,
-
-        { text: this.letterObj.text, style: 'story', margin: [0, 20, 0, 20] },
-
-
-        {
-          // layout: 'lightHorizontalLines', // optional
-          table: {
-            // headers are automatically repeated if the table spans over multiple pages
-            // you can declare how many rows should be treated as headers
-            headerRows: 1,
-            widths: ['*', '*', '*'],
-
-            body: [
-
-              [{ text: "Data " + this.myDate, bold: true }, { text: "Horario " + this.hora, bold: true }, { text: "Relatorio  " + this.id_relatorio + "/2018", bold: true }],
-
-            ]
-          }
-        },
-        {
-          // layout: 'lightHorizontalLines', // optional
-          table: {
-            // headers are automatically repeated if the table spans over multiple pages
-            // you can declare how many rows should be treated as headers
-            headerRows: 1,
-            widths: [350, '*'],
-
-            body: [
-
-              [{ text: "Solicitante " + this.items.solicitante }, { text: "Telefone  " + this.items.telefone, bold: true }],
-
-            ]
-          }
-        },
-        {
-          // layout: 'lightHorizontalLines', // optional
-          table: {
-            // headers are automatically repeated if the table spans over multiple pages
-            // you can declare how many rows should be treated as headers
-            headerRows: 1,
-            widths: [350, '*'],
-
-            body: [
-
-              [{ text: "Local da Ocorrencia: \n" + this.items.rua + " Bairro: " + this.items.bairro }, { text: "Numero " + this.items.numeroLocal, bold: true }],
-
-            ]
-          }
-        },
-        {
-          // layout: 'lightHorizontalLines', // optional
-          table: {
-            // headers are automatically repeated if the table spans over multiple pages
-            // you can declare how many rows should be treated as headers
-            headerRows: 1,
-            widths: ['*'],
-
-            body: [
-
-              [{ text: "Historico Inicial: \n" + this.items.historicoInicial}],
-
-            ]
-          }
-        },
-        {
-          // layout: 'lightHorizontalLines', // optional
-          table: {
-            // headers are automatically repeated if the table spans over multiple pages
-            // you can declare how many rows should be treated as headers
-            headerRows: 1,
-            widths: ['*', '*', '*', '*'],
-
-            body: [
-
-              [{ image: this.img1, width: 120 }, { image: this.img2, width: 120 }, { image: this.img3, width: 120 }, { image: this.img4, width: 120 }],
-
-            ]
-          }
-        },
-        {
-          // layout: 'lightHorizontalLines', // optional
-          table: {
-            // headers are automatically repeated if the table spans over multiple pages
-            // you can declare how many rows should be treated as headers
-            headerRows: 1,
-            widths: ['*'],
-
-            body: [
-
-              [{ text: "Vistoria: \n" + this.items.vistoria }],
-
-            ]
-          }
-        },
-        {
-          // layout: 'lightHorizontalLines', // optional
-          table: {
-            // headers are automatically repeated if the table spans over multiple pages
-            // you can declare how many rows should be treated as headers
-            headerRows: 1,
-            widths: ['*'],
-
-            body: [
-
-              [{ text: "Observação: \n" + this.items.observacao }],
-
-            ]
-          }
-        },
-        { text: '\nTramitacao:  '+this.items.tramitacao, style: 'footer' },  
-        
-        { text: 'Concluido por :  \n', style: 'subheader' },  
-
-
-
-
-      ],
-
-      styles: {
-        header: {
-          fontSize: 18,
-          bold: true,
-        },
-        subheader: {
-          fontSize: 14,
-          bold: true,
-          margin: [0, 15, 0, 0]
-        },
-        story: {
-          italic: true,
-          alignment: 'center',
-          width: '50%',
-        },
-        footer: {
-          italic: true,          
-          width: '50%',
-          fontSize: 10,
+    if(this.urlFotos.length==0){
+      var docDefinition2 = {
+        footer: function(currentPage, pageCount) { return { text: 'Rua Saigiro Nakamura, 10- Vila Industrial-São José dos Campos-São Paulo\nCEP:12220-280-Fone/Fax:(012)3913-2926 EMERGENCIA 190- COI', style: 'story', alignment: 'center' } },
+       
+        content: [
+          { text: 'COMDEC', style: 'header', alignment: 'center' },
+          { text: 'COORDENADORIA MUNICIPAL DE DEFESA CIVL', style: 'header', alignment: 'center' },
+          { text: 'SÃO JOSÉ DOS CAMPOS', style: 'header', alignment: 'center' },
+          { text: 'R.O- Relatorio de Ocorrência'+ this.items.id +'\n', style: 'header', alignment: 'center' },
+  
+  
           
-        },
-
+          
+  
+          { text: 'Relatorio nº ' + this.items.id + '/'+this.items.ano, style: 'subheader' },
+          { text: this.letterObj.from },
+  
+          { text: 'Origem da Ocorrência:  '+this.items.origemOcorrencia, style: 'subheader' },        
+          this.letterObj.to,
+  
+          { text: this.letterObj.text, style: 'story', margin: [0, 20, 0, 20] },
+  
+  
+          {
+            // layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              widths: ['*', '*', '*'],
+  
+              body: [
+  
+                [{ text: "Data " + this.myDate, bold: true }, { text: "Horario " + this.hora, bold: true }, { text: "Relatorio  " + this.id_relatorio + "/2018", bold: true }],
+  
+              ]
+            }
+          },
+          {
+            // layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              widths: [350, '*'],
+  
+              body: [
+  
+                [{ text: "Solicitante " + this.items.solicitante }, { text: "Telefone  " + this.items.telefone, bold: true }],
+  
+              ]
+            }
+          },
+          {
+            // layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              widths: [350, '*'],
+  
+              body: [
+  
+                [{ text: "Local da Ocorrencia: \n" + this.items.rua + " Bairro: " + this.items.bairro }, { text: "Numero " + this.items.numeroLocal, bold: true }],
+  
+              ]
+            }
+          },
+          {
+            // layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              widths: ['*'],
+  
+              body: [
+  
+                [{ text: "Historico Inicial: \n" + this.items.historicoInicial}],
+  
+              ]
+            }
+          },
+          
+          {
+            // layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              widths: ['*'],
+  
+              body: [
+  
+                [{ text: "Vistoria: \n" + this.items.vistoria }],
+  
+              ]
+            }
+          },
+          {
+            // layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              widths: ['*'],
+  
+              body: [
+  
+                [{ text: "Observação: \n" + this.items.observacao }],
+  
+              ]
+            }
+          },
+          { text: '\nTramitacao:  '+this.items.tramitacao, style: 'footer' },  
+          
+          { text: 'Concluido por :  \n', style: 'subheader' },  
+  
+  
+  
+  
+        ],
+  
+        styles: {
+          header: {
+            fontSize: 18,
+            bold: true,
+          },
+          subheader: {
+            fontSize: 14,
+            bold: true,
+            margin: [0, 15, 0, 0]
+          },
+          story: {
+            italic: true,
+            alignment: 'center',
+            width: '50%',
+          },
+          footer: {
+            italic: true,          
+            width: '50%',
+            fontSize: 10,
+            
+          },
+  
+        }
       }
     }
-    this.pdfObj = pdfMake.createPdf(docDefinition);
+    else{
+      var docDefinition = {
+        footer: function(currentPage, pageCount) { return { text: 'Rua Saigiro Nakamura, 10- Vila Industrial-São José dos Campos-São Paulo\nCEP:12220-280-Fone/Fax:(012)3913-2926 EMERGENCIA 190- COI', style: 'story', alignment: 'center' } },
+       
+        content: [
+          { text: 'COMDEC', style: 'header', alignment: 'center' },
+          { text: 'COORDENADORIA MUNICIPAL DE DEFESA CIVL', style: 'header', alignment: 'center' },
+          { text: 'SÃO JOSÉ DOS CAMPOS', style: 'header', alignment: 'center' },
+          { text: 'R.O- Relatorio de Ocorrência'+ this.items.id +'\n', style: 'header', alignment: 'center' },
+  
+  
+          
+          
+  
+          { text: 'Relatorio nº ' + this.items.id + '/'+this.items.ano, style: 'subheader' },
+          { text: this.letterObj.from },
+  
+          { text: 'Origem da Ocorrência:  '+this.items.origemOcorrencia, style: 'subheader' },        
+          this.letterObj.to,
+  
+          { text: this.letterObj.text, style: 'story', margin: [0, 20, 0, 20] },
+  
+  
+          {
+            // layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              widths: ['*', '*', '*'],
+  
+              body: [
+  
+                [{ text: "Data " + this.myDate, bold: true }, { text: "Horario " + this.hora, bold: true }, { text: "Relatorio  " + this.id_relatorio + "/2018", bold: true }],
+  
+              ]
+            }
+          },
+          {
+            // layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              widths: [350, '*'],
+  
+              body: [
+  
+                [{ text: "Solicitante " + this.items.solicitante }, { text: "Telefone  " + this.items.telefone, bold: true }],
+  
+              ]
+            }
+          },
+          {
+            // layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              widths: [350, '*'],
+  
+              body: [
+  
+                [{ text: "Local da Ocorrencia: \n" + this.items.rua + " Bairro: " + this.items.bairro }, { text: "Numero " + this.items.numeroLocal, bold: true }],
+  
+              ]
+            }
+          },
+          {
+            // layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              widths: ['*'],
+  
+              body: [
+  
+                [{ text: "Historico Inicial: \n" + this.items.historicoInicial}],
+  
+              ]
+            }
+          },
+          {
+            // layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              widths: ['*', '*', '*', '*'],
+  
+              body: [
+  
+                [{ image: this.img1, width: 120 }, { image: this.img2, width: 120 }, { image: this.img3, width: 120 }, { image: this.img4, width: 120 }],
+  
+              ]
+            }
+          },
+          {
+            // layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              widths: ['*'],
+  
+              body: [
+  
+                [{ text: "Vistoria: \n" + this.items.vistoria }],
+  
+              ]
+            }
+          },
+          {
+            // layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              widths: ['*'],
+  
+              body: [
+  
+                [{ text: "Observação: \n" + this.items.observacao }],
+  
+              ]
+            }
+          },
+          { text: '\nTramitacao:  '+this.items.tramitacao, style: 'footer' },  
+          
+          { text: 'Concluido por :  \n', style: 'subheader' },  
+  
+  
+  
+  
+        ],
+  
+        styles: {
+          header: {
+            fontSize: 18,
+            bold: true,
+          },
+          subheader: {
+            fontSize: 14,
+            bold: true,
+            margin: [0, 15, 0, 0]
+          },
+          story: {
+            italic: true,
+            alignment: 'center',
+            width: '50%',
+          },
+          footer: {
+            italic: true,          
+            width: '50%',
+            fontSize: 10,
+            
+          },
+  
+        }
+      }
+    }
+    
+    
+    if(this.urlFotos.length==0){
+      this.pdfObj = pdfMake.createPdf(docDefinition2);
+    }
+    
+    else{
+      this.pdfObj = pdfMake.createPdf(docDefinition);
+    }
+ 
 
   }
 
