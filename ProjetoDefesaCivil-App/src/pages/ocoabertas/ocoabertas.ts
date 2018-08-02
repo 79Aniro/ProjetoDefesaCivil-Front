@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
 import { OcorrenciaDTO } from '../../models/ocorrencia.dto';
 import { FuncionarioDTO } from '../../models/funcionario.dto';
 import { FuncionarioService } from '../../services/domain/funcionario.service';
 import { StorageService } from '../../services/storage.service';
-
+import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 
 
 @IonicPage()
@@ -14,65 +14,86 @@ import { StorageService } from '../../services/storage.service';
   templateUrl: 'ocoabertas.html',
 })
 export class OcoabertasPage {
-
-  items: OcorrenciaDTO[];
+  page: number = 0;
+  items: OcorrenciaDTO[] = [];
   id_user: string;
   funcionarioDto: FuncionarioDTO;
   perfil_user: string;
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public ocorrenciaService: OcorrenciaService,
     public funcionarioService: FuncionarioService,
     public localStorage: StorageService,
-    public alertCrtl: AlertController,) {
+    public alertCrtl: AlertController, 
+    public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
-this.loadData();
-    
-   
+    this.loadData();
+
+
   }
 
-  loadData(){
-
-    this.ocorrenciaService.findOcoAbertas()
-    .subscribe(response =>{
-      this.items=response;
-    },
-    error => { });
-
+  loadData() {
+    let loader = this.presentLoading();
+    this.ocorrenciaService.findOcoAbertasPage(this.page,5)
+      .subscribe(response => {
+        
+        this.items = this.items.concat(response);
+        loader.dismiss();
+        console.log(this.page);
+        console.log(this.items);
+      },
+        error => { loader.dismiss()});
+        
 
     let varId = this.localStorage.getLocalUser();
-    this.id_user=varId.iduser; 
-    
-this.funcionarioService.buscaPerfil(this.id_user).
-subscribe(response => {
-  this.funcionarioDto = response;
-  this.perfil_user=this.funcionarioDto.perfil;
-},
-error => {});
-    
+    this.id_user = varId.iduser;
+
+    this.funcionarioService.buscaPerfil(this.id_user).
+      subscribe(response => {
+        this.funcionarioDto = response;
+        this.perfil_user = this.funcionarioDto.perfil;
+      },
+        error => { });
+
   }
 
-  abreRelatorios(ocorrencia_id : string) {
+  abreRelatorios(ocorrencia_id: string) {
 
-    if(this.perfil_user=='2'){
-this.handlePermissaoNegada();
+    if (this.perfil_user == '2') {
+      this.handlePermissaoNegada();
     }
-    else{
-      this.navCtrl.push('IRelatorioPage', {ocorrencia_id: ocorrencia_id});   
+    else {
+      this.navCtrl.push('IRelatorioPage', { ocorrencia_id: ocorrencia_id });
     }
-  
-   
+
+
+  }
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Aguarde..."
+    });
+    loader.present();
+    return loader;
   }
 
   doRefresh(refresher) {
+    this.page = 0;
+    this.items = [];
     this.loadData();
     setTimeout(() => {
       refresher.complete();
     }, 1000);
   }
 
+  doInfinite(infiniteScroll) {
+    this.page++;
+    this.loadData();
+    setTimeout(() => {
+      infiniteScroll.complete();
+    }, 1000);
+  }
 
   handlePermissaoNegada() {
     let alert = this.alertCrtl.create({
@@ -82,7 +103,7 @@ this.handlePermissaoNegada();
       buttons: [
         {
           text: 'Ok',
-          handler:()=>{
+          handler: () => {
             this.navCtrl.pop();
           }
         }
