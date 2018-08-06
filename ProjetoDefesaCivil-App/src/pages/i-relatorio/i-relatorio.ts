@@ -53,13 +53,14 @@ export class IRelatorioPage {
     this.oco_id = ocorrenciaId;
     console.log(this.oco_id);
     this.formGroup.controls.ocorrencia.setValue(this.oco_id);
-
+    if(this.localStorage.getLocalUser()==null){
+      this.auth.logout();
+      this.navCtrl.setRoot('MenuOcorrenciaPage');
+    }
     let varId = this.localStorage.getLocalUser();
     this.id_user = varId.iduser;
 
-    if(this.id_user==null){
-      this.auth.logout();
-    }
+   
     this.formGroup.controls.funcionario.setValue(this.id_user);
 
   
