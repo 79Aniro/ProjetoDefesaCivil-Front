@@ -4,6 +4,7 @@ import { StorageService } from '../../services/storage.service';
 import { FuncionarioService } from '../../services/domain/funcionario.service';
 import { FuncionarioDTO } from '../../models/funcionario.dto';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 
 
@@ -28,7 +29,8 @@ export class MenuOcorrenciaPage {
      public funcionarioService: FuncionarioService,
      public localStorage: StorageService,
      public alertCrtl: AlertController,
-     public formBuilder: FormBuilder) {
+     public formBuilder: FormBuilder,
+     public auth: AuthService) {
       this.formGroup = this.formBuilder.group({
         dataInicial: ['', [Validators.required]],
         dataFinal: ['', [Validators.required]],
@@ -39,6 +41,9 @@ export class MenuOcorrenciaPage {
   ionViewDidLoad() {
     let varId = this.localStorage.getLocalUser();
     this.id_user=varId.iduser; 
+    if(this.id_user==null){
+      this.auth.logout();
+    }
     
 this.funcionarioService.buscaPerfil(this.id_user).
 subscribe(response => {

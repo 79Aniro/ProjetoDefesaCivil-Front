@@ -28,11 +28,12 @@ export class OcorrenciaService{
     }
 
 
-    findOcoAbertasPage(page : number = 0, linesPerPage : number = 2): Observable<OcorrenciaDTO[]>{
+    findOcoAbertasPage(page : number = 0, linesPerPage : number = 4): Observable<OcorrenciaDTO[]>{
 
         return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/abertas/page?page=${page}&linesPerPage=${linesPerPage}`);
 
     }
+
 
     findOcoFechadas(): Observable<OcorrenciaDTO[]>{
 
@@ -57,7 +58,11 @@ export class OcorrenciaService{
         return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/regiao/${regiao}`);
 
     }
-   
+      ocoRegiaoPage(regiao:string,page : number = 0, linesPerPage : number = 4): Observable<OcorrenciaDTO[]>{
+
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/regiao/page?regiao=${regiao}&page=${page}&linesPerPage=${linesPerPage}`);
+
+    }
     ocoDataAbertura(dataAbertura:string): Observable<OcorrenciaDTO[]>{
 
         return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/dataAbertura/${dataAbertura}`);

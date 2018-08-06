@@ -36,10 +36,10 @@ export class OcoabertasPage {
 
   loadData() {
     let loader = this.presentLoading();
-    this.ocorrenciaService.findOcoAbertasPage(this.page,5)
+    this.ocorrenciaService.findOcoAbertasPage(this.page,3)
       .subscribe(response => {
         
-        this.items = this.items.concat(response);
+        this.items = this.items.concat(response['content']);
         loader.dismiss();
         console.log(this.page);
         console.log(this.items);

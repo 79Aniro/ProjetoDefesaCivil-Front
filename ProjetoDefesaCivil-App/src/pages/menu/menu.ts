@@ -7,6 +7,8 @@ import { FuncionarioService } from '../../services/domain/funcionario.service';
 import { FormBuilder } from '@angular/forms';
 import { EnderecoDTO } from '../../models/endereco.dto';
 import { EnderecoService } from '../../services/domain/endereco.service';
+import { AuthService } from '../../services/auth.service';
+import { HomePage } from '../home/home';
 
 
 
@@ -27,31 +29,38 @@ export class MenuPage {
     public localStorage: StorageService,
     public formBuilder: FormBuilder,
     public navParams: NavParams,
-  public endService:EnderecoService ) {
+  public endService:EnderecoService,
+  public auth: AuthService ) {
 
 
   }
   ionViewDidLoad() {
 
 
-
-    let varId = this.localStorage.getLocalUser();
-    this.id_user = varId.iduser;
-
-    this.funcionarioService.buscaPerfil(this.id_user).
-      subscribe(response => {
-        this.funcionarioDto = response;
-        this.perfil_user = this.funcionarioDto.perfil;
-      },
-        error => { });
-
-        this.endService.findByEnderecoAll().
-        subscribe(response=>{
-          this.ruas=response;
-          this.storage.setLocalEnderecos(this.ruas);
+    if(this.localStorage.getLocalUser()==null){
+      this.auth.logout();
+      this.navCtrl.setRoot('HomePage');
+    }
+    else{
+      let varId = this.localStorage.getLocalUser();
+      this.id_user = varId.iduser;
+     
+      this.funcionarioService.buscaPerfil(this.id_user).
+        subscribe(response => {
+          this.funcionarioDto = response;
+          this.perfil_user = this.funcionarioDto.perfil;
         },
-        error => { });
-
+          error => { });
+  
+          this.endService.findByEnderecoAll().
+          subscribe(response=>{
+            this.ruas=response;
+            this.storage.setLocalEnderecos(this.ruas);
+          },
+          error => { });
+  
+    }
+    
 
 
   }

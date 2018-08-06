@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
 import { OcorrenciaDTO } from '../../models/ocorrencia.dto';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { LoadingController } from '../../../node_modules/ionic-angular/components/loading/loading-controller';
 
 /**
  * Generated class for the OcorrenciasEnderecoPage page.
@@ -19,37 +20,45 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class OcorrenciasEnderecoPage {
   parametro: string;
   regiao: string;
-  items: OcorrenciaDTO[];
+  items: OcorrenciaDTO[]=[];
   formGroup: FormGroup;
   dataInicial:string;
   dataFinal:string;
+  page: number = 0;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public ocorrenciaService: OcorrenciaService,
     public alertCrtl: AlertController,
-    public formBuilder: FormBuilder) {
+    public formBuilder: FormBuilder,
+    public loadingCtrl: LoadingController) {
   }
 
 
+  ionViewDidLoad() {
 
+    this.loadData();
+ 
+   }
   buscarRelatoriosIdOco(id_ocorrencia: string) {
 
     this.navCtrl.push('RelatoriosOcorrenciaPage', { id_ocorrencia: id_ocorrencia });
   }
-
-  ionViewDidLoad() {
-
+  loadData() {
+    let loader = this.presentLoading();
     this.parametro = this.navParams.get('parametro');
     this.regiao = this.navParams.get('regiaoPar');
     if (this.parametro == "Regiao") {
-      this.ocorrenciaService.ocoRegiao(this.regiao).
+      this.ocorrenciaService.ocoRegiaoPage(this.regiao,this.page,4).
         subscribe(response => {
-          this.items = response;
+          this.items = this.items.concat(response['content']);
+          loader.dismiss();
+          console.log(this.page);
+          console.log(this.items);
           if (this.items.length == 0) {
             this.handleOcoRegiao();
           }
         },
-          error => { });
+        error => { loader.dismiss()});
     }
     else if(this.parametro=="Periodo"){
 
@@ -63,8 +72,9 @@ export class OcorrenciasEnderecoPage {
         }
       })
     }
-
   }
+
+ 
 
 
 
@@ -119,5 +129,28 @@ export class OcorrenciasEnderecoPage {
     });
     alert.present();
   }
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Aguarde..."
+    });
+    loader.present();
+    return loader;
+  }
 
+  doRefresh(refresher) {
+    this.page = 0;
+    this.items = [];
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
+  }
+
+  doInfinite(infiniteScroll) {
+    this.page++;
+    this.loadData();
+    setTimeout(() => {
+      infiniteScroll.complete();
+    }, 1000);
+  }
 }

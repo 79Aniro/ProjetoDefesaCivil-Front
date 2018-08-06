@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StorageService } from '../../services/storage.service';
 import { EnderecoDTO } from '../../models/endereco.dto';
 import { EnderecoService } from '../../services/domain/endereco.service';
+import { AuthService } from '../../services/auth.service';
 
 
 
@@ -29,7 +30,8 @@ export class IRelatorioPage {
     public formBuilder: FormBuilder,
     public ruaService: EnderecoService,
     public localStorage: StorageService,
-    public alertCrtl: AlertController) {
+    public alertCrtl: AlertController,
+    public auth: AuthService) {
 
     this.formGroup = this.formBuilder.group({
       endereco: ['', [Validators.required]],  
@@ -55,6 +57,9 @@ export class IRelatorioPage {
     let varId = this.localStorage.getLocalUser();
     this.id_user = varId.iduser;
 
+    if(this.id_user==null){
+      this.auth.logout();
+    }
     this.formGroup.controls.funcionario.setValue(this.id_user);
 
   
@@ -70,7 +75,9 @@ export class IRelatorioPage {
 
       this.handleRelatorioInserido();
       },
-        error => { });
+        error => {
+          this.handleRelatorioNaoInserido();
+         });
   }
 
   updateRuaAll() {
@@ -105,7 +112,25 @@ export class IRelatorioPage {
 
 
 
-
+  handleRelatorioNaoInserido() {
+    let alert = this.alertCrtl.create({
+      title: 'Relatorio Não Inserido',
+      message: 'Relatorio Não Foi inserido',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+         
+          handler: () => {
+            this.navCtrl.setRoot('MenuPage');
+          }
+        }
+      ],
+      cssClass: 'alertDanger'
+    });
+    alert.present();
+    
+  }
   
 
 
