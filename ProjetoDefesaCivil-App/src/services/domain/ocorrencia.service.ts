@@ -92,9 +92,9 @@ export class OcorrenciaService{
         return this.http.get<OrigemOcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/origemOcorrencia/tipos`);
 
     }
-    ocoDataAberturaBetween(dataStart:string,dataEnd:string): Observable<OcorrenciaDTO[]>{
+    ocoDataAberturaBetween(dataStart:string,dataEnd:string,page : number = 0, linesPerPage : number = 4): Observable<OcorrenciaDTO[]>{
 
-        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/dataAberturaBetween/${dataStart}/${dataEnd}`);
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/dataAberturaBetween/${dataStart}/${dataEnd}?page=${page}&linesPerPage=${linesPerPage}`);
 
     }
 

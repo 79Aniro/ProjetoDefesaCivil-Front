@@ -40,11 +40,13 @@ export class OcorrenciasEnderecoPage {
   loadData() {
     let loader = this.presentLoading();
     this.parametro = this.navParams.get('parametro');
+    
     this.regiao = this.navParams.get('regiaoPar');
     if (this.parametro == "Regiao") {
-      this.ocorrenciaService.ocoRegiaoPage(this.regiao,this.page,4).
+      this.ocorrenciaService.ocoRegiaoPage(this.regiao,this.page,3).
         subscribe(response => {
           this.items = this.items.concat(response['content']);
+          
           loader.dismiss();         
           if (this.items.length == 0) {
             this.handleOcoRegiao();
@@ -56,9 +58,11 @@ export class OcorrenciasEnderecoPage {
 
       this.dataInicial=this.navParams.get('dataInicial');
       this.dataFinal=this.navParams.get('dataFinal');
-      this.ocorrenciaService.ocoDataAberturaBetween(this.dataInicial,this.dataFinal).
+      this.ocorrenciaService.ocoDataAberturaBetween(this.dataInicial,this.dataFinal,this.page,3).
       subscribe(response=>{
-        this.items=response;
+        this.items = this.items.concat(response['content']);
+        
+        loader.dismiss();  
         if (this.items.length == 0) {
           this.handleOcoPerido();
         }
