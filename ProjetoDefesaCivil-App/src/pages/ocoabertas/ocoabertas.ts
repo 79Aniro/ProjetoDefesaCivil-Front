@@ -41,8 +41,7 @@ export class OcoabertasPage {
         
         this.items = this.items.concat(response['content']);
         loader.dismiss();
-        console.log(this.page);
-        console.log(this.items);
+       
       },
         error => { loader.dismiss()});
         

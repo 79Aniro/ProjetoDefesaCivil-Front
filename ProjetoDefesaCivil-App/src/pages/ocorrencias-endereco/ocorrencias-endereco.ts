@@ -5,12 +5,6 @@ import { OcorrenciaDTO } from '../../models/ocorrencia.dto';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LoadingController } from '../../../node_modules/ionic-angular/components/loading/loading-controller';
 
-/**
- * Generated class for the OcorrenciasEnderecoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -51,9 +45,7 @@ export class OcorrenciasEnderecoPage {
       this.ocorrenciaService.ocoRegiaoPage(this.regiao,this.page,4).
         subscribe(response => {
           this.items = this.items.concat(response['content']);
-          loader.dismiss();
-          console.log(this.page);
-          console.log(this.items);
+          loader.dismiss();         
           if (this.items.length == 0) {
             this.handleOcoRegiao();
           }

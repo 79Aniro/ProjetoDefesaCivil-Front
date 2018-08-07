@@ -136,7 +136,7 @@ ruas:EnderecoDTO[];
       }
     }
    
-    console.log(this.formGroup.controls.departamento.value);
+    
   }
 
   chamaRuasSol(){
@@ -225,7 +225,8 @@ ruas:EnderecoDTO[];
     
     this.formGroup.controls.ruaSol.setValue(varRua.nome);
     this.formGroup.controls.endSolicitante.setValue(varRua.id);
-    console.log(this.formGroup.value.tipoSolicitante);
+
+    
   }
 
   insereRuaLocal(){

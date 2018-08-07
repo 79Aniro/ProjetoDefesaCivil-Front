@@ -36,16 +36,7 @@ export class HomePage {
     this.menu.swipeEnable(true);
   }
 
- /* ionViewDidEnter() {
-      this.auth.refreshToken()
-         .subscribe(response => {
-           this.auth.successfulLogin(response.headers.get('Authorization'),response.headers.get('idUser'));
-           
-           this.navCtrl.setRoot('MenuPage');
-          },
-          error => {});  
-      }*/
-    
+   
 
 
   login() {

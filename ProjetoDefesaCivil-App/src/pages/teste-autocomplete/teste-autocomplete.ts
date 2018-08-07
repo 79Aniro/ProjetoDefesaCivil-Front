@@ -42,15 +42,7 @@ export class TesteAutocompletePage {
   }
 
   initializeItems() {
-   /* this.ruaService.findByEnderecoAll().
-    subscribe(response =>{
-      this.ruas=response;
-      
-      
-     
-    },
-    error => { });*/
-    console.log("local");
+ 
     this.ruas=this.localStorage.getRuasDTO()
     
 
@@ -83,7 +75,7 @@ export class TesteAutocompletePage {
 
   send(item,itemNome){
 
-    console.log(item,itemNome);
+    
     
    
     this.auth.storage.setLocalRua(item);

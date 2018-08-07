@@ -51,7 +51,7 @@ export class IRelatorioPage {
 
     let ocorrenciaId = this.navParams.get('ocorrencia_id');
     this.oco_id = ocorrenciaId;
-    console.log(this.oco_id);
+    
     this.formGroup.controls.ocorrencia.setValue(this.oco_id);
     if(this.localStorage.getLocalUser()==null){
       this.auth.logout();

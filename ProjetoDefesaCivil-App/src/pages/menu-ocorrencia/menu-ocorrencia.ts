@@ -85,8 +85,7 @@ export class MenuOcorrenciaPage {
 
   ocorrenciasPeriodo() {
 
-    console.log(this.dataInicial);
-    console.log(this.dataFinal);
+ 
     this.buscaPar = "Periodo";
 
     var z = this.dataInicial.toString().split("-");
@@ -98,8 +97,7 @@ export class MenuOcorrenciaPage {
     var dat = x[2] + "-" + x[1] + "-" + x[0];
     this.dataFinal = dat;
 
-    console.log(this.dataInicial);
-    console.log(this.dataFinal);
+    
     this.navCtrl.push('OcorrenciasEnderecoPage', { parametro: this.buscaPar, dataInicial: this.dataInicial, dataFinal: this.dataFinal });
 
 

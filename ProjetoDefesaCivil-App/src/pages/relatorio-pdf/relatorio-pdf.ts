@@ -66,7 +66,7 @@ export class RelatorioPdfPage {
     this.relatorioService.buscaoRelatoriosIdRel(this.id_relatorio)
       .subscribe(response => {
         this.items = response;
-        console.log(this.items);
+       
 
         this.relatorioService.buscaoUrlsFoto(this.id_relatorio).
           subscribe(response => {

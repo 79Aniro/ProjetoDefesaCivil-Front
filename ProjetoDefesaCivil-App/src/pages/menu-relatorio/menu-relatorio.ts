@@ -2,12 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RelatorioService } from '../../services/domain/relatorio.service';
 
-/**
- * Generated class for the MenuRelatorioPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -22,7 +17,7 @@ export class MenuRelatorioPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MenuRelatorioPage');
+    
   }
 
 
