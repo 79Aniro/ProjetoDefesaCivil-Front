@@ -9,7 +9,7 @@ import { RelatorioDTO } from '../../models/relatorio.dto';
 import { Platform } from 'ionic-angular/platform/platform';
 import { FileOpener } from '@ionic-native/file-opener';
 import { API_CONFIG } from '../../config/api.config';
-import { LogoDto } from '../../models/logo.dto';
+
 
 
 @IonicPage()
@@ -22,8 +22,8 @@ export class RelatorioPdfPage {
   img = new Image;
   urlFotos: string[];
   myIcon: string = "home";
-  tramitacao:string;
-  tramitacaoCod:string;
+  tramitacao: string;
+  tramitacaoCod: string;
   letterObj = {
     to: '',
     from: '',
@@ -42,15 +42,15 @@ export class RelatorioPdfPage {
   myDate = new Date().toLocaleDateString();
   hora = new Date().toTimeString().substr(0, 8);
   dia = new Date().getDay();
-  mes= new Date().getMonth.toString();
-  
+  mes = new Date().getMonth.toString();
+
   id_relatorio: string;
   img1: string;
   img2: string;
   img3: string;
   img4: string;
   url: string;
-  logo: LogoDto;
+  urlLogo: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -66,28 +66,18 @@ export class RelatorioPdfPage {
     this.relatorioService.buscaoRelatoriosIdRel(this.id_relatorio)
       .subscribe(response => {
         this.items = response;
-       
+
 
         this.relatorioService.buscaoUrlsFoto(this.id_relatorio).
           subscribe(response => {
             this.urlFotos = response;
-            this.img1 = 'data:image/jpeg;base64,'+this.urlFotos[0]
-            this.img2 = 'data:image/jpeg;base64,'+this.urlFotos[1];
-            this.img3 = 'data:image/jpeg;base64,'+this.urlFotos[2];
-            this.img4 = 'data:image/jpeg;base64,'+this.urlFotos[3];
-            console.log(this.urlFotos)
-            if (this.urlFotos == []) {
-              this.img1 = this.logo.base;
-            }
-            if (this.urlFotos == []) {
-              this.img2 = this.logo.base;
-            }
-            if (this.urlFotos == []) {
-              this.img3 = this.logo.base;
-            }
-            if (this.urlFotos == []) {
-              this.img4 = this.logo.base;
-            }
+            this.img1 = 'data:image/jpeg;base64,' + this.urlFotos[0]
+            this.img2 = 'data:image/jpeg;base64,' + this.urlFotos[1];
+            this.img3 = 'data:image/jpeg;base64,' + this.urlFotos[2];
+            this.img4 = 'data:image/jpeg;base64,' + this.urlFotos[3];
+            this.urlLogo = this.items.urlLogo;
+            console.log(this.urlLogo);
+
           });
 
 
@@ -101,29 +91,31 @@ export class RelatorioPdfPage {
   }
 
   createPdf() {
-    if(this.urlFotos.length==0){
+    if (this.urlFotos.length == 0) {
       var docDefinition2 = {
-        footer: function(currentPage, pageCount) { return { text: 'Rua Saigiro Nakamura, 10- Vila Industrial-São José dos Campos-São Paulo\nCEP:12220-280-Fone/Fax:(012)3913-2926 EMERGENCIA 190- COI', style: 'story', alignment: 'center' } },
-       
+
+        footer: function (currentPage, pageCount) { return { text: 'Rua Saigiro Nakamura, 10- Vila Industrial-São José dos Campos-São Paulo\nCEP:12220-280-Fone/Fax:(012)3913-2926 EMERGENCIA 190- COI', style: 'story', alignment: 'center' } },
+
         content: [
+
           { text: 'COMDEC', style: 'header', alignment: 'center' },
           { text: 'COORDENADORIA MUNICIPAL DE DEFESA CIVL', style: 'header', alignment: 'center' },
           { text: 'SÃO JOSÉ DOS CAMPOS', style: 'header', alignment: 'center' },
-          { text: 'R.O- Relatorio de Ocorrência'+ this.items.id +'\n', style: 'header', alignment: 'center' },
-  
-  
-          
-          
-  
-          { text: 'Relatorio nº ' + this.items.id + '/'+this.items.ano, style: 'subheader' },
+          { text: 'R.O- Relatorio de Ocorrência' + this.items.id + '\n', style: 'header', alignment: 'center' },
+
+
+
+
+
+          { text: 'Relatorio nº ' + this.items.id + '/' + this.items.ano, style: 'subheader' },
           { text: this.letterObj.from },
-  
-          { text: 'Origem da Ocorrência:  '+this.items.origemOcorrencia, style: 'subheader' },        
+
+          { text: 'Origem da Ocorrência:  ' + this.items.origemOcorrencia, style: 'subheader' },
           this.letterObj.to,
-  
+
           { text: this.letterObj.text, style: 'story', margin: [0, 20, 0, 20] },
-  
-  
+
+
           {
             // layout: 'lightHorizontalLines', // optional
             table: {
@@ -131,11 +123,11 @@ export class RelatorioPdfPage {
               // you can declare how many rows should be treated as headers
               headerRows: 1,
               widths: ['*', '*', '*'],
-  
+
               body: [
-  
+
                 [{ text: "Data " + this.myDate, bold: true }, { text: "Horario " + this.hora, bold: true }, { text: "Relatorio  " + this.id_relatorio + "/2018", bold: true }],
-  
+
               ]
             }
           },
@@ -146,11 +138,11 @@ export class RelatorioPdfPage {
               // you can declare how many rows should be treated as headers
               headerRows: 1,
               widths: [350, '*'],
-  
+
               body: [
-  
+
                 [{ text: "Solicitante " + this.items.solicitante }, { text: "Telefone  " + this.items.telefone, bold: true }],
-  
+
               ]
             }
           },
@@ -161,11 +153,11 @@ export class RelatorioPdfPage {
               // you can declare how many rows should be treated as headers
               headerRows: 1,
               widths: [350, '*'],
-  
+
               body: [
-  
+
                 [{ text: "Local da Ocorrencia: \n" + this.items.rua + " Bairro: " + this.items.bairro }, { text: "Numero " + this.items.numeroLocal, bold: true }],
-  
+
               ]
             }
           },
@@ -176,15 +168,15 @@ export class RelatorioPdfPage {
               // you can declare how many rows should be treated as headers
               headerRows: 1,
               widths: ['*'],
-  
+
               body: [
-  
-                [{ text: "Historico Inicial: \n" + this.items.historicoInicial}],
-  
+
+                [{ text: "Historico Inicial: \n" + this.items.historicoInicial }],
+
               ]
             }
           },
-          
+
           {
             // layout: 'lightHorizontalLines', // optional
             table: {
@@ -192,11 +184,11 @@ export class RelatorioPdfPage {
               // you can declare how many rows should be treated as headers
               headerRows: 1,
               widths: ['*'],
-  
+
               body: [
-  
+
                 [{ text: "Vistoria: \n" + this.items.vistoria }],
-  
+
               ]
             }
           },
@@ -207,23 +199,25 @@ export class RelatorioPdfPage {
               // you can declare how many rows should be treated as headers
               headerRows: 1,
               widths: ['*'],
-  
+
               body: [
-  
+
                 [{ text: "Observação: \n" + this.items.observacao }],
-  
+
               ]
             }
           },
-          { text: '\nTramitacao:  '+this.items.tramitacao, style: 'footer' },  
-          
-          { text: 'Concluido por :  \n', style: 'subheader' },  
-  
-  
-  
-  
+
+
+          { text: '\nTramitacao:  ' + this.items.tramitacao, style: 'footer' },
+
+          { text: 'Concluido por :  \n', style: 'subheader' },
+
+
+
+
         ],
-  
+
         styles: {
           header: {
             fontSize: 18,
@@ -240,38 +234,52 @@ export class RelatorioPdfPage {
             width: '50%',
           },
           footer: {
-            italic: true,          
+            italic: true,
             width: '50%',
             fontSize: 10,
-            
+
           },
-  
+
         }
       }
     }
-    else{
+    else {
       var docDefinition = {
-        footer: function(currentPage, pageCount) { return { text: 'Rua Saigiro Nakamura, 10- Vila Industrial-São José dos Campos-São Paulo\nCEP:12220-280-Fone/Fax:(012)3913-2926 EMERGENCIA 190- COI', style: 'story', alignment: 'center' } },
-       
+
+        footer: function (currentPage, pageCount) { return { text: 'Rua Saigiro Nakamura, 10- Vila Industrial-São José dos Campos-São Paulo\nCEP:12220-280-Fone/Fax:(012)3913-2926 EMERGENCIA 190- COI', style: 'story', alignment: 'center' } },
+
         content: [
-          { text: 'COMDEC', style: 'header', alignment: 'center' },
-          { text: 'COORDENADORIA MUNICIPAL DE DEFESA CIVL', style: 'header', alignment: 'center' },
-          { text: 'SÃO JOSÉ DOS CAMPOS', style: 'header', alignment: 'center' },
-          { text: 'R.O- Relatorio de Ocorrência'+ this.items.id +'\n', style: 'header', alignment: 'center' },
-  
-  
+          {
+            table: {
+
+              headerRows: 1,
+              widths: [100, 300, 100],
+
+              body:[
+                [{ image: this.urlLogo, width: 100, alignment: 'left' },{ text: 'COMDEC\nCOORDENADORIA MUNICIPAL DE DEFESA CIVIL\nSÃO JOSÉ DOS CAMPOS\nR.O- Relatorio de Ocorrência', style: 'header', alignment: 'center' },{ image: this.urlLogo, width: 100, alignment: 'left' },]
+              ]
+            }
+          },
           
+
           
-  
-          { text: 'Relatorio nº ' + this.items.id + '/'+this.items.ano, style: 'subheader' },
+
+          
+         
+
+
+
+
+
+          { text: 'Relatorio nº ' + this.items.id + '/' + this.items.ano, style: 'subheader' },
           { text: this.letterObj.from },
-  
-          { text: 'Origem da Ocorrência:  '+this.items.origemOcorrencia, style: 'subheader' },        
+
+          { text: 'Origem da Ocorrência:  ' + this.items.origemOcorrencia, style: 'subheader' },
           this.letterObj.to,
-  
+
           { text: this.letterObj.text, style: 'story', margin: [0, 20, 0, 20] },
-  
-  
+
+
           {
             // layout: 'lightHorizontalLines', // optional
             table: {
@@ -279,14 +287,19 @@ export class RelatorioPdfPage {
               // you can declare how many rows should be treated as headers
               headerRows: 1,
               widths: ['*', '*', '*'],
-  
+
               body: [
-  
+
                 [{ text: "Data " + this.myDate, bold: true }, { text: "Horario " + this.hora, bold: true }, { text: "Relatorio  " + this.id_relatorio + "/2018", bold: true }],
-  
+
               ]
             }
+
+
+            
           },
+
+          
           {
             // layout: 'lightHorizontalLines', // optional
             table: {
@@ -294,11 +307,11 @@ export class RelatorioPdfPage {
               // you can declare how many rows should be treated as headers
               headerRows: 1,
               widths: [350, '*'],
-  
+
               body: [
-  
+
                 [{ text: "Solicitante " + this.items.solicitante }, { text: "Telefone  " + this.items.telefone, bold: true }],
-  
+
               ]
             }
           },
@@ -309,11 +322,11 @@ export class RelatorioPdfPage {
               // you can declare how many rows should be treated as headers
               headerRows: 1,
               widths: [350, '*'],
-  
+
               body: [
-  
+
                 [{ text: "Local da Ocorrencia: \n" + this.items.rua + " Bairro: " + this.items.bairro }, { text: "Numero " + this.items.numeroLocal, bold: true }],
-  
+
               ]
             }
           },
@@ -324,11 +337,11 @@ export class RelatorioPdfPage {
               // you can declare how many rows should be treated as headers
               headerRows: 1,
               widths: ['*'],
-  
+
               body: [
-  
-                [{ text: "Historico Inicial: \n" + this.items.historicoInicial}],
-  
+
+                [{ text: "Historico Inicial: \n" + this.items.historicoInicial }],
+
               ]
             }
           },
@@ -339,11 +352,11 @@ export class RelatorioPdfPage {
               // you can declare how many rows should be treated as headers
               headerRows: 1,
               widths: ['*', '*', '*', '*'],
-  
+
               body: [
-  
+
                 [{ image: this.img1, width: 120 }, { image: this.img2, width: 120 }, { image: this.img3, width: 120 }, { image: this.img4, width: 120 }],
-  
+
               ]
             }
           },
@@ -354,11 +367,11 @@ export class RelatorioPdfPage {
               // you can declare how many rows should be treated as headers
               headerRows: 1,
               widths: ['*'],
-  
+
               body: [
-  
+
                 [{ text: "Vistoria: \n" + this.items.vistoria }],
-  
+
               ]
             }
           },
@@ -369,23 +382,23 @@ export class RelatorioPdfPage {
               // you can declare how many rows should be treated as headers
               headerRows: 1,
               widths: ['*'],
-  
+
               body: [
-  
+
                 [{ text: "Observação: \n" + this.items.observacao }],
-  
+
               ]
             }
           },
-          { text: '\nTramitacao:  '+this.items.tramitacao, style: 'footer' },  
-          
-          { text: 'Concluido por :  \n', style: 'subheader' },  
-  
-  
-  
-  
+          { text: '\nTramitacao:  ' + this.items.tramitacao, style: 'footer' },
+
+          { text: 'Concluido por :  \n', style: 'subheader' },
+
+
+
+
         ],
-  
+
         styles: {
           header: {
             fontSize: 18,
@@ -402,25 +415,25 @@ export class RelatorioPdfPage {
             width: '50%',
           },
           footer: {
-            italic: true,          
+            italic: true,
             width: '50%',
             fontSize: 10,
-            
+
           },
-  
+
         }
       }
     }
-    
-    
-    if(this.urlFotos.length==0){
+
+
+    if (this.urlFotos.length == 0) {
       this.pdfObj = pdfMake.createPdf(docDefinition2);
     }
-    
-    else{
+
+    else {
       this.pdfObj = pdfMake.createPdf(docDefinition);
     }
- 
+
 
   }
 
@@ -443,9 +456,9 @@ export class RelatorioPdfPage {
 
 
 
-  updateTramitacao(){
+  updateTramitacao() {
 
-    
+
 
   }
 

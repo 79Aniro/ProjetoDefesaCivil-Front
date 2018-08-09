@@ -93,7 +93,9 @@ ruas:EnderecoDTO[];
         this.handleOcorrenciaInserida();
        
       },
-        error => { });
+        error => {
+          this.handleOcorrenciaNaoInserida();
+         });
   }
 
 
@@ -154,7 +156,7 @@ ruas:EnderecoDTO[];
       this.formGroup.controls.nomeSolicitante.setValue(this.dep.nome);
       this.formGroup.controls.telefoneSolicitante.setValue(this.dep.telefone);
       this.formGroup.controls.telefoneSolicitante2.setValue(this.dep.telefone);
-
+      this.formGroup.controls.numeroResidenciaSolicitante.setValue(this.dep.numeroResidencia);
     }
     else{
       this.presentModal();
@@ -184,7 +186,22 @@ ruas:EnderecoDTO[];
     });
     alert.present();
   }
-
+  handleOcorrenciaNaoInserida() {
+    let alert = this.alertCrtl.create({
+      title: 'Ocorrencia Nâo Inserida',
+      message: 'Não foi possivel gravar ocorrência',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler:()=>{
+            this.navCtrl.push('MenuPage');
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
 
   initializeItems() {
     this.ruaService.findByEnderecoAll().

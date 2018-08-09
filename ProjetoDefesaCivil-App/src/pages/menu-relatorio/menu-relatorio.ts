@@ -37,4 +37,12 @@ export class MenuRelatorioPage {
     this.navCtrl.push('BuscaRelatoriosFotoPage');
   }
 
+  tramitacaoRelatorios(){
+
+
+    this.navCtrl.push('TramitacaoPage');
+  }
+
+  
+
 }

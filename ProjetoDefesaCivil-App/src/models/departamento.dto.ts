@@ -9,4 +9,5 @@ export interface DepartamentoDTO {
     regiao:string;
     cep: string;
     id_rua:string;
+    numeroResidencia:string;
 }
