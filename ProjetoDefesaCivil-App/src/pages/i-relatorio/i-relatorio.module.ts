@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
+import { IonicPageModule } from 'ionic-angular/umd';
 import { IRelatorioPage } from './i-relatorio';
 
 import { Camera } from '@ionic-native/camera';

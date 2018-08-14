@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular/umd';
 import { RelatorioDTO } from '../../models/relatorio.dto';
 import { RelatorioService } from '../../services/domain/relatorio.service';
 import { API_CONFIG } from '../../config/api.config';

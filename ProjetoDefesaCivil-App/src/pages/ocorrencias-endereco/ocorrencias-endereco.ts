@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular/umd';
 import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
 import { OcorrenciaDTO } from '../../models/ocorrencia.dto';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { LoadingController } from '../../../node_modules/ionic-angular/components/loading/loading-controller';
+import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 
 
 @IonicPage()

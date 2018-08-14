@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular/umd';
 import { CameraOptions, Camera } from '@ionic-native/camera';
 import { RelatorioService } from '../../services/domain/relatorio.service';
 

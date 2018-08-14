@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient} from "@angular/common/http";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { StorageService } from "../storage.service";
 import { FuncionarioDTO } from "../../models/funcionario.dto";
 import { API_CONFIG } from "../../config/api.config";

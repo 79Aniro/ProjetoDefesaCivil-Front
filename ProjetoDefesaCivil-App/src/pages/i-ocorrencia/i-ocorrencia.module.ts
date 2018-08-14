@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
+import { IonicPageModule } from 'ionic-angular/umd';
 import { IOcorrenciaPage } from './i-ocorrencia';
 
 
-import { TesteAutocompletePage } from '../teste-autocomplete/teste-autocomplete';
+//import { TesteAutocompletePage } from '../teste-autocomplete/teste-autocomplete';
 import { EnderecoService } from '../../services/domain/endereco.service';
 
 @NgModule({
@@ -17,7 +17,7 @@ import { EnderecoService } from '../../services/domain/endereco.service';
   providers:[
     
     EnderecoService,
-    TesteAutocompletePage
+    
   ]
 })
 export class IOcorrenciaPageModule {}

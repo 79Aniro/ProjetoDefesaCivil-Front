@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular/umd';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { OcorrenciaService } from '../../services/domain/ocorrencia.service';

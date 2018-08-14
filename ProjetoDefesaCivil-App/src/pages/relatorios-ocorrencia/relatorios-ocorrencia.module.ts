@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
+import { IonicPageModule } from 'ionic-angular/umd';
 import { RelatoriosOcorrenciaPage } from './relatorios-ocorrencia';
 import { RelatorioPdfPage } from '../relatorio-pdf/relatorio-pdf';
 

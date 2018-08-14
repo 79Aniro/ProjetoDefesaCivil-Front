@@ -1,7 +1,7 @@
 
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular/umd';
 import { RelatorioService } from '../../services/domain/relatorio.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 

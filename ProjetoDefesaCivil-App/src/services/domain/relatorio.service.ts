@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { API_CONFIG } from "../../config/api.config";
 import { RelatorioDTO } from "../../models/relatorio.dto";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { RelatorioNewDTO } from "../../models/relatorioNew.dto";
 import { ImageUtilService } from "../image-util.service";
 
