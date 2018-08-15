@@ -12,47 +12,52 @@ import { API_CONFIG } from '../../config/api.config';
   templateUrl: 'relatorios-ocorrencia.html',
 })
 export class RelatoriosOcorrenciaPage {
-  url:string;
+  url: string;
   items: RelatorioDTO[];
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public relatorioService: RelatorioService,
     public alertCrtl: AlertController) {
   }
 
   ionViewDidLoad() {
-    let id_ocorrencia  = this.navParams.get('id_ocorrencia');
-    
+    let id_ocorrencia = this.navParams.get('id_ocorrencia');
+
 
     this.relatorioService.buscaoRelatoriosIdOco(id_ocorrencia)
-    .subscribe(response =>{
-      this.items=response;
-     
-    },
-    error => { });
-    
+      .subscribe(response => {
+        this.items = response;
+        if (this.items.toString.length==0) {
+
+          this.handleOcorrenciaSemRelatorio();
+        }
+      },
+        error => { });
+        
   }
 
-  geraPdf(id_relatorio){
-    
-    this.relatorioService.gerarPdfRelatorio(id_relatorio)
-    .subscribe(response => {
-        
-      this.handleRelatorioPDFCriado();
-     
-    },
-      error => { });
 
-    
+
+  geraPdf(id_relatorio) {
+
+    this.relatorioService.gerarPdfRelatorio(id_relatorio)
+      .subscribe(response => {
+
+        this.handleRelatorioPDFCriado();
+
+      },
+        error => { });
+
+
   }
 
   buscarRelatoriosIdRel(id_relatorio: string) {
 
-    this.navCtrl.push('RelatorioPdfPage', {id_relatorio: id_relatorio});  
+    this.navCtrl.push('RelatorioPdfPage', { id_relatorio: id_relatorio });
   }
 
 
-  buscaUrl(): string{
+  buscaUrl(): string {
 
     this.url = `${API_CONFIG.bucketBaseUrl}`
     return this.url;
@@ -67,7 +72,24 @@ export class RelatoriosOcorrenciaPage {
       buttons: [
         {
           text: 'Ok',
-          handler:()=>{
+          handler: () => {
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  handleOcorrenciaSemRelatorio() {
+    let alert = this.alertCrtl.create({
+      title: 'Relatorio por Ocorrencia',
+      message: 'Ocorrencia não possui relatorio',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
             this.navCtrl.pop();
           }
         }
