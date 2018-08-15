@@ -52,6 +52,7 @@
     "ionic2-auto-complete": "^1.6.2-alpha",
     "ionicons": "3.0.0",
     "jspdf": "^1.4.1",
+    "package.json": "^2.0.1",
     "pdfmake": "^0.1.37",
     "rxjs": "5.5.10",
     "sw-toolbox": "3.6.0",

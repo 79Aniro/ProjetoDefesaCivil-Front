@@ -26,12 +26,14 @@ export class IOcorrenciaPage {
 
  
   formGroup: FormGroup;
-ruas:EnderecoDTO[];
+  ruas:EnderecoDTO[];
+  ruasSol:EnderecoDTO[];
   funcionarioDto: FuncionarioDTO;
-
+desabilitador:boolean=false;
   id_user: string;
   email: string;
- 
+ val:any;
+ valSol:any;
   tiposOco:TipoOcorrenciaDTO[];
   origemOco:OrigemOcorrenciaDTO[];
   departamentos:DepartamentoDTO[];
@@ -52,32 +54,32 @@ ruas:EnderecoDTO[];
       origemOcorrencia: ['', [Validators.required]],
       tipoOcorrencia: ['', [Validators.required]],     
       endereco: ['', [Validators.required]], 
-      enderecoLocal:   ['', [Validators.required]], 
+     //enderecoLocal:   ['', [Validators.required]], 
       numeroLocal: ['', [Validators.required]],
       historicoInicial: ['', [Validators.required]],
       tipoSolicitante: ['', [Validators.required]],
       endSolicitante: ['', [Validators.required]],
-      ruaSol: ['', [Validators.required]],
+      //ruaSol: ['', [Validators.required]],
       nomeSolicitante: ['', [Validators.required]],
       emailSolicitante: ['', [Validators.required, Validators.email]],
       numeroResidenciaSolicitante: ['', [Validators.required]],
       telefoneSolicitante: ['', [Validators.required]],
       telefoneSolicitante2: ['', [Validators.required]],
       funcionario: ['', [Validators.required]],
-      departamento:['', [Validators.required]],
+      departamento:[''],
 
     });
   }
   ionViewDidLoad() {
-    this.presentModal();
-        let varId = this.localStorage.getLocalUser();
-        this.id_user=varId.iduser;       
+   // this.presentModal();
+        let varId = this.localStorage.getLocalUser();//recuperando o usuario logado
+        this.id_user=varId.iduser;// recuperando o id do usuario logado       
 
-        this.formGroup.controls.funcionario.setValue(this.id_user);
-        this.tiposOcorrencia();
-        this.origemOcorrencia();
-       
-       
+        this.formGroup.controls.funcionario.setValue(this.id_user);//associando o funcionario a nova ocorrencia
+        this.tiposOcorrencia();//recuperando os tipos de ocorrencia para preencher a lista de opções
+        this.origemOcorrencia();//recuperandoos tipos de origem  de ocorrencia para preencher a lista de opções
+       this.initializeItems();
+       this.initializeItems2();
   }
 
 
@@ -87,29 +89,20 @@ ruas:EnderecoDTO[];
 
 
   insereOco() {
-    this.ocorrenciaService.insert(this.formGroup.value)
+    this.ocorrenciaService.insert(this.formGroup.value)//inserindo ocorrencia
       .subscribe(response => {
         
-        this.handleOcorrenciaInserida();
+        this.handleOcorrenciaInserida();// mensagem que ocorrencia foi inserida
        
       },
         error => {
-          this.handleOcorrenciaNaoInserida();
+          this.handleOcorrenciaNaoInserida();// mensagem que ocorrencia não foi inserida
          });
   }
 
 
-  recuperaFuncionario() {
-    let localUser = this.storage.getLocalUser();
-    let emailV= this.funcionarioService.findByEmail(localUser.email)
-    .subscribe(response=>{
-
-      this.funcionarioDto=response;
-
-    })
-
-  }
-
+ 
+// Função que chama o servico que busca todos os tipos de ocorrencias
   tiposOcorrencia(){
 
     this.ocorrenciaService.tiposocorrenciaAll().
@@ -119,6 +112,7 @@ ruas:EnderecoDTO[];
     })
   }
 
+  //Funcao que chama o serviço que busca todos os departamentos
   getDepartamentos(){
     this.ocorrenciaService.departamentos().
     subscribe(response=>{
@@ -149,8 +143,8 @@ ruas:EnderecoDTO[];
         break;
       }
     }
-    if(this.formGroup.controls.tipoSolicitante.value==2){
-      this.formGroup.controls.ruaSol.setValue(this.dep.rua);
+    if(this.formGroup.controls.tipoSolicitante.value==2){//quando o solicitante é um departamento
+      
       this.formGroup.controls.endSolicitante.setValue(this.dep.id_rua);
       this.formGroup.controls.emailSolicitante.setValue(this.dep.email);
       this.formGroup.controls.nomeSolicitante.setValue(this.dep.nome);
@@ -158,9 +152,7 @@ ruas:EnderecoDTO[];
       this.formGroup.controls.telefoneSolicitante2.setValue(this.dep.telefone);
       this.formGroup.controls.numeroResidenciaSolicitante.setValue(this.dep.numeroResidencia);
     }
-    else{
-      this.presentModal();
-    }
+ 
   
   }
   origemOcorrencia(){
@@ -204,28 +196,39 @@ ruas:EnderecoDTO[];
   }
 
   initializeItems() {
-    this.ruaService.findByEnderecoAll().
-    subscribe(response =>{
-      this.ruas=response;
-      
-      
-     
-    },
-    error => { });
-    
+    this.ruas=this.localStorage.getRuasDTO();//recupera o array de endereco do localstorage
+   
+
+  }
+  initializeItems2() {
+    this.ruasSol=this.localStorage.getRuasDTO();//recupera o array de endereco do localstorage
+   
 
   }
 
+recuperaSuaLocal(){
 
-  send(item,itemNome){
+   var x =this.formGroup.controls.endereco.value;
+   this.formGroup.controls.endereco.setValue(x)
+}
+
+insereRuaLocal(ruaid,ruanome){
+
+  this.formGroup.controls.endereco.setValue(ruaid);
+  this.formGroup.controls.enderecoLocal.setValue(ruanome);
+
+}
+
+  /*send(item,itemNome){
 
     console.log(item,itemNome);
     
-   
-    this.insereRuaSol();
+    this.formGroup.controls.endereco.setValue(item.id);
+    this.formGroup.controls.enderecoLocal.setValue(item.nome);
     
-  }
+  }*/
 
+ 
 
   presentModal() {
   
@@ -235,6 +238,11 @@ ruas:EnderecoDTO[];
     
   }
 
+/*insereRuaLocal(){
+
+console.log(this.formGroup.controls.endereco);
+}
+
   insereRuaSol(){
 
     let varRua =this.localStorage.getRuaDTO();
@@ -242,22 +250,66 @@ ruas:EnderecoDTO[];
     
     this.formGroup.controls.ruaSol.setValue(varRua.nome);
     this.formGroup.controls.endSolicitante.setValue(varRua.id);
+    
 
     
-  }
+  }*/
 
-  insereRuaLocal(){
+  
 
-    let varRua =this.localStorage.getRuaDTO();
+  getItems(ev: any) {
+    // Reset items back to all of the items
+    
+    
+    // set val to the value of the searchbar
     
    
+    this.val = ev.target.value;
     
-    this.formGroup.controls.endereco.setValue(varRua.id);
-    this.formGroup.controls.enderecoLocal.setValue(varRua.nome);
+
+    // if the value is an empty string don't filter the items
+    if (this.val && this.val.trim() != '') {
+      
+      this.ruas = this.ruas.filter((rua) => {
+       
+        return (this.ruaService.getRuaNome(rua).toLowerCase().indexOf(this.val.toLowerCase()) > -1);
+      })
+    }
+    
+    else{
+     this.initializeItems();
+    }
    
     
+   
   }
 
+ 
+  getItemsSol(zx: any) {
+    // Reset items back to all of the items
+    
+    
+    // set val to the value of the searchbar
+    
+   
+    this.valSol = zx.target.value;
+    
 
+    // if the value is an empty string don't filter the items
+    if (this.valSol && this.valSol.trim() != '') {
+      
+      this.ruasSol = this.ruasSol.filter((rua) => {
+       
+        return (this.ruaService.getRuaNome(rua).toLowerCase().indexOf(this.valSol.toLowerCase()) > -1);
+      })
+    }
+    
+    else{
+     this.initializeItems2();
+    }
+   
+    
+   
+  }
 
 }

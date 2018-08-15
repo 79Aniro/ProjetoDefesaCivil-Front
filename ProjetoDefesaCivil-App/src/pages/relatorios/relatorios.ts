@@ -123,6 +123,9 @@ loadData(){
     });
     alert.present();
   }
+  buscarRelatoriosIdRel(id_relatorio: string) {
 
+    this.navCtrl.push('RelatorioPdfPage', {id_relatorio: id_relatorio});  
+  }
  
 }

@@ -16,19 +16,26 @@
 
   <form [formGroup]="formGroup"  (ngSubmit)="insereOco(); $event.preventDefault()">
    
+    <ion-searchbar placeholder="Digite Rua Local" (ionInput)="getItems($event)" ></ion-searchbar>
     <ion-item>
-      <ion-label floating>Rua do Local</ion-label>
+        <ion-label floating >Rua do Local</ion-label>
+    <ion-select formControlName="endereco">
+        <ion-option *ngFor="let rua of ruas;first as f"[value]="rua.id"[selected]="f" >{{rua.nome}}</ion-option>
+
       
-          <ion-input formControlName="enderecoLocal"  type="text"  ></ion-input>
-        
+      </ion-select>
       </ion-item>
+   
+
+      
+     
 
    
    
     <ion-item>
       <ion-label floating>Origem Ocorrencia</ion-label>
-      <ion-select formControlName="origemOcorrencia" (ionChange)="insereRuaLocal()">
-        <ion-option *ngFor="let  origemOcorrencia of origemOco;first as f"[value]="origemOcorrencia.cod"[selected]="f"  >{{origemOcorrencia.descricao}}</ion-option>
+      <ion-select formControlName="origemOcorrencia" >
+        <ion-option *ngFor="let  origemOcorrencia of origemOco;first as f"[value]="origemOcorrencia.cod"[selected]="f" >{{origemOcorrencia.descricao}}</ion-option>
        
       </ion-select>
     </ion-item>
@@ -66,27 +73,29 @@
 
     <ion-item>
       <ion-label floating>Departamento</ion-label>
-      <ion-select formControlName="departamento" (ionChange)="chamaRuasSol()"  >
+      <ion-select formControlName="departamento" (ionChange)="chamaRuasSol()" >
         <ion-option *ngFor="let  departamento of departamentos;first as f"[value]="departamento.id"[selected]="f" >{{departamento.nome}}</ion-option>
 
-      </ion-select>
+      </ion-select >
     </ion-item>
 
     
-    <ion-item>
-      <ion-label floating>Rua Solicitante</ion-label>
-      
-          <ion-input formControlName="ruaSol"  type="text" ></ion-input>
+    
+      <ion-searchbar placeholder="Digite  Rua do Solicitante" (ionInput)="getItemsSol($event)" ></ion-searchbar>
+      <ion-item>
+          <ion-label floating>Rua Solicitante</ion-label>
+      <ion-select formControlName="endSolicitante">
+          <ion-option *ngFor="let rua of ruasSol;first as f"[value]="rua.id"[selected]="f" >{{rua.nome}}</ion-option>
+  
         
-      </ion-item>
- 
-
+        </ion-select>
+        </ion-item>
   
 
 
     <ion-item>
       <ion-label floating>Nome Solicitante</ion-label>
-      <ion-input formControlName="nomeSolicitante" type="text" (ionChange)="insereRuaSol()"></ion-input>
+      <ion-input formControlName="nomeSolicitante" type="text" ></ion-input>
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls.nomeSolicitante.dirty && formGroup.controls.nomeSolicitante.errors" margin-left>Valor inválido</p>
     <ion-item>

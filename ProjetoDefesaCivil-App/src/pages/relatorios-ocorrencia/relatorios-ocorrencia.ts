@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { RelatorioService } from '../../services/domain/relatorio.service';
 
 import { RelatorioDTO } from '../../models/relatorio.dto';
+import { API_CONFIG } from '../../config/api.config';
 
 
 @IonicPage()
@@ -11,7 +12,7 @@ import { RelatorioDTO } from '../../models/relatorio.dto';
   templateUrl: 'relatorios-ocorrencia.html',
 })
 export class RelatoriosOcorrenciaPage {
-
+  url:string;
   items: RelatorioDTO[];
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -49,6 +50,14 @@ export class RelatoriosOcorrenciaPage {
 
     this.navCtrl.push('RelatorioPdfPage', {id_relatorio: id_relatorio});  
   }
+
+
+  buscaUrl(): string{
+
+    this.url = `${API_CONFIG.bucketBaseUrl}`
+    return this.url;
+  }
+
 
   handleRelatorioPDFCriado() {
     let alert = this.alertCrtl.create({

@@ -1,4 +1,3 @@
-import { getNonHydratedSegmentIfLinkAndUrlMatch } from "ionic-angular/navigation/url-serializer";
 
 export interface EnderecoDTO{
 
