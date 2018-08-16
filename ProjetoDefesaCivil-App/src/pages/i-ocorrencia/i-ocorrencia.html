@@ -17,10 +17,10 @@
   <form [formGroup]="formGroup"  (ngSubmit)="insereOco(); $event.preventDefault()">
    
     <ion-searchbar placeholder="Digite Rua Local" (ionInput)="getItems($event)" ></ion-searchbar>
-    <ion-item>
+    <ion-item  >
         <ion-label floating >Rua do Local</ion-label>
     <ion-select formControlName="endereco">
-        <ion-option *ngFor="let rua of ruas;first as f"[value]="rua.id"[selected]="f" >{{rua.nome}}</ion-option>
+        <ion-option  id='label' *ngFor="let rua of ruas;first as f"[value]="rua.id"[selected]="f" >{{rua.nome}}</ion-option>
 
       
       </ion-select>
