@@ -5,6 +5,7 @@ import { FuncionarioService } from '../../services/domain/funcionario.service';
 import { StorageService } from '../../services/storage.service';
 import { FuncionarioDTO } from '../../models/funcionario.dto';
 import { RelatorioDTO } from '../../models/relatorio.dto';
+import { API_CONFIG } from '../../config/api.config';
 
 
 @IonicPage()
@@ -18,6 +19,7 @@ export class TramitacaoPage {
   perfil_user: string;
   items: RelatorioDTO[];
   cod: string;
+  url:string;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public relatorioService: RelatorioService,
@@ -34,12 +36,17 @@ export class TramitacaoPage {
       subscribe(response => {
         this.items = response;
       })
-     
+      this.buscaUrl();
   }
 
+  buscaUrl(): string{
+
+    this.url = `${API_CONFIG.bucketBaseUrl}`
+    return this.url;
+  }
 
   tramitar(id_relatorio) {
-    console.log("Relarotio" + id_relatorio)
+   
     this.handleTramitacao(id_relatorio);
    
   }
@@ -54,11 +61,14 @@ export class TramitacaoPage {
           text: 'PARA_PROV_DC',
           handler: () => {
             this.cod = "2",
+           
             this.relatorioService.tramitar(id_relatorio,this.cod).
             subscribe(response=>{
               
             });
+            this.navCtrl.setRoot(this.navCtrl.getActive().component);
           }
+          
           
         },
 
@@ -68,9 +78,9 @@ export class TramitacaoPage {
             this.cod = "3",
             this.relatorioService.tramitar(id_relatorio,this.cod).
             subscribe(response=>{
-              console.log("tramitou");
+              
             });
-
+            this.navCtrl.setRoot(this.navCtrl.getActive().component);
           }
         },
         {
@@ -79,9 +89,9 @@ export class TramitacaoPage {
             this.cod = "4",
             this.relatorioService.tramitar(id_relatorio,this.cod).
             subscribe(response=>{
-              console.log("tramitou");
+              
             });
-
+            this.navCtrl.setRoot(this.navCtrl.getActive().component);
           }
         },
 
@@ -91,17 +101,18 @@ export class TramitacaoPage {
             this.cod = "5",
             this.relatorioService.tramitar(id_relatorio,this.cod).
             subscribe(response=>{
-              console.log("tramitou");
+              
             });
-
-
+            this.navCtrl.setRoot(this.navCtrl.getActive().component);
+            
           }
         },
       ]
     }
   );
   this.relatorioService.tramitar(id_relatorio, this.cod);
-  console.log("Relarotio" + id_relatorio)
+  
+  
     alert.present();
   }
 

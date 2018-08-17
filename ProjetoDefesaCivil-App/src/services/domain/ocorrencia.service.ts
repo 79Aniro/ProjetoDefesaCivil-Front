@@ -105,7 +105,11 @@ export class OcorrenciaService{
 
     }
 
-   
+    ocoAtendidasPage(regiao:string,page : number = 0, linesPerPage : number = 4): Observable<OcorrenciaDTO[]>{
+
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/atendidas/page?&page=${page}&linesPerPage=${linesPerPage}`);
+
+    }
 
     insert(obj : OcorrenciaNewDTO) {
         return this.http.post(

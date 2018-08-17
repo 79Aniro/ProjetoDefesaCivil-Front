@@ -2,6 +2,12 @@ page-relatorios {
 
 
 
+    ion-item-divider{
+
+        color:blue;
+
+    }
+  
    
 
     p {
@@ -11,5 +17,11 @@ page-relatorios {
         margin-left: 0;
         margin-right: 0;
         font-family: arial, sans-serif;
+        font-size: 16em;
+    }
+
+    #it{
+
+        align-items: center;
     }
 }

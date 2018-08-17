@@ -135,14 +135,7 @@ export class IRelatorioPage {
   
 
 
-
-
-  presentModal() {
-  
-    this.navCtrl.push('TesteAutocompletePage');
-    
-  }
-
+ 
   insereRuaSol(){
 
     let varRua =this.localStorage.getRuaDTO();   

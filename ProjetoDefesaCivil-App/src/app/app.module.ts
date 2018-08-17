@@ -18,7 +18,7 @@ import { FuncionarioService } from '../services/domain/funcionario.service';
 import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ImageUtilService } from '../services/image-util.service';
 import { InsereFotoPage } from '../pages/insere-foto/insere-foto';
-import { TesteAutocompletePage } from '../pages/teste-autocomplete/teste-autocomplete';
+
 
 
 import{File} from '@ionic-native/file';
@@ -61,8 +61,7 @@ import { EnderecoService } from '../services/domain/endereco.service';
     StorageService,
     FuncionarioService,
     ImageUtilService,
-    InsereFotoPage,
-    TesteAutocompletePage,
+    InsereFotoPage,    
     File,
     FileOpener,
     FileTransfer,

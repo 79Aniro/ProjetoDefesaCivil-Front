@@ -7,7 +7,6 @@ import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
 import { FuncionarioService } from '../../services/domain/funcionario.service';
 import { StorageService } from '../../services/storage.service';
 import { FuncionarioDTO } from '../../models/funcionario.dto';
-import { TesteAutocompletePage } from '../teste-autocomplete/teste-autocomplete';
 import { EnderecoDTO } from '../../models/endereco.dto';
 import { EnderecoService } from '../../services/domain/endereco.service';
 import { TipoOcorrenciaDTO } from '../../models/tipoOcorrencia.dto';
@@ -219,43 +218,7 @@ insereRuaLocal(ruaid,ruanome){
 
 }
 
-  /*send(item,itemNome){
-
-    console.log(item,itemNome);
-    
-    this.formGroup.controls.endereco.setValue(item.id);
-    this.formGroup.controls.enderecoLocal.setValue(item.nome);
-    
-  }*/
-
- 
-
-  presentModal() {
-  
-    this.navCtrl.push('TesteAutocompletePage');
-
    
-    
-  }
-
-/*insereRuaLocal(){
-
-console.log(this.formGroup.controls.endereco);
-}
-
-  insereRuaSol(){
-
-    let varRua =this.localStorage.getRuaDTO();
-    
-    
-    this.formGroup.controls.ruaSol.setValue(varRua.nome);
-    this.formGroup.controls.endSolicitante.setValue(varRua.id);
-    
-
-    
-  }*/
-
-  
 
   getItems(ev: any) {
     // Reset items back to all of the items

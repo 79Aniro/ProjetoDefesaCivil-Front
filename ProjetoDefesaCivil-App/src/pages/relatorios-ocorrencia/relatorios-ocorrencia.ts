@@ -27,7 +27,8 @@ export class RelatoriosOcorrenciaPage {
     this.relatorioService.buscaoRelatoriosIdOco(id_ocorrencia)
       .subscribe(response => {
         this.items = response;
-        if (this.items.toString.length==0) {
+        this.buscaUrl();
+        if (this.items.length==0) {
 
           this.handleOcorrenciaSemRelatorio();
         }
