@@ -1,0 +1,38 @@
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"> </ion-icon>
+        </button>
+        <ion-title>MENU</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+
+        <br>
+        <br>
+        <button ion-button full (click)="insereOco()">Criar Ocorrencia</button>
+
+        <br>
+        <br>
+        <button ion-button full (click)="ocorrenciasPesquisas()">Menu Ocorrencia</button>
+        <br>
+        <br>
+        <button ion-button full (click)="menuRelatorio()">Menu Relatorio </button>
+        <br>
+        <br>       
+        <br>
+        <br>
+        <button ion-button full color="secondary" [disabled]="perfil_user!=1" (click)="signup()">Registrar Funcionario</button>
+
+    </ion-list>
+
+
+
+
+
+</ion-content>

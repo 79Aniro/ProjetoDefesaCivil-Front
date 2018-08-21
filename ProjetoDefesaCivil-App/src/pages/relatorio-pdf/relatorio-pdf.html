@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Relatorio PDF
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding >
+    
+ 
+  <div>
+    <ion-item >
+      <ion-label stacked >COMDEC</ion-label>
+      <ion-label stacked>COORDENADORIA MUNICIPAL DE DEFESA CIVL</ion-label>
+      <ion-label stacked>SÃO JOSÉ DOS CAMPOS</ion-label>
+      <ion-label stacked>R.O- Relatorio de Ocorrência</ion-label>
+    </ion-item>
+  </div>
+
+  <p>Numero Relatorio: {{ items?.id }}</p>  
+  <p>Ocorrencia:{{ items?.ocorrencia}}</p>    
+  <p>Regiao:{{ items?.regiao }}</p>
+  <p>Bairro:{{ items?.bairro }}</p>
+  <p>Rua:{{ items?.rua }}</p>
+  <p> <ion-list>
+    <ion-item>
+      <ion-label>TRAMITACAO</ion-label>
+      <ion-select [(ngModel)]="tramitacao" (ionChange)="updateTramitacao()">
+        <ion-option value="PENDENTE">PENDENTE</ion-option>
+        <ion-option value="PARA_PROV_DC">PARA_PROV_DC</ion-option>
+        <ion-option value="RESOLVIDO">RESOLVIDO</ion-option>
+        <ion-option value="ARQUIVO">ARQUIVO</ion-option>
+        <ion-option value="PARA_PROV_OUTROS">PARA_PROV_OUTROS</ion-option>
+      
+      </ion-select>
+    </ion-item>
+  </ion-list></p>
+  <ion-label stacked>Vistoria:</ion-label>
+  <br>
+  <p>{{ items?.vistoria }}</p>
+
+  <ion-label stacked>Observacao: </ion-label>  <br>
+  <p>{{ items?.observacao }}</p>        
+     
+   
+
+  <br>
+  <br>
+  <button ion-button full (click)="createPdf()">Create PDF</button>
+  <br>
+  <br>
+  <button ion-button full (click)="downloadPdf()" color="secondary" [disabled]="!pdfObj">Download PDF</button>
+
+</ion-content>

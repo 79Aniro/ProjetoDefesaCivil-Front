@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"> </ion-icon>
+      </button>
+      <ion-title>Menu Relatorio</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+      <br>
+      <br>
+      <button ion-button full (click)="relatoriosAll()">Relatorios</button>  
+      <br>
+      <br>
+      <button ion-button full (click)="relatoriosOcorrencia()">Relatorios Ocorrencia</button>
+      <br>
+      <br>
+      <br>
+      <br>  
+      <button ion-button full (click)="tramitacaoRelatorios()">Tramitação de Relatorios</button>   
+      <br>
+      <br>
+      <button ion-button full (click)="buscaRelatoriosFoto()"[disabled]="id_user==2">Inserir Fotos Relatorio</button>
+     
+   
+      
+
+  </ion-list>
+
+
+
+
+
+</ion-content>

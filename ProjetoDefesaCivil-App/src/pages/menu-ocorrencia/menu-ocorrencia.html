@@ -1,0 +1,57 @@
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"> </ion-icon>
+      </button>
+      <ion-title>Menu Ocorrencia</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+      <br>
+      <br>
+      <button ion-button full (click)="ocorrenciasAbertas()">Ocorrencias Abertas</button>  
+      <br>
+      <br>
+      <button ion-button full (click)="ocorrenciasFechadas()">Ocorrencias Fechadas</button>
+      <br>
+      <br>
+      <button ion-button full (click)="ocorrenciasRegiao()">Ocorrencias Regiao</button>
+      <br>
+      <br>
+      <br>
+      <ion-item>
+        <ion-label>Data Inicial</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="dataInicial">
+        </ion-datetime>
+      </ion-item>
+      <br>
+      <br>
+      <ion-item>
+        <ion-label>Data Final</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="dataFinal">
+        </ion-datetime>
+      </ion-item>
+      <br>
+      <br>
+      <button ion-button full (click)="ocorrenciasPeriodo()">Ocorrencias por Periodo</button>
+      <br>
+      <br>
+      <br>
+      <button ion-button full (click)="fecharOcorrencias()"[disabled]="perfil_user==2" >Fechar Ocorrencias</button>
+     
+   
+      
+
+  </ion-list>
+
+
+
+
+
+</ion-content>

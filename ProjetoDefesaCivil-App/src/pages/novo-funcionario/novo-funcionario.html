@@ -1,0 +1,49 @@
+
+
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"> </ion-icon>
+      </button>
+    <ion-title>Novo Funcionario</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="formGroup" (ngSubmit)="funcionarioUser(); $event.preventDefault()">
+    <ion-item>
+      <ion-label stacked>Nome*</ion-label>
+      <ion-input formControlName="nome" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Email*</ion-label>
+      <ion-input formControlName="email" type="text"></ion-input>
+    </ion-item>
+     
+        
+    <ion-item>
+      <ion-label stacked>Senha*</ion-label>
+      <ion-input formControlName="senha" type="password"></ion-input>
+    </ion-item> 
+   
+       
+    
+   
+    Tipo de Funcionario
+    <ion-item>
+      <ion-label stacked>Tipo Funcionario*</ion-label>
+      <ion-select formControlName="perfil" >
+        <ion-option value="1">Administrador</ion-option>
+        <ion-option value="2">Cadastrador</ion-option>
+        <ion-option value="3">Agente</ion-option>
+      </ion-select>
+    </ion-item>  
+    
+    <br> 
+    <br> 
+    <button ion-button block type="submit" (ionChange)="funcionarioUser()">Criar usuario</button>
+  </form>
+</ion-content>

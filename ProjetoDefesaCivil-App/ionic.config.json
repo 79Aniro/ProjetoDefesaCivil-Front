@@ -1,0 +1,7 @@
+{
+  "name": "ProjetoDefesaCivil-App",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
