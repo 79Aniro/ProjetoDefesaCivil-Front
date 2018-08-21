@@ -76,7 +76,7 @@ export class RelatorioPdfPage {
             this.img3 = 'data:image/jpeg;base64,' + this.urlFotos[2];
             this.img4 = 'data:image/jpeg;base64,' + this.urlFotos[3];
             this.urlLogo = this.items.urlLogo;
-            console.log(this.urlLogo);
+            
 
           });
 

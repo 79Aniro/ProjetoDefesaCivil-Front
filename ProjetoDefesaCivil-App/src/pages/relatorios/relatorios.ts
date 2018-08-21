@@ -51,7 +51,7 @@ loadData(){
 
   
  
-    this.relatorioService.findRelatorios()
+    this.relatorioService.buscaoRelatoriosFunc(this.id_user)
     .subscribe(response =>{
       this.items=response;
       this.buscaUrl();
