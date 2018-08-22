@@ -1,0 +1,32 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"> </ion-icon>
+    </button>
+    <ion-title>Esqueci a Senha</ion-title>
+</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form>
+    
+    
+    <ion-label floating>Solicitação nova senha</ion-label>
+    <br>
+      <br>
+    <ion-input  [(ngModel)]="creds.email" name="email" type="text" placeholder="Digite o seu email"></ion-input>
+    
+    
+    
+    
+      <br>
+      <br>
+      
+      <button ion-button full  (click)="novaSenha()" >Esqueci a Senha</button>
+    
+    </form>
+</ion-content>

@@ -85,20 +85,26 @@ export class MenuOcorrenciaPage {
 
   ocorrenciasPeriodo() {
 
- 
-    this.buscaPar = "Periodo";
+    if (this.dataFinal == null|| this.dataInicial == null) {
 
-    var z = this.dataInicial.toString().split("-");
-    var dat2 = z[2] + "-" + z[1] + "-" + z[0];
-    this.dataInicial = dat2;
+      this.handleErrorDatas();
+    }
+    else {
+      this.buscaPar = "Periodo";
+
+      var z = this.dataInicial.toString().split("-");
+      var dat2 = z[2] + "-" + z[1] + "-" + z[0];
+      this.dataInicial = dat2;
 
 
-    var x = this.dataFinal.toString().split("-");
-    var dat = x[2] + "-" + x[1] + "-" + x[0];
-    this.dataFinal = dat;
+      var x = this.dataFinal.toString().split("-");
+      var dat = x[2] + "-" + x[1] + "-" + x[0];
+      this.dataFinal = dat;
 
-    
-    this.navCtrl.push('OcorrenciasEnderecoPage', { parametro: this.buscaPar, dataInicial: this.dataInicial, dataFinal: this.dataFinal });
+
+      this.navCtrl.push('OcorrenciasEnderecoPage', { parametro: this.buscaPar, dataInicial: this.dataInicial, dataFinal: this.dataFinal });
+    }
+
 
 
 
@@ -150,6 +156,24 @@ export class MenuOcorrenciaPage {
           handler: () => {
             this.regiao = "Sudeste",
               this.navCtrl.push('OcorrenciasEnderecoPage', { parametro: this.buscaPar, regiaoPar: this.regiao });
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+
+  handleErrorDatas() {
+    let alert = this.alertCrtl.create({
+      title: 'Região por Data',
+      message: 'Necessario inserir as datas para pesquisa',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            
           }
         }
       ]

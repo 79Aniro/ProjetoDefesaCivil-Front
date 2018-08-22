@@ -4,6 +4,7 @@ import { Observable } from "rxjs/Rx";
 import { StorageService } from "../storage.service";
 import { FuncionarioDTO } from "../../models/funcionario.dto";
 import { API_CONFIG } from "../../config/api.config";
+import { EmailDTO } from "../../models/email.dto";
 
 @Injectable()
 export class FuncionarioService {
@@ -36,5 +37,17 @@ export class FuncionarioService {
 
     buscaPerfil(id:string) {
         return this.http.get<FuncionarioDTO> (`${API_CONFIG.herokuBaseUrl}/funcionarios/perfil/${id}`);
+    }
+
+    
+    novaSenha(obj : EmailDTO) {
+        return this.http.post(
+            `${API_CONFIG.herokuBaseUrl}/auth/forgot`, 
+            obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
     }
 }

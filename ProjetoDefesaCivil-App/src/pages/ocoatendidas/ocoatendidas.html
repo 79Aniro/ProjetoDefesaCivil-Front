@@ -14,7 +14,7 @@
 <ion-content padding>
 <ion-list>
   <button ion-item *ngFor="let item of items" (click)="fecharOcorrencias(item.id)">
-    
+      <h2 id="paragrafo">Selecione para fechar a ocorrência</h2>
     <h2>Ocorrencia: {{ item.id }}</h2>
     <h2>Data Abertura:{{ item.dataAbertura }}</h2>
     <h2>Data Atendimento:{{ item.dataAtendimento }}</h2>
