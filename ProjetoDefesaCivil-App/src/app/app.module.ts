@@ -26,6 +26,7 @@ import{FileOpener} from '@ionic-native/file-opener';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { EnderecoService } from '../services/domain/endereco.service';
 import { MenuRelatorioPage } from '../pages/menu-relatorio/menu-relatorio';
+import { EsqueciSenhaPage } from '../pages/esqueci-senha/esqueci-senha';
 
 
 
@@ -68,7 +69,8 @@ import { MenuRelatorioPage } from '../pages/menu-relatorio/menu-relatorio';
     FileTransfer,
      FileTransferObject ,
      EnderecoService,
-     MenuRelatorioPage
+     MenuRelatorioPage,
+     EsqueciSenhaPage
    
     
     

@@ -55,6 +55,8 @@ export class HomePage {
         error => { });
   }
 
- 
+  esqueciSenha(){
+    this.navCtrl.setRoot('EsqueciSenhaPage');
+  }
 
 }
