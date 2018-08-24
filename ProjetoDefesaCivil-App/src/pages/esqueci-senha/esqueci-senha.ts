@@ -36,9 +36,11 @@ export class EsqueciSenhaPage {
   novaSenha(){
     this.funcService.novaSenha(this.creds).
     subscribe(response => {
-this.navCtrl.setRoot('HomePage');
+      this.handleNovaSenha();
+    this.navCtrl.setRoot('HomePage');
     },
  error => {this.handlePermissaoNegada();
+  this.navCtrl.setRoot('HomePage');
  });
 
 }
@@ -53,7 +55,24 @@ handlePermissaoNegada() {
       {
         text: 'Ok',
         handler: () => {
-          this.navCtrl.pop();
+          
+        }
+      }
+    ]
+  });
+  alert.present();
+}
+
+handleNovaSenha() {
+  let alert = this.alertCrtl.create({
+    title: 'Nova senha',
+    message: 'Uma nova senha foi enviada ao email',
+    enableBackdropDismiss: false,
+    buttons: [
+      {
+        text: 'Ok',
+        handler: () => {
+         
         }
       }
     ]

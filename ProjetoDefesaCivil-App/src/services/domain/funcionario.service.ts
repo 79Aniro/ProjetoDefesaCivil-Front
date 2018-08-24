@@ -50,4 +50,15 @@ export class FuncionarioService {
             }
         ); 
     }
+
+    trocaSenha(email : String,novaSenha:String) {
+        return this.http.post(
+            `${API_CONFIG.herokuBaseUrl}/auth/novasenha?email=${email}&novaSenha=${novaSenha}`, 
+            
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
 }
