@@ -29,7 +29,7 @@ export class MudarSenhaPage {
     this.funService.trocaSenha(this.creds.email, this.creds.senha).
       subscribe(response => {
 this.senhaMudada();
-this.navCtrl.pop();
+
       },
         error => {this.senhaNaoMudada();
           this.navCtrl.setRoot('MenuPage');});
