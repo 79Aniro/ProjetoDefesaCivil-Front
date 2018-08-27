@@ -94,7 +94,9 @@ export class MenuPage {
     return this.funcionarioService.buscaPerfil(id);
   }
 
-
+  mudarSenha(){
+    this.navCtrl.push('MudarSenhaPage');
+  }
 
 }
 

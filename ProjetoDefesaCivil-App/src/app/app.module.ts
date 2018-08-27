@@ -27,6 +27,7 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { EnderecoService } from '../services/domain/endereco.service';
 import { MenuRelatorioPage } from '../pages/menu-relatorio/menu-relatorio';
 import { EsqueciSenhaPage } from '../pages/esqueci-senha/esqueci-senha';
+import { MudarSenhaPage } from '../pages/mudar-senha/mudar-senha';
 
 
 
@@ -70,7 +71,8 @@ import { EsqueciSenhaPage } from '../pages/esqueci-senha/esqueci-senha';
      FileTransferObject ,
      EnderecoService,
      MenuRelatorioPage,
-     EsqueciSenhaPage
+     EsqueciSenhaPage,
+     MudarSenhaPage
    
     
     
