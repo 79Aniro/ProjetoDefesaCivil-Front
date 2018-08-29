@@ -45,7 +45,7 @@ export class OcoabertasPage {
       },
         error => { loader.dismiss()});
         
-
+    
     let varId = this.localStorage.getLocalUser();
     this.id_user = varId.iduser;
 

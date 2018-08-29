@@ -123,6 +123,47 @@ loadData(){
     });
     alert.present();
   }
+
+  handleSelecao(id_relatorio) {
+    let alert = this.alertCrtl.create({
+      title: 'Relatorios',
+      message: 'Escolha a opção',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Relatorio PDF',
+          handler: () => {
+            
+           
+          this.buscarRelatoriosIdRel(id_relatorio);
+            
+          }
+          
+          
+        },
+
+        {
+          text: 'Corrigir relatorio',
+          handler: () => {
+           this.updateRelatorio(id_relatorio);
+          }
+        },
+       
+
+        
+      ]
+    }
+  );
+
+  
+  
+    alert.present();
+  }
+
+  updateRelatorio(id_relatorio: string){
+    this.navCtrl.push('UpdateRelatorioPage', {id_relatorio: id_relatorio});  
+  }
+  
   buscarRelatoriosIdRel(id_relatorio: string) {
 
     this.navCtrl.push('RelatorioPdfPage', {id_relatorio: id_relatorio});  

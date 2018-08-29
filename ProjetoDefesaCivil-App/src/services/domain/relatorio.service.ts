@@ -40,6 +40,16 @@ export class RelatorioService {
         );
     }
 
+    update(obj: RelatorioDTO) {
+        return this.http.put(
+            `${API_CONFIG.herokuBaseUrl}/relatorios/update`,
+            obj,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
+    }
     buscaoRelatoriosIdOco(id_ocorrencia: String) {
 
         return this.http.get<RelatorioDTO[]>(`${API_CONFIG.herokuBaseUrl}/relatorios/ocorrencia/${id_ocorrencia}`);
