@@ -1,0 +1,49 @@
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"> </ion-icon>
+      </button>
+    <ion-title>Correção Relatorios</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+  <form [formGroup]="formGroup"  (ngSubmit)="insereRelatorio(); $event.preventDefault()">
+
+
+    
+  
+    <ion-item>
+      <ion-label floating>Vistoria</ion-label>
+      <ion-textarea rows="11"t formControlName="vistoria" type="text"></ion-textarea>
+    </ion-item>
+
+    
+
+    <ion-item>
+      <ion-label floating>Observação</ion-label>
+      <ion-textarea rows="11"t formControlName="observacao" type="text"></ion-textarea>
+      
+    </ion-item>
+
+
+    <br>
+    <br>
+
+    <br>
+    <br>
+
+    <button type="submit" ion-button full>Gravar</button>
+
+
+
+
+  </form>
+
+
+</ion-content>

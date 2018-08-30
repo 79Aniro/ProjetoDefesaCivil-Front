@@ -28,6 +28,7 @@ import { EnderecoService } from '../services/domain/endereco.service';
 import { MenuRelatorioPage } from '../pages/menu-relatorio/menu-relatorio';
 import { EsqueciSenhaPage } from '../pages/esqueci-senha/esqueci-senha';
 import { MudarSenhaPage } from '../pages/mudar-senha/mudar-senha';
+import { UpdateRelatorioPage } from '../pages/update-relatorio/update-relatorio';
 
 
 
@@ -72,7 +73,8 @@ import { MudarSenhaPage } from '../pages/mudar-senha/mudar-senha';
      EnderecoService,
      MenuRelatorioPage,
      EsqueciSenhaPage,
-     MudarSenhaPage
+     MudarSenhaPage,
+     UpdateRelatorioPage
    
     
     

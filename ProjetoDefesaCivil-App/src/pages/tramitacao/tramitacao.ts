@@ -66,7 +66,7 @@ export class TramitacaoPage {
             subscribe(response=>{
               
             });
-            this.navCtrl.setRoot(this.navCtrl.getActive().component);
+            this.navCtrl.setRoot('MenuRelatorioPage');
           }
           
           
@@ -80,7 +80,7 @@ export class TramitacaoPage {
             subscribe(response=>{
               
             });
-            this.navCtrl.setRoot(this.navCtrl.getActive().component);
+            this.navCtrl.setRoot('MenuRelatorioPage');
           }
         },
         {
@@ -91,7 +91,7 @@ export class TramitacaoPage {
             subscribe(response=>{
               
             });
-            this.navCtrl.setRoot(this.navCtrl.getActive().component);
+            this.navCtrl.setRoot('MenuRelatorioPage');
           }
         },
 
@@ -103,7 +103,7 @@ export class TramitacaoPage {
             subscribe(response=>{
               
             });
-            this.navCtrl.setRoot(this.navCtrl.getActive().component);
+            this.navCtrl.setRoot('MenuRelatorioPage');
             
           }
         },

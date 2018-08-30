@@ -51,13 +51,8 @@ export class MenuPage {
           this.perfil_user = this.funcionarioDto.perfil;
         },
           error => { });
-  
-          this.endService.findByEnderecoAll().
-          subscribe(response=>{
-            this.ruas=response;
-            this.storage.setLocalEnderecos(this.ruas);
-          },
-          error => { });
+      
+        
   
     }
     
