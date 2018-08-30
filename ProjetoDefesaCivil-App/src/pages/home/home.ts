@@ -36,7 +36,15 @@ export class HomePage {
     this.menu.swipeEnable(true);
   }
 
-   
+  ionViewDidLoad(){
+
+    this.endService.findByEnderecoAll().
+    subscribe(response=>{
+      this.ruas=response;
+      this.storage.setLocalEnderecos(this.ruas);
+    },
+    error => { });
+  }
 
 
   login() {
@@ -47,12 +55,7 @@ export class HomePage {
       },
         error => { });
 
-        this.endService.findByEnderecoAll().
-        subscribe(response=>{
-          this.ruas=response;
-          this.storage.setLocalEnderecos(this.ruas);
-        },
-        error => { });
+       
   }
 
   esqueciSenha(){

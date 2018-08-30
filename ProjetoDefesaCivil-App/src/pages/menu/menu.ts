@@ -52,12 +52,7 @@ export class MenuPage {
         },
           error => { });
       
-          this.endService.findByEnderecoAll().
-          subscribe(response=>{
-            this.ruas=response;
-            this.storage.setLocalEnderecos(this.ruas);
-          },
-          error => { });
+        
   
     }
     
