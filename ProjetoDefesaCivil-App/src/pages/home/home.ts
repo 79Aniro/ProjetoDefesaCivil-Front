@@ -48,24 +48,20 @@ export class HomePage {
 
 
   login() {
-   /* this.auth.authenticate(this.creds)
+   this.auth.authenticate(this.creds)
       .subscribe(response => {
-      //  this.auth.successfulLogin(response.headers.get('Authorization'),response.headers.get('idUser'));
+      this.auth.successfulLogin(response.headers.get('Authorization'),response.headers.get('idUser'));
         this.navCtrl.setRoot('MenuPage');
       },
         error => { });
 
-<<<<<<< HEAD
         this.endService.findByEnderecoAll().
         subscribe(response=>{
           this.ruas=response;
           this.storage.setLocalEnderecos(this.ruas);
         },
-        error => { });*/
+        error => { });
         this.navCtrl.setRoot('MenuPage');
-=======
-       
->>>>>>> 17ccb3ad4ad8c1a338e70fbef7cc90bb5eb6e80e
   }
 
   esqueciSenha(){
