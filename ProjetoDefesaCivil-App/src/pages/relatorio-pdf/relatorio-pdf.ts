@@ -98,10 +98,17 @@ export class RelatorioPdfPage {
 
         content: [
 
-          { text: 'COMDEC', style: 'header', alignment: 'center' },
-          { text: 'COORDENADORIA MUNICIPAL DE DEFESA CIVL', style: 'header', alignment: 'center' },
-          { text: 'SÃO JOSÉ DOS CAMPOS', style: 'header', alignment: 'center' },
-          { text: 'R.O- Relatorio de Ocorrência' + this.items.id + '\n', style: 'header', alignment: 'center' },
+          {
+            table: {
+
+              headerRows: 1,
+              widths: [100, 300, 100],
+
+              body:[
+                [{ image: this.urlLogo, width: 100, alignment: 'left' },{ text: 'COMDEC\nCOORDENADORIA MUNICIPAL DE DEFESA CIVIL\nSÃO JOSÉ DOS CAMPOS\nR.O- Relatorio de Ocorrência', style: 'header', alignment: 'center' },{ image: this.urlLogo, width: 100, alignment: 'left' },]
+              ]
+            }
+          },
 
 
 
