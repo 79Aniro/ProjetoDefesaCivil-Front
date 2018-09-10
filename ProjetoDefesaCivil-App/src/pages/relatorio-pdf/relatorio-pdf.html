@@ -38,16 +38,16 @@
   </ion-list></p>
   <ion-label stacked>Vistoria:</ion-label>
   <br>
-  <p>{{ items?.vistoria }}</p>
+  <ion-item text-wrap>  <p>{{ items?.vistoria }}</p></ion-item>
 
   <ion-label stacked>Observacao: </ion-label>  <br>
-  <p>{{ items?.observacao }}</p>        
+  <ion-item text-wrap> <p>{{ items?.observacao }}</p>  </ion-item>      
      
    
 
   <br>
   <br>
-  <button ion-button full (click)="createPdf()">Create PDF</button>
+  <button ion-button full (click)="createPdf()">Criar PDF</button>
   <br>
   <br>
   <button ion-button full (click)="downloadPdf()" color="secondary" [disabled]="!pdfObj">Download PDF</button>

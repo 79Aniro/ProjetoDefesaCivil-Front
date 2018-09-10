@@ -48,14 +48,20 @@ export class HomePage {
 
 
   login() {
-    this.auth.authenticate(this.creds)
+   this.auth.authenticate(this.creds)
       .subscribe(response => {
-        this.auth.successfulLogin(response.headers.get('Authorization'),response.headers.get('idUser'));
+      this.auth.successfulLogin(response.headers.get('Authorization'),response.headers.get('idUser'));
         this.navCtrl.setRoot('MenuPage');
       },
         error => { });
 
-       
+        this.endService.findByEnderecoAll().
+        subscribe(response=>{
+          this.ruas=response;
+          this.storage.setLocalEnderecos(this.ruas);
+        },
+        error => { });
+        this.navCtrl.setRoot('MenuPage');
   }
 
   esqueciSenha(){
