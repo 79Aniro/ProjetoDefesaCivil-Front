@@ -35,6 +35,9 @@ export class TramitacaoPage {
     this.relatorioService.buscaoRelatoriosFunc(this.id_user).
       subscribe(response => {
         this.items = response;
+        if(this.items.length==0){
+          this.showRelatoriosArquivados();
+        }
       })
       this.buscaUrl();
   }
@@ -116,5 +119,21 @@ export class TramitacaoPage {
     alert.present();
   }
 
+  showRelatoriosArquivados() {
+    let alert = this.alertCrtl.create({
+      title: 'Tramitação Relatórios',
+      message: "Todos os seus Relatorios estão com Tramitação 'ARQUIVADO'",
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler:()=>{
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
 
 }

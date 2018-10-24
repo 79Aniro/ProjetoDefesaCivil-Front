@@ -24,6 +24,7 @@ import { DepartamentoDTO } from '../../models/departamento.dto';
 export class IOcorrenciaPage {
 
  
+  
   formGroup: FormGroup;
   ruas:EnderecoDTO[];
   ruasSol:EnderecoDTO[];
@@ -48,17 +49,14 @@ desabilitador:boolean=false;
   public alertCrtl: AlertController,
   public modalCtrl: ModalController) {
 
-
     this.formGroup = this.formBuilder.group({
       origemOcorrencia: ['', [Validators.required]],
       tipoOcorrencia: ['', [Validators.required]],     
-      endereco: ['', [Validators.required]], 
-     //enderecoLocal:   ['', [Validators.required]], 
+      endereco: ['', [Validators.required]],     
       numeroLocal: ['', [Validators.required]],
       historicoInicial: ['', [Validators.required]],
       tipoSolicitante: ['', [Validators.required]],
-      endSolicitante: ['', [Validators.required]],
-      //ruaSol: ['', [Validators.required]],
+      endSolicitante: ['', [Validators.required]],      
       nomeSolicitante: ['', [Validators.required]],
       emailSolicitante: ['', [Validators.required, Validators.email]],
       numeroResidenciaSolicitante: ['', [Validators.required]],
@@ -72,8 +70,7 @@ desabilitador:boolean=false;
   ionViewDidLoad() {
    // this.presentModal();
         let varId = this.localStorage.getLocalUser();//recuperando o usuario logado
-        this.id_user=varId.iduser;// recuperando o id do usuario logado       
-
+        this.id_user=varId.iduser;// recuperando o id do usuario logado    
         this.formGroup.controls.funcionario.setValue(this.id_user);//associando o funcionario a nova ocorrencia
         this.tiposOcorrencia();//recuperando os tipos de ocorrencia para preencher a lista de opções
         this.origemOcorrencia();//recuperandoos tipos de origem  de ocorrencia para preencher a lista de opções
@@ -81,18 +78,10 @@ desabilitador:boolean=false;
        this.initializeItems2();
   }
 
-
-
- 
-
-
-
   insereOco() {
     this.ocorrenciaService.insert(this.formGroup.value)//inserindo ocorrencia
-      .subscribe(response => {
-        
-        this.handleOcorrenciaInserida();// mensagem que ocorrencia foi inserida
-       
+      .subscribe(response => {        
+        this.handleOcorrenciaInserida();// mensagem que ocorrencia foi inserida       
       },
         error => {
           this.handleOcorrenciaNaoInserida();// mensagem que ocorrencia não foi inserida
@@ -205,7 +194,7 @@ desabilitador:boolean=false;
 
   }
 
-recuperaSuaLocal(){
+recuperaRuaLocal(){
 
    var x =this.formGroup.controls.endereco.value;
    this.formGroup.controls.endereco.setValue(x)

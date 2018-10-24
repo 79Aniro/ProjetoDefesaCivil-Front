@@ -29,9 +29,12 @@ export class MyApp {
     this.pages = [
       { title: 'Menu', component: 'MenuPage' },        
       { title: 'Ocorrencias', component: 'MenuOcorrenciaPage ' },
+      { title: 'Nova Ocorrencia ', component: 'IOcorrenciaPage'},
       { title: 'Relatorios', component: 'MenuRelatorioPage ' },
       { title: 'Profile', component: 'ProfilePage' },
-      { title: 'Logout', component: ''}
+      { title: 'Logout', component: ''},
+      
+
    
      
     ];

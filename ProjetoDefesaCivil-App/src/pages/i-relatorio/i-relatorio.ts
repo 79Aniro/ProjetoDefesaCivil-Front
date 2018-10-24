@@ -34,16 +34,12 @@ export class IRelatorioPage {
     public auth: AuthService) {
 
     this.formGroup = this.formBuilder.group({
-      endereco: ['', [Validators.required]],  
-      
+      endereco: ['', [Validators.required]],        
       vistoria: ['', [Validators.required]],
       observacao: ['', [Validators.required]],
       funcionario: ['', [Validators.required]],
       ocorrencia: ['', [Validators.required]]
-
     });
-
-
 
   }
 

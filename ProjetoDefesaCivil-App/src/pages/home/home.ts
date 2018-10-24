@@ -53,13 +53,7 @@ export class HomePage {
       this.auth.successfulLogin(response.headers.get('Authorization'),response.headers.get('idUser'));
         this.navCtrl.setRoot('MenuPage');
       },
-        error => { });
-
-        this.endService.findByEnderecoAll().
-        subscribe(response=>{
-          this.ruas=response;
-          this.storage.setLocalEnderecos(this.ruas);
-        },
+        
         error => { });
         this.navCtrl.setRoot('MenuPage');
   }

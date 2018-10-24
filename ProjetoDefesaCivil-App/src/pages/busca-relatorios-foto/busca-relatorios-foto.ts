@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RelatorioService } from '../../services/domain/relatorio.service';
 import { RelatorioDTO } from '../../models/relatorio.dto';
 import { API_CONFIG } from '../../config/api.config';
@@ -19,7 +19,8 @@ export class BuscaRelatoriosFotoPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public relatorioService: RelatorioService,
-    public storage: StorageService) {
+    public storage: StorageService,
+    public alertCrtl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -28,6 +29,9 @@ export class BuscaRelatoriosFotoPage {
     this.relatorioService.buscaoRelatoriosFunc(localUser.iduser)
     .subscribe(response =>{
       this.items=response;
+      if(this.items.length==0){
+        this.showRelatoriosArquivados();
+      }
       this.buscaUrl();
      
     },
@@ -47,5 +51,20 @@ export class BuscaRelatoriosFotoPage {
     return this.url;
   }
 
-  
+  showRelatoriosArquivados() {
+    let alert = this.alertCrtl.create({
+      title: 'Inserir Fotos Relatorio',
+      message: "Todos os seus Relatorios estão com Tramitação 'ARQUIVADO'",
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler:()=>{
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
 }

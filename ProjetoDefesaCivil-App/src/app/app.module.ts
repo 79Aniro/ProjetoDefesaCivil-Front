@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
@@ -21,42 +21,47 @@ import { InsereFotoPage } from '../pages/insere-foto/insere-foto';
 
 
 
-import{File} from '@ionic-native/file';
-import{FileOpener} from '@ionic-native/file-opener';
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { EnderecoService } from '../services/domain/endereco.service';
 import { MenuRelatorioPage } from '../pages/menu-relatorio/menu-relatorio';
 import { EsqueciSenhaPage } from '../pages/esqueci-senha/esqueci-senha';
 import { MudarSenhaPage } from '../pages/mudar-senha/mudar-senha';
 import { UpdateRelatorioPage } from '../pages/update-relatorio/update-relatorio';
+import { IOcorrenciaPage } from '../pages/i-ocorrencia/i-ocorrencia';
 
 
 
 @NgModule({
   declarations: [
     MyApp,
-    
 
-   
-    
+
+
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     
+ 
+   
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-  
-  
     
+
+
+
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     OcorrenciaService,
     AuthInterceptorProvider,
     RelatorioService,
@@ -65,23 +70,24 @@ import { UpdateRelatorioPage } from '../pages/update-relatorio/update-relatorio'
     StorageService,
     FuncionarioService,
     ImageUtilService,
-    InsereFotoPage,    
+    InsereFotoPage,
+    IOcorrenciaPage,
     File,
     FileOpener,
     FileTransfer,
-     FileTransferObject ,
-     EnderecoService,
-     MenuRelatorioPage,
-     EsqueciSenhaPage,
-     MudarSenhaPage,
-     UpdateRelatorioPage
-   
-    
-    
-    
-    
-    
+    FileTransferObject,
+    EnderecoService,
+    MenuRelatorioPage,
+    EsqueciSenhaPage,
+    MudarSenhaPage,
+    UpdateRelatorioPage
+
+
+
+
+
+
   ]
 })
 
-export class AppModule {}
+export class AppModule { }

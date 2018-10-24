@@ -7,15 +7,13 @@ import { StorageService } from "./storage.service";
 import {JwtHelper}from 'angular2-jwt'
 import { EnderecoDTO } from "../models/endereco.dto";
 
-
 @Injectable()
 export class AuthService {
 
     jwtHelper:JwtHelper =new JwtHelper();
-    endDTO:EnderecoDTO;
+   
     constructor(public http: HttpClient, public storage: StorageService) {
     }
-
     authenticate(creds : CredenciaisDTO) {
         return this.http.post(
             `${API_CONFIG.herokuBaseUrl}/login`, 
@@ -25,7 +23,6 @@ export class AuthService {
                 responseType: 'text'
             });
     }
-
     refreshToken() {
                 return this.http.post(
                     `${API_CONFIG.herokuBaseUrl}/auth/refresh_token`, 
@@ -45,12 +42,9 @@ export class AuthService {
             iduser:iduserValue
             
         };
-
         
-
         this.storage.setLocalUser(user);
     }
-
     logout() {
         this.storage.setLocalUser(null);
     }
