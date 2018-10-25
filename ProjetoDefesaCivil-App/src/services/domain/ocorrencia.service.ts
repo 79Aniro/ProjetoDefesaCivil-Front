@@ -113,7 +113,7 @@ export class OcorrenciaService{
 
     insert(obj : OcorrenciaNewDTO) {
         return this.http.post(
-            `${API_CONFIG.herokuBaseUrl}/ocorrencias`, 
+            `${API_CONFIG.herokuBaseUrl}/ocorrencias/nova`, 
             obj,
             { 
                 observe: 'response', 

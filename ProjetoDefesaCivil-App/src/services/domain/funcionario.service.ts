@@ -26,7 +26,7 @@ export class FuncionarioService {
 
     insert(obj : FuncionarioDTO) {
         return this.http.post(
-            `${API_CONFIG.herokuBaseUrl}/funcionarios`, 
+            `${API_CONFIG.herokuBaseUrl}/funcionarios/novo`, 
             obj,
             { 
                 observe: 'response', 

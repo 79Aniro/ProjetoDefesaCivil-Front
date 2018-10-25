@@ -31,7 +31,7 @@ export class RelatorioService {
 
     insert(obj: RelatorioNewDTO) {
         return this.http.post(
-            `${API_CONFIG.herokuBaseUrl}/relatorios`,
+            `${API_CONFIG.herokuBaseUrl}/relatorios/novo`,
             obj,
             {
                 observe: 'response',
@@ -57,7 +57,7 @@ export class RelatorioService {
 
     buscaoRelatoriosIdRel(id_relatorio: String) {
 
-        return this.http.get<RelatorioDTO>(`${API_CONFIG.herokuBaseUrl}/relatorios/${id_relatorio}`);
+        return this.http.get<RelatorioDTO>(`${API_CONFIG.herokuBaseUrl}/relatorios/id/${id_relatorio}`);
     }
 
 
