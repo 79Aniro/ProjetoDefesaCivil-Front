@@ -37,28 +37,29 @@ export class MenuPage {
   ionViewDidLoad() {
 
 
-   
-    
+    if(this.localStorage.getLocalUser()==null){
+      this.auth.logout();
+      this.navCtrl.setRoot('HomePage');
+    }
+    else{
       let varId = this.localStorage.getLocalUser();
       this.id_user = varId.iduser;
-      
      
       this.funcionarioService.buscaPerfil(this.id_user).
         subscribe(response => {
           this.funcionarioDto = response;
           this.perfil_user = this.funcionarioDto.perfil;
-          console.log(this.funcionarioDto);
         },
-          error => { 
-            console.log("erro ao tentar pegar perfil")
-          });
-      
-        
+          error => { });
   
- 
-    
-
-
+          this.endService.findByEnderecoAll().
+          subscribe(response=>{
+            this.ruas=response;
+            this.storage.setLocalEnderecos(this.ruas);
+          },
+          error => { });
+  
+    }
   }
   insereOco() {
 
