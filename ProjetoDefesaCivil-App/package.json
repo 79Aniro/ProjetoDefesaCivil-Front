@@ -33,6 +33,7 @@
     "@types/html2canvas": "0.0.33",
     "angular": "^1.7.2",
     "angular2-jwt": "^0.2.3",
+    "base64-img": "^1.0.4",
     "bowser": "1.9.4",
     "cordova-android": "7.0.0",
     "cordova-android-support-gradle-release": "^1.4.4",

@@ -35,9 +35,9 @@ export class OcorrenciaService{
     }
 
 
-    findOcoFechadas(): Observable<OcorrenciaDTO[]>{
+    findOcoFechadas(page : number = 0, linesPerPage : number = 4): Observable<OcorrenciaDTO[]>{
 
-        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/fechadas`);
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/fechadas/page?page=${page}&linesPerPage=${linesPerPage}`);
 
     }
 

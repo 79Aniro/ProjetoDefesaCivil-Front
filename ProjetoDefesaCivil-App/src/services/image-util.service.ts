@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 
 
 @Injectable()
+
 export class ImageUtilService {
    
     dataUriToBlob(dataURI) {
@@ -16,7 +17,7 @@ export class ImageUtilService {
     }
 
 
-  
+ 
 
   
 }

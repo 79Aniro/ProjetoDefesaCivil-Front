@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 
 import { FuncionarioService } from '../../services/domain/funcionario.service';
 import { EmailDTO } from '../../models/email.dto';
@@ -26,9 +26,16 @@ export class EsqueciSenhaPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
   public funcService: FuncionarioService,
-  public alertCrtl: AlertController,) {
+  public alertCrtl: AlertController,
+  public menu: MenuController) {
   }
 
+  ionViewWillEnter() {
+    this.menu.swipeEnable(false);
+  }
+  ionViewDidLeave() {
+    this.menu.swipeEnable(true);
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad EsqueciSenhaPage');
   }
