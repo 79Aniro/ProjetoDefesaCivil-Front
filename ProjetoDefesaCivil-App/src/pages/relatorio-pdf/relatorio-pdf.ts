@@ -52,7 +52,11 @@ export class RelatorioPdfPage {
   url: string;
   urlLogo: string;
   teste:string;
+<<<<<<< HEAD
   tamanho_array:number;
+=======
+  tamanho:number;
+>>>>>>> 8efab49e2880a939fb517e4f32a36ed841237885
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -73,6 +77,7 @@ export class RelatorioPdfPage {
         this.relatorioService.buscaoUrlsFoto(this.id_relatorio).
           subscribe(response => {
             this.urlFotos = response;
+<<<<<<< HEAD
             this.tamanho_array=this.urlFotos.length;
             
             console.log(this.urlFotos);
@@ -83,6 +88,35 @@ export class RelatorioPdfPage {
             this.img4 = 'data:image/jpeg;base64,' + this.urlFotos[3];
             this.urlLogo = 'data:image/jpeg;base64,' + this.urlFotos[4];
             
+=======
+            this.tamanho=this.urlFotos.length;
+            if(this.tamanho==5){
+              this.img1 = 'data:image/jpeg;base64,' + this.urlFotos[0];
+              this.img2 = 'data:image/jpeg;base64,' + this.urlFotos[1];
+              this.img3 = 'data:image/jpeg;base64,' + this.urlFotos[2];
+              this.img4 = 'data:image/jpeg;base64,' + this.urlFotos[3];
+              this.urlLogo = 'data:image/jpeg;base64,' + this.urlFotos[4];
+            }
+            else if(this.tamanho==4){
+              this.img1 = 'data:image/jpeg;base64,' + this.urlFotos[0];
+              this.img2 = 'data:image/jpeg;base64,' + this.urlFotos[1];
+              this.img3 = 'data:image/jpeg;base64,' + this.urlFotos[2];              
+              this.urlLogo = 'data:image/jpeg;base64,' + this.urlFotos[3];
+            }
+            else if(this.tamanho==3){
+              this.img1 = 'data:image/jpeg;base64,' + this.urlFotos[0];
+              this.img2 = 'data:image/jpeg;base64,' + this.urlFotos[1];                           
+              this.urlLogo = 'data:image/jpeg;base64,' + this.urlFotos[2];
+            }
+        
+            else if(this.tamanho==2){
+              this.img1 = 'data:image/jpeg;base64,' + this.urlFotos[0];                                     
+              this.urlLogo = 'data:image/jpeg;base64,' + this.urlFotos[1];
+            }
+            else if(this.tamanho==1){                                        
+              this.urlLogo = 'data:image/jpeg;base64,' + this.urlFotos[0];
+            }
+>>>>>>> 8efab49e2880a939fb517e4f32a36ed841237885
 
           });
 
@@ -97,7 +131,12 @@ export class RelatorioPdfPage {
   }
 
   createPdf() {
+<<<<<<< HEAD
     if (this.tamanho_array==1) {
+=======
+    if (this.tamanho == 1) {
+      console.log('entrou 1');
+>>>>>>> 8efab49e2880a939fb517e4f32a36ed841237885
       var docDefinition0 = {
 
         footer: function (currentPage, pageCount) { return { text: 'Rua Saigiro Nakamura, 10- Vila Industrial-São José dos Campos-São Paulo\nCEP:12220-280-Fone/Fax:(012)3913-2926 EMERGENCIA 190- COI', style: 'story', alignment: 'center' } },
@@ -231,6 +270,7 @@ export class RelatorioPdfPage {
 
         ],
 
+        pageSize:'A4',
         styles: {
           header: {
             fontSize: 18,
@@ -251,12 +291,17 @@ export class RelatorioPdfPage {
             width: '50%',
             fontSize: 10,
 
-          },
+          }
 
         }
       }
     }
+<<<<<<< HEAD
 else if(this.tamanho_array==2){
+=======
+else if(this.tamanho==2){
+  console.log('entrou 2');
+>>>>>>> 8efab49e2880a939fb517e4f32a36ed841237885
       var docDefinition1 = {
 
         footer: function (currentPage, pageCount) { return { text: 'Rua Saigiro Nakamura, 10- Vila Industrial-São José dos Campos-São Paulo\nCEP:12220-280-Fone/Fax:(012)3913-2926 EMERGENCIA 190- COI', style: 'story', alignment: 'center' } },
@@ -400,7 +445,7 @@ else if(this.tamanho_array==2){
 
 
         ],
-
+        pageSize:'A4',
         styles: {
           header: {
             fontSize: 18,
@@ -421,14 +466,19 @@ else if(this.tamanho_array==2){
             width: '50%',
             fontSize: 10,
 
-          },
+          }
 
         }
       }
 	
     }
     else
+<<<<<<< HEAD
     if(this.tamanho_array==3){
+=======
+    if(this.tamanho==3){
+      console.log('entrou 3');
+>>>>>>> 8efab49e2880a939fb517e4f32a36ed841237885
       var docDefinition2 = {
 
         footer: function (currentPage, pageCount) { return { text: 'Rua Saigiro Nakamura, 10- Vila Industrial-São José dos Campos-São Paulo\nCEP:12220-280-Fone/Fax:(012)3913-2926 EMERGENCIA 190- COI', style: 'story', alignment: 'center' } },
@@ -572,7 +622,7 @@ else if(this.tamanho_array==2){
 
 
         ],
-
+        pageSize:'A4',
         styles: {
           header: {
             fontSize: 18,
@@ -593,7 +643,7 @@ else if(this.tamanho_array==2){
             width: '50%',
             fontSize: 10,
 
-          },
+          }
 
         }
       }
@@ -601,7 +651,12 @@ else if(this.tamanho_array==2){
  
    
 
+<<<<<<< HEAD
     else if(this.tamanho_array==4){
+=======
+    else if(this.tamanho == 4){
+      console.log('entrou 4');
+>>>>>>> 8efab49e2880a939fb517e4f32a36ed841237885
       var docDefinition3 = {
 
         footer: function (currentPage, pageCount) { return { text: 'Rua Saigiro Nakamura, 10- Vila Industrial-São José dos Campos-São Paulo\nCEP:12220-280-Fone/Fax:(012)3913-2926 EMERGENCIA 190- COI', style: 'story', alignment: 'center' } },
@@ -745,7 +800,7 @@ else if(this.tamanho_array==2){
 
 
         ],
-
+        pageSize:'A4',
         styles: {
           header: {
             fontSize: 18,
@@ -766,7 +821,7 @@ else if(this.tamanho_array==2){
             width: '50%',
             fontSize: 10,
 
-          },
+          }
 
         }
       }
@@ -774,9 +829,10 @@ else if(this.tamanho_array==2){
 
 
 
-    else {
+    else if(this.tamanho==5) {
+      console.log('entrou 5');
       var docDefinition4 = {
-
+       
         footer: function (currentPage, pageCount) { return { text: 'Rua Saigiro Nakamura, 10- Vila Industrial-São José dos Campos-São Paulo\nCEP:12220-280-Fone/Fax:(012)3913-2926 EMERGENCIA 190- COI', style: 'story', alignment: 'center' } },
 
         content: [
@@ -918,7 +974,7 @@ else if(this.tamanho_array==2){
 
 
         ],
-
+        pageSize:'A4',
         styles: {
           header: {
             fontSize: 18,
@@ -939,13 +995,14 @@ else if(this.tamanho_array==2){
             width: '50%',
             fontSize: 10,
 
-          },
+          }
 
         }
       }
     }
 
 
+<<<<<<< HEAD
     if (this.tamanho_array == 1) {
       this.pdfObj = pdfMake.createPdf(docDefinition0);
     }
@@ -956,6 +1013,18 @@ else if(this.tamanho_array==2){
       this.pdfObj = pdfMake.createPdf(docDefinition2);
     }
     else if(this.tamanho_array==4){
+=======
+    if (this.tamanho == 1) {
+      this.pdfObj = pdfMake.createPdf(docDefinition0);
+    }
+    else if(this.tamanho==2){
+      this.pdfObj = pdfMake.createPdf(docDefinition1);
+    }
+    else if(this.tamanho==3){
+      this.pdfObj = pdfMake.createPdf(docDefinition2);
+    }
+    else if(this.tamanho==4){
+>>>>>>> 8efab49e2880a939fb517e4f32a36ed841237885
       this.pdfObj = pdfMake.createPdf(docDefinition3);
     }
     else {
@@ -971,9 +1040,9 @@ else if(this.tamanho_array==2){
         var blob = new Blob([buffer], { type: 'application/pdf' });
 
         // Save the PDF to the data Directory of our App
-        this.file.writeFile(this.file.dataDirectory, 'Relatorio nº ' + this.items.id + '/' + this.items.ano, blob, { replace: true }).then(fileEntry => {
+        this.file.writeFile(this.file.dataDirectory, 'myletter.pdf', blob, { replace: true }).then(fileEntry => {
           // Open the PDf with the correct OS tools
-          this.fileOpener.open(this.file.dataDirectory + 'Relatorio nº ' + this.items.id + '/' + this.items.ano, 'application/pdf');
+          this.fileOpener.open(this.file.dataDirectory + 'myletter.pdf', 'application/pdf');
         })
       });
     } else {
