@@ -38,12 +38,7 @@ export class HomePage {
 
   ionViewDidLoad(){
 
-    this.endService.findByEnderecoAll().
-    subscribe(response=>{
-      this.ruas=response;
-      this.storage.setLocalEnderecos(this.ruas);
-    },
-    error => { });
+   
   }
 
 
@@ -55,7 +50,12 @@ export class HomePage {
       },
         
         error => { });
-        this.navCtrl.setRoot('MenuPage');
+        this.endService.findByEnderecoAll().
+        subscribe(response=>{
+          this.ruas=response;
+          this.storage.setLocalEnderecos(this.ruas);
+        },
+        error => { });
   }
 
   esqueciSenha(){

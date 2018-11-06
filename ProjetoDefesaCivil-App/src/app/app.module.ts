@@ -32,6 +32,11 @@ import { UpdateRelatorioPage } from '../pages/update-relatorio/update-relatorio'
 import { IOcorrenciaPage } from '../pages/i-ocorrencia/i-ocorrencia';
 
 
+import { DocumentViewer } from '@ionic-native/document-viewer';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -80,7 +85,10 @@ import { IOcorrenciaPage } from '../pages/i-ocorrencia/i-ocorrencia';
     MenuRelatorioPage,
     EsqueciSenhaPage,
     MudarSenhaPage,
-    UpdateRelatorioPage
+    UpdateRelatorioPage,   
+    
+    DocumentViewer
+ 
 
 
 

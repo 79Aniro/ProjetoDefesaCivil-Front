@@ -34,7 +34,6 @@ export class MyApp {
       { title: 'Profile', component: 'ProfilePage' },
       { title: 'Logout', component: ''},
       
-
    
      
     ];
