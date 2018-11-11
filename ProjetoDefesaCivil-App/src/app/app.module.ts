@@ -32,7 +32,7 @@ import { UpdateRelatorioPage } from '../pages/update-relatorio/update-relatorio'
 import { IOcorrenciaPage } from '../pages/i-ocorrencia/i-ocorrencia';
 
 
-import { DocumentViewer } from '@ionic-native/document-viewer';
+
 
 
 
@@ -87,7 +87,7 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
     MudarSenhaPage,
     UpdateRelatorioPage,   
     
-    DocumentViewer
+   
  
 
 

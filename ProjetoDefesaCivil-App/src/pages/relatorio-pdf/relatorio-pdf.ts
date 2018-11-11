@@ -69,11 +69,13 @@ export class RelatorioPdfPage {
       .subscribe(response => {
         this.items = response;
 
-console.log(this.items);
+
         this.relatorioService.buscaoUrlsFoto(this.id_relatorio).
           subscribe(response => {
             this.urlFotos = response;
+            console.log(this.urlFotos);
             this.tamanho=this.urlFotos.length;
+            console.log('tamanho'+this.tamanho);
             if(this.tamanho==5){
               this.img1 = 'data:image/jpeg;base64,' + this.urlFotos[0];
               this.img2 = 'data:image/jpeg;base64,' + this.urlFotos[1];
@@ -796,7 +798,7 @@ else if(this.tamanho==2){
 
 
 
-    else if(this.tamanho==5) {
+    else if(this.tamanho>=5) {
       console.log('entrou 5');
       var docDefinition4 = {
        
@@ -981,7 +983,7 @@ else if(this.tamanho==2){
     else if(this.tamanho==4){
       this.pdfObj = pdfMake.createPdf(docDefinition3);
     }
-    else {
+    else if(this.tamanho>=4){
       this.pdfObj = pdfMake.createPdf(docDefinition4);
     }
 
