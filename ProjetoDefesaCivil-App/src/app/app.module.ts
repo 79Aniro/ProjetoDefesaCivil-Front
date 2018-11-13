@@ -33,6 +33,11 @@ import { IOcorrenciaPage } from '../pages/i-ocorrencia/i-ocorrencia';
 
 
 
+
+
+
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -80,7 +85,10 @@ import { IOcorrenciaPage } from '../pages/i-ocorrencia/i-ocorrencia';
     MenuRelatorioPage,
     EsqueciSenhaPage,
     MudarSenhaPage,
-    UpdateRelatorioPage
+    UpdateRelatorioPage,   
+    
+   
+ 
 
 
 
