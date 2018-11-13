@@ -24,6 +24,8 @@ export class IRelatorioPage {
   ruas: EnderecoDTO[];
   id_user: string;
   oco_id: string;
+
+  
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public relatorioService: RelatorioService,
@@ -67,6 +69,8 @@ export class IRelatorioPage {
 
 
   insereRelatorio() {
+  let x=this.formGroup.value;
+  
     this.relatorioService.insert(this.formGroup.value)
       .subscribe(response => {
 

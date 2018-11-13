@@ -25,14 +25,22 @@ export class BuscaRelatoriosFotoPage {
 
   ionViewDidLoad() {
     let localUser = this.storage.getLocalUser();
+
+    let per=this.storage.getPerfil();
     
     this.relatorioService.buscaoRelatoriosFunc(localUser.iduser)
     .subscribe(response =>{
       this.items=response;
-      if(this.items.length==0){
+      if(per=='2'){
+        this.showSemPermissão();
+      }
+     else if(this.items.length==0){
         this.showRelatoriosArquivados();
       }
-      this.buscaUrl();
+      else{
+        this.buscaUrl();
+      }
+      
      
     },
     error => { });
@@ -55,6 +63,23 @@ export class BuscaRelatoriosFotoPage {
     let alert = this.alertCrtl.create({
       title: 'Inserir Fotos Relatorio',
       message: "Todos os seus Relatorios estão com Tramitação 'ARQUIVADO'",
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler:()=>{
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  showSemPermissão() {
+    let alert = this.alertCrtl.create({
+      title: 'Inserir Fotos Relatorio',
+      message: "Você não tem permissão para inserir fotos",
       enableBackdropDismiss: false,
       buttons: [
         {

@@ -7,7 +7,7 @@ import { EnderecoDTO } from "../models/endereco.dto";
 @Injectable()
 export class StorageService {
 
-    getLocalUser() : LocalUser {
+    getLocalUser(): LocalUser {
         let usr = localStorage.getItem(STORAGE_KEYS.localUser);
         if (usr == null) {
             return null;
@@ -17,7 +17,7 @@ export class StorageService {
         }
     }
 
-    setLocalUser(obj : LocalUser) {
+    setLocalUser(obj: LocalUser) {
         if (obj == null) {
             localStorage.removeItem(STORAGE_KEYS.localUser);
         }
@@ -26,7 +26,7 @@ export class StorageService {
         }
     }
 
-    setLocalRua(obj:EnderecoDTO){
+    setLocalRua(obj: EnderecoDTO) {
 
         if (obj == null) {
             localStorage.removeItem(STORAGE_KEYS.endeDTO);
@@ -34,10 +34,10 @@ export class StorageService {
         else {
             localStorage.setItem(STORAGE_KEYS.endeDTO, JSON.stringify(obj));
         }
-       
+
     }
 
-    setLocalEnderecos(obj:EnderecoDTO[]){
+    setLocalEnderecos(obj: EnderecoDTO[]) {
 
         if (obj == null) {
             localStorage.removeItem(STORAGE_KEYS.endDTO);
@@ -45,10 +45,10 @@ export class StorageService {
         else {
             localStorage.setItem(STORAGE_KEYS.endDTO, JSON.stringify(obj));
         }
-       
+
     }
 
-    getRuaDTO() : EnderecoDTO {
+    getRuaDTO(): EnderecoDTO {
         let rua = localStorage.getItem(STORAGE_KEYS.endeDTO);
         if (rua == null) {
             return null;
@@ -58,7 +58,7 @@ export class StorageService {
         }
     }
 
-    getRuasDTO() : EnderecoDTO[] {
+    getRuasDTO(): EnderecoDTO[] {
         let ruas = localStorage.getItem(STORAGE_KEYS.endDTO);
         if (ruas == null) {
             return null;
@@ -66,5 +66,12 @@ export class StorageService {
         else {
             return JSON.parse(ruas);
         }
+    }
+
+    setPerfil(perfil: string) {
+        localStorage.setItem(STORAGE_KEYS.perfil, perfil);
+    }
+    getPerfil() {
+        return localStorage.getItem(STORAGE_KEYS.perfil);
     }
 }

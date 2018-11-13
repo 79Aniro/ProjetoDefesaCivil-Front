@@ -38,6 +38,7 @@ export class RelatoriosPage {
       subscribe(response => {
         this.funcionarioDto = response;
         this.perfil_user = this.funcionarioDto.perfil;
+
         this.loadData();
        
       },
@@ -54,6 +55,13 @@ loadData(){
     this.relatorioService.buscaoRelatoriosFunc(this.id_user)
     .subscribe(response =>{
       this.items=response;
+
+      if(this.perfil_user=='2'){
+        this.showSemPermissão();
+      }
+     else if(this.items.length==0){
+        this.showRelatoriosArquivados();
+      }
       this.buscaUrl();
      
      
@@ -167,6 +175,40 @@ loadData(){
   buscarRelatoriosIdRel(id_relatorio: string) {
 
     this.navCtrl.push('RelatorioPdfPage', {id_relatorio: id_relatorio});  
+  }
+
+  showRelatoriosArquivados() {
+    let alert = this.alertCrtl.create({
+      title: 'Inserir Fotos Relatorio',
+      message: "Todos os seus Relatorios estão com Tramitação 'ARQUIVADO'",
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler:()=>{
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  showSemPermissão() {
+    let alert = this.alertCrtl.create({
+      title: 'Inserir Fotos Relatorio',
+      message: "Você não tem permissão para inserir fotos",
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler:()=>{
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
  
 }

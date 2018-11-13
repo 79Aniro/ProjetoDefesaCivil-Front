@@ -49,6 +49,7 @@ export class MenuPage {
         subscribe(response => {
           this.funcionarioDto = response;
           this.perfil_user = this.funcionarioDto.perfil;
+          this.localStorage.setPerfil(this.perfil_user);
         },
           error => { });
   
