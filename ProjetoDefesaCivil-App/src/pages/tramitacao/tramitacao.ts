@@ -31,11 +31,15 @@ export class TramitacaoPage {
   ionViewDidLoad() {
     let varId = this.localStorage.getLocalUser();
     this.id_user = varId.iduser;
+    this.perfil_user = this.localStorage.getPerfil();
 
     this.relatorioService.buscaoRelatoriosFunc(this.id_user).
       subscribe(response => {
         this.items = response;
-        if(this.items.length==0){
+        if(this.perfil_user=='2'){
+          this.showSemPermissão();
+        }
+       else if(this.items.length==0){
           this.showRelatoriosArquivados();
         }
       })
@@ -123,6 +127,23 @@ export class TramitacaoPage {
     let alert = this.alertCrtl.create({
       title: 'Tramitação Relatórios',
       message: "Todos os seus Relatorios estão com Tramitação 'ARQUIVADO'",
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler:()=>{
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  showSemPermissão() {
+    let alert = this.alertCrtl.create({
+      title: 'Tramitação',
+      message: "Acesso negado",
       enableBackdropDismiss: false,
       buttons: [
         {

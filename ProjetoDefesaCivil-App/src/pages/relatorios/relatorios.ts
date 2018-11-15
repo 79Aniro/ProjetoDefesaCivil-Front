@@ -179,7 +179,7 @@ loadData(){
 
   showRelatoriosArquivados() {
     let alert = this.alertCrtl.create({
-      title: 'Inserir Fotos Relatorio',
+      title: 'Relatorios',
       message: "Todos os seus Relatorios estão com Tramitação 'ARQUIVADO'",
       enableBackdropDismiss: false,
       buttons: [
@@ -196,8 +196,8 @@ loadData(){
 
   showSemPermissão() {
     let alert = this.alertCrtl.create({
-      title: 'Inserir Fotos Relatorio',
-      message: "Você não tem permissão para inserir fotos",
+      title: 'Relatorios',
+      message: "Acesso negado-Busque relatorios por ocorrências",
       enableBackdropDismiss: false,
       buttons: [
         {
