@@ -3,5 +3,7 @@ export const STORAGE_KEYS = {
     endeDTO:"endDTO",
     perfil:"perfil",
     endDTO:'end',
+    tipoOcorrencia:'tipoOcorrencia',
+    origemOcorrencia:'origemOcorrencia'
     
 }

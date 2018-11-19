@@ -75,7 +75,7 @@ desabilitador:boolean=false;
         this.tiposOcorrencia();//recuperando os tipos de ocorrencia para preencher a lista de opções
         this.origemOcorrencia();//recuperandoos tipos de origem  de ocorrencia para preencher a lista de opções
        this.initializeItems();
-       this.initializeItems2();
+       
   }
 
   insereOco() {
@@ -185,7 +185,7 @@ desabilitador:boolean=false;
 
   initializeItems() {
     this.ruas=this.localStorage.getRuasDTO();//recupera o array de endereco do localstorage
-   
+    this.ruasSol=this.ruas;
 
   }
   initializeItems2() {

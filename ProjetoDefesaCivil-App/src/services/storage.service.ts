@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { STORAGE_KEYS } from "../config/storage_keys.config";
 import { LocalUser } from "../models/local_user";
 import { EnderecoDTO } from "../models/endereco.dto";
+import { TipoOcorrenciaDTO } from "../models/tipoOcorrencia.dto";
 
 
 @Injectable()
@@ -74,4 +75,15 @@ export class StorageService {
     getPerfil() {
         return localStorage.getItem(STORAGE_KEYS.perfil);
     }
+
+setTipoOcorrencia(obj:TipoOcorrenciaDTO[]){
+
+    if (obj == null) {
+        localStorage.removeItem(STORAGE_KEYS.tipoOcorrencia);
+    }
+    else {
+        localStorage.setItem(STORAGE_KEYS.tipoOcorrencia, JSON.stringify(obj));
+    }
+}
+
 }
