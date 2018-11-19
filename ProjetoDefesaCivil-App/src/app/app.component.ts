@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../services/auth.service';
+import { STORAGE_KEYS } from '../config/storage_keys.config';
 
 
 
@@ -13,7 +14,7 @@ import { AuthService } from '../services/auth.service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: string = 'HomePage';
+  rootPage: string ;
 
   pages: Array<{title: string, component: string}>;
 
@@ -21,7 +22,8 @@ export class MyApp {
     public platform: Platform,
      public statusBar: StatusBar, 
      public splashScreen: SplashScreen,
-     public auth: AuthService
+     public auth: AuthService,
+     
     ) {
     this.initializeApp();
 
@@ -47,6 +49,14 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    if(localStorage.getItem(STORAGE_KEYS.localUser)==null){
+
+      this.rootPage='HomePage'
+    }
+    else{
+      this.rootPage='MenuPage'
+    }
   }
 
   openPage(page : {title:string, component:string}) {

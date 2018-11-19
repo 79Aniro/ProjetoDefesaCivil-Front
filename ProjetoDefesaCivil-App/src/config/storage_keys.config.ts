@@ -4,6 +4,8 @@ export const STORAGE_KEYS = {
     perfil:"perfil",
     endDTO:'end',
     tipoOcorrencia:'tipoOcorrencia',
-    origemOcorrencia:'origemOcorrencia'
+    origemOcorrencia:'origemOcorrencia',
+    departamentos:'departamentos',
+    ultimaPagina:'ultimaPagina'
     
 }

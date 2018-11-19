@@ -3,6 +3,8 @@ import { STORAGE_KEYS } from "../config/storage_keys.config";
 import { LocalUser } from "../models/local_user";
 import { EnderecoDTO } from "../models/endereco.dto";
 import { TipoOcorrenciaDTO } from "../models/tipoOcorrencia.dto";
+import { OrigemOcorrenciaDTO } from '../models/origemOcorenciaDTO';
+import { DepartamentoDTO } from "../models/departamento.dto";
 
 
 @Injectable()
@@ -84,6 +86,45 @@ setTipoOcorrencia(obj:TipoOcorrenciaDTO[]){
     else {
         localStorage.setItem(STORAGE_KEYS.tipoOcorrencia, JSON.stringify(obj));
     }
+}
+
+getTipoOcorrencia(){
+    let tipos= localStorage.getItem(STORAGE_KEYS.tipoOcorrencia);
+    return JSON.parse(tipos);
+}
+
+
+setOrigemOcorrencia(obj:OrigemOcorrenciaDTO[]){
+    if (obj == null) {
+        localStorage.removeItem(STORAGE_KEYS.origemOcorrencia);
+    }
+    else {
+        localStorage.setItem(STORAGE_KEYS.origemOcorrencia, JSON.stringify(obj));
+    }
+
+}
+
+getOrigemOcorrencia(){
+    let origem=localStorage.getItem(STORAGE_KEYS.origemOcorrencia);
+    return JSON.parse(origem);
+}
+
+
+
+
+setDeparatementos(obj:DepartamentoDTO[]){
+    if (obj == null) {
+        localStorage.removeItem(STORAGE_KEYS.departamentos);
+    }
+    else {
+        localStorage.setItem(STORAGE_KEYS.departamentos, JSON.stringify(obj));
+    }
+
+}
+
+getDepartamentos(){
+    let departamentos= localStorage.getItem(STORAGE_KEYS.departamentos);
+    return JSON.parse(departamentos);
 }
 
 }

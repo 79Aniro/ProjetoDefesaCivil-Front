@@ -5,6 +5,10 @@ import { AuthService } from '../../services/auth.service';
 import { EnderecoService } from '../../services/domain/endereco.service';
 import { EnderecoDTO } from '../../models/endereco.dto';
 import { StorageService } from '../../services/storage.service';
+import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
+import { TipoOcorrenciaDTO } from '../../models/tipoOcorrencia.dto';
+import { OrigemOcorrenciaDTO } from '../../models/origemOcorenciaDTO';
+import { DepartamentoDTO } from '../../models/departamento.dto';
 @IonicPage()
 @Component({
   selector: 'page-home',
@@ -12,18 +16,24 @@ import { StorageService } from '../../services/storage.service';
 })
 export class HomePage {
 
-  ruas:EnderecoDTO[];
+  ruas: EnderecoDTO[];
 
   creds: CredenciaisDTO = {
     email: "",
     senha: ""
   };
+
+  tiposOco: TipoOcorrenciaDTO[];
+  origemOco: OrigemOcorrenciaDTO[];
+  departamentos: DepartamentoDTO[];
   constructor(
     public navCtrl: NavController,
     public menu: MenuController,
     public auth: AuthService,
-    public endService:EnderecoService,
-    public storage:StorageService
+    public endService: EnderecoService,
+    public storage: StorageService,
+    public ocorrenciaService: OcorrenciaService,
+
   ) {
 
   }
@@ -36,30 +46,67 @@ export class HomePage {
     this.menu.swipeEnable(true);
   }
 
-  ionViewDidLoad(){
+  ionViewDidLoad() {
 
-   
+
   }
 
 
   login() {
-   this.auth.authenticate(this.creds)
+    this.auth.authenticate(this.creds)
       .subscribe(response => {
-      this.auth.successfulLogin(response.headers.get('Authorization'),response.headers.get('idUser'));
+        this.auth.successfulLogin(response.headers.get('Authorization'), response.headers.get('idUser'));
         this.navCtrl.setRoot('MenuPage');
       },
+
+        error => { });
+    this.endService.findByEnderecoAll().
+      subscribe(response => {
+        this.ruas = response;
+        this.storage.setLocalEnderecos(this.ruas);
+      },
+        error => {
+
+        });
+    this.ocorrenciaService.departamentos().
+      subscribe(response => {
+        this.departamentos = response;
+        this.storage.setDeparatementos(this.departamentos);
+      },
+        error => {
+
+        });
+    this.ocorrenciaService.tiposocorrenciaAll().
+      subscribe(response => {
+        this.tiposOco = response;
+        this.storage.setTipoOcorrencia(this.tiposOco);
+
+      }, error => {
+
+      });
+    this.ocorrenciaService.origemOcorrenciaAll().
+      subscribe(response => {
+        this.origemOco = response;
+        this.storage.setOrigemOcorrencia(this.origemOco);
+      } ,error=>{
         
-        error => { });
-        this.endService.findByEnderecoAll().
-        subscribe(response=>{
-          this.ruas=response;
-          this.storage.setLocalEnderecos(this.ruas);
-        },
-        error => { });
+      });
+     
   }
 
-  esqueciSenha(){
+  esqueciSenha() {
     this.navCtrl.setRoot('EsqueciSenhaPage');
+  }
+
+
+  // Função que chama o servico que busca todos os tipos de ocorrencias
+  tiposOcorrencia() {
+
+    this.ocorrenciaService.tiposocorrenciaAll().
+      subscribe(response => {
+        this.tiposOco = response;
+
+      })
   }
 
 }

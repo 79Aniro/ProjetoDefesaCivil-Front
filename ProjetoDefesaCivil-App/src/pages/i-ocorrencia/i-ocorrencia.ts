@@ -72,8 +72,8 @@ desabilitador:boolean=false;
         let varId = this.localStorage.getLocalUser();//recuperando o usuario logado
         this.id_user=varId.iduser;// recuperando o id do usuario logado    
         this.formGroup.controls.funcionario.setValue(this.id_user);//associando o funcionario a nova ocorrencia
-        this.tiposOcorrencia();//recuperando os tipos de ocorrencia para preencher a lista de opções
-        this.origemOcorrencia();//recuperandoos tipos de origem  de ocorrencia para preencher a lista de opções
+       // this.tiposOcorrencia();//recuperando os tipos de ocorrencia para preencher a lista de opções
+      //  this.origemOcorrencia();//recuperandoos tipos de origem  de ocorrencia para preencher a lista de opções
        this.initializeItems();
        
   }
@@ -186,6 +186,9 @@ desabilitador:boolean=false;
   initializeItems() {
     this.ruas=this.localStorage.getRuasDTO();//recupera o array de endereco do localstorage
     this.ruasSol=this.ruas;
+    this.departamentos=this.localStorage.getDepartamentos();
+    this.tiposOco=this.localStorage.getTipoOcorrencia();
+    this.origemOco=this.localStorage.getOrigemOcorrencia();
 
   }
   initializeItems2() {

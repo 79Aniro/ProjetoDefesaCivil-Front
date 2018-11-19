@@ -38,7 +38,7 @@ export class MenuPage {
 
 
     if(this.localStorage.getLocalUser()==null){
-      this.auth.logout();
+     // this.auth.logout();
       this.navCtrl.setRoot('HomePage');
     }
     else{

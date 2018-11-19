@@ -41,6 +41,7 @@ import { IOcorrenciaPage } from '../pages/i-ocorrencia/i-ocorrencia';
 @NgModule({
   declarations: [
     MyApp,
+   
 
 
 
@@ -50,6 +51,7 @@ import { IOcorrenciaPage } from '../pages/i-ocorrencia/i-ocorrencia';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+   
     
  
    
@@ -86,6 +88,7 @@ import { IOcorrenciaPage } from '../pages/i-ocorrencia/i-ocorrencia';
     EsqueciSenhaPage,
     MudarSenhaPage,
     UpdateRelatorioPage,   
+    
     
    
  
