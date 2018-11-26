@@ -111,8 +111,8 @@ export class MenuOcorrenciaPage {
   }
   handleRegioes() {
     let alert = this.alertCrtl.create({
-      title: 'Relatorio Inserido',
-      message: 'Relatorio Inserido  com sucesso',
+      title: 'Regiões',
+      message: 'Selecione a região',
       enableBackdropDismiss: false,
       buttons: [
         {
@@ -166,7 +166,7 @@ export class MenuOcorrenciaPage {
 
   handleErrorDatas() {
     let alert = this.alertCrtl.create({
-      title: 'Região por Data',
+      title: 'Ocorrência por Data',
       message: 'Necessario inserir as datas para pesquisa',
       enableBackdropDismiss: false,
       buttons: [

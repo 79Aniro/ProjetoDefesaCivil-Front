@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { IOcorrenciaPage } from './i-ocorrencia';
 
-import { EnderecoService } from '../../services/domain/endereco.service';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { EnderecoService } from '../../services/domain/endereco.service';
   ],
   providers:[
     
-    EnderecoService,
+  
     
   ]
 })

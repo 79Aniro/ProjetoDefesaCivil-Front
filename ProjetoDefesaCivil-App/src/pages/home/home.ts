@@ -57,56 +57,61 @@ export class HomePage {
       .subscribe(response => {
         this.auth.successfulLogin(response.headers.get('Authorization'), response.headers.get('idUser'));
         this.navCtrl.setRoot('MenuPage');
+        console.log(this.storage.verificaRuas());
       },
 
         error => { });
-    this.endService.findByEnderecoAll().
-      subscribe(response => {
-        this.ruas = response;
-        this.storage.setLocalEnderecos(this.ruas);
-      },
-        error => {
+    if (this.storage.verificaRuas()==false) {
+      console.log("buscou ruas");
+      this.endService.findByEnderecoAll().
+        subscribe(response => {
+          this.ruas = response;
+          this.storage.setLocalEnderecos(this.ruas);
 
         });
-    this.ocorrenciaService.departamentos().
-      subscribe(response => {
-        this.departamentos = response;
-        this.storage.setDeparatementos(this.departamentos);
-      },
-        error => {
+      }
+      else{
+        console.log(this.storage.getRuaDTO);
+      }
+      this.ocorrenciaService.departamentos().
+        subscribe(response => {
+          this.departamentos = response;
+          this.storage.setDeparatementos(this.departamentos);
+        },
+          error => {
+
+          });
+      this.ocorrenciaService.tiposocorrenciaAll().
+        subscribe(response => {
+          this.tiposOco = response;
+          this.storage.setTipoOcorrencia(this.tiposOco);
+
+        }, error => {
 
         });
-    this.ocorrenciaService.tiposocorrenciaAll().
-      subscribe(response => {
-        this.tiposOco = response;
-        this.storage.setTipoOcorrencia(this.tiposOco);
+      this.ocorrenciaService.origemOcorrenciaAll().
+        subscribe(response => {
+          this.origemOco = response;
+          this.storage.setOrigemOcorrencia(this.origemOco);
+        }, error => {
 
-      }, error => {
+        });
 
-      });
-    this.ocorrenciaService.origemOcorrenciaAll().
-      subscribe(response => {
-        this.origemOco = response;
-        this.storage.setOrigemOcorrencia(this.origemOco);
-      } ,error=>{
-        
-      });
-     
+    }
+
+    esqueciSenha() {
+      this.navCtrl.setRoot('EsqueciSenhaPage');
+    }
+
+
+    // Função que chama o servico que busca todos os tipos de ocorrencias
+    tiposOcorrencia() {
+
+      this.ocorrenciaService.tiposocorrenciaAll().
+        subscribe(response => {
+          this.tiposOco = response;
+
+        })
+    }
+
   }
-
-  esqueciSenha() {
-    this.navCtrl.setRoot('EsqueciSenhaPage');
-  }
-
-
-  // Função que chama o servico que busca todos os tipos de ocorrencias
-  tiposOcorrencia() {
-
-    this.ocorrenciaService.tiposocorrenciaAll().
-      subscribe(response => {
-        this.tiposOco = response;
-
-      })
-  }
-
-}

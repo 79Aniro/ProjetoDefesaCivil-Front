@@ -71,6 +71,16 @@ export class StorageService {
         }
     }
 
+    verificaRuas():boolean{
+        let ruas = localStorage.getItem(STORAGE_KEYS.endDTO);
+        if (ruas == null) {
+            return false;
+        }
+        else {
+            return true
+        }
+    }
+
     setPerfil(perfil: string) {
         localStorage.setItem(STORAGE_KEYS.perfil, perfil);
     }

@@ -70,8 +70,8 @@ export class UpdateRelatorioPage {
 
   handleRelatorioInserido() {
     let alert = this.alertCrtl.create({
-      title: 'Relatorio Inserido',
-      message: 'Relatorio Inserido  com sucesso',
+      title: 'Relatorio Atualizado',
+      message: 'Relatorio Atualizado com sucesso',
       enableBackdropDismiss: false,
       buttons: [
         {
@@ -89,8 +89,8 @@ export class UpdateRelatorioPage {
 
   handleRelatorioNaoInserido() {
     let alert = this.alertCrtl.create({
-      title: 'Relatorio Não Inserido',
-      message: 'Relatorio Não Foi inserido',
+      title: 'Relatorio Não Atualizado',
+      message: 'Relatorio Não Foi Atualizado',
       enableBackdropDismiss: false,
       buttons: [
         {

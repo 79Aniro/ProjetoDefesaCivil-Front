@@ -52,7 +52,7 @@
 
     <ion-item>
       <ion-label floating>Tipo Solicitante</ion-label>
-      <ion-select formControlName="tipoSolicitante" (ionChange)="getDepartamentos()">
+      <ion-select formControlName="tipoSolicitante" >
         <ion-option value="1">Municipe</ion-option>
         <ion-option value="2">Departamento</ion-option>
         <ion-option value="3">Funcionario</ion-option>
@@ -62,7 +62,7 @@
 
     <ion-item>
       <ion-label floating>Departamento</ion-label>
-      <ion-select formControlName="departamento" (ionChange)="chamaRuasSol()">
+      <ion-select formControlName="departamento" >
         <ion-option *ngFor="let  departamento of departamentos;first as f" [value]="departamento.id" [selected]="f">{{departamento.nome}}</ion-option>
 
       </ion-select>
