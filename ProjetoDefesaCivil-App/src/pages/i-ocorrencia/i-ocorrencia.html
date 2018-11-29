@@ -24,7 +24,7 @@
 
     <ion-item>
       <ion-label floating>Origem Ocorrencia</ion-label>
-      <ion-select formControlName="origemOcorrencia">
+      <ion-select formControlName="origemOcorrencia" (ionChange)="getDepartamentos()">
         <ion-option *ngFor="let  origemOcorrencia of origemOco;first as f" [value]="origemOcorrencia.origem_ocorrencia_id" [selected]="f">{{origemOcorrencia.descricao}}</ion-option>
       </ion-select>
     </ion-item>
@@ -62,7 +62,7 @@
 
     <ion-item>
       <ion-label floating>Departamento</ion-label>
-      <ion-select formControlName="departamento" >
+      <ion-select formControlName="departamento" (ionChange)="chamaRuasSol()" >
         <ion-option *ngFor="let  departamento of departamentos;first as f" [value]="departamento.id" [selected]="f">{{departamento.nome}}</ion-option>
 
       </ion-select>

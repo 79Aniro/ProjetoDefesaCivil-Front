@@ -12,12 +12,6 @@ import { EnderecoService } from '../../services/domain/endereco.service';
     IonicPageModule.forChild(IRelatorioPage),
   ],
 
-  providers:[
-  
-   
-    Camera,
-    EnderecoService,
-    
-  ]
+
 })
 export class IRelatorioPageModule {}

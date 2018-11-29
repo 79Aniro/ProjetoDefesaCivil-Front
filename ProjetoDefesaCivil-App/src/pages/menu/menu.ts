@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, IonicPage, NavParams } from 'ionic-angular';
+import { NavController, IonicPage, NavParams, LoadingController } from 'ionic-angular';
 import { StorageService } from '../../services/storage.service';
 import { FuncionarioDTO } from '../../models/funcionario.dto';
 import { FuncionarioService } from '../../services/domain/funcionario.service';
@@ -30,7 +30,8 @@ export class MenuPage {
     public formBuilder: FormBuilder,
     public navParams: NavParams,
   public endService:EnderecoService,
-  public auth: AuthService ) {
+  public auth: AuthService ,
+  public loadingCtrl: LoadingController) {
 
 
   }
@@ -61,8 +62,9 @@ export class MenuPage {
   }
   insereOco() {
 
+    let loader= this.presentLoading();
     this.navCtrl.push('IOcorrenciaPage');
-
+    loader.dismiss();
   }
 
 
@@ -91,6 +93,17 @@ export class MenuPage {
 
   mudarSenha(){
     this.navCtrl.push('MudarSenhaPage');
+  }
+
+
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: "Aguarde...",
+      duration:5000
+      
+    });
+    loader.present();
+    return loader;
   }
 
 }

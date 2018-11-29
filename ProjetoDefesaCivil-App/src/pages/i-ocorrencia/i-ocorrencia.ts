@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController, LoadingController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
@@ -47,7 +47,8 @@ desabilitador:boolean=false;
     public funcionarioService: FuncionarioService,
     public localStorage: StorageService,
   public alertCrtl: AlertController,
-  public modalCtrl: ModalController) {
+  public modalCtrl: ModalController,
+  public loadingCtrl: LoadingController) {
 
     this.formGroup = this.formBuilder.group({
       origemOcorrencia: ['', [Validators.required]],
@@ -266,5 +267,14 @@ insereRuaLocal(ruaid,ruanome){
     
    
   }
+
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+    loader.present();
+    return loader;
+  }
+
 
 }

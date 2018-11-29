@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { CameraOptions, Camera } from '@ionic-native/camera';
 import { RelatorioService } from '../../services/domain/relatorio.service';
 
@@ -20,7 +20,9 @@ export class InsereFotoPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public camera: Camera,
-    public relatorioService: RelatorioService) {
+    public relatorioService: RelatorioService,
+    public loadingCtrl: LoadingController,
+    private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -29,9 +31,9 @@ export class InsereFotoPage {
   }
 
   getCameraPicture() {
-
+ let loader= this.presentLoading();
     this.cameraOn = true;
-
+    loader.dismiss();
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -43,17 +45,20 @@ export class InsereFotoPage {
     this.camera.getPicture(options).then((imageData) => {
       this.picture = 'data:image/png;base64,' + imageData;
       this.cameraOn = false;
-    }, (err) => {
+     
+    }, (error) => {loader.dismiss();
     });
   }
 
   sendPicture() {
+    let loader= this.presentLoading();
     this.relatorioService.uploadPicture(this.picture,this.relatorio_id)
       .subscribe(response => {
         this.picture = null;
-      
+        loader.dismiss();
+        this.presentToast();
       },
-        error => {
+        error => {loader.dismiss();
         });
   }
 
@@ -65,6 +70,24 @@ export class InsereFotoPage {
     this.navCtrl.setRoot('MenuRelatorioPage');
   }
   
+   presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: "Aguarde...",
+      
+    });
+    loader.present();
+    return loader;
+  }
+
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Foto enviada com sucesso',
+      duration: 3000,
+      position: 'middle'
+    });
   
+   
+    toast.present();
+  }
 
 }

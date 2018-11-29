@@ -12,10 +12,6 @@ import { IOcorrenciaPage } from './i-ocorrencia';
     IonicPageModule.forChild(IOcorrenciaPage),
     
   ],
-  providers:[
-    
-  
-    
-  ]
+ 
 })
 export class IOcorrenciaPageModule {}
