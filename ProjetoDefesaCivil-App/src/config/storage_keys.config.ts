@@ -6,6 +6,7 @@ export const STORAGE_KEYS = {
     tipoOcorrencia:'tipoOcorrencia',
     origemOcorrencia:'origemOcorrencia',
     departamentos:'departamentos',
-    ultimaPagina:'ultimaPagina'
+    ultimaPagina:'ultimaPagina',
+    token:'token'
     
 }

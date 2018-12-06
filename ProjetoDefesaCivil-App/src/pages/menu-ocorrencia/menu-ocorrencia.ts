@@ -47,12 +47,7 @@ export class MenuOcorrenciaPage {
     else {
       let varId = this.localStorage.getLocalUser();
       this.id_user = varId.iduser;
-      this.funcionarioService.buscaPerfil(this.id_user).
-        subscribe(response => {
-          this.funcionarioDto = response;
-          this.perfil_user = this.funcionarioDto.perfil;
-        },
-          error => { });
+     this.perfil_user=this.localStorage.getPerfil();
 
     }
 
@@ -61,7 +56,14 @@ export class MenuOcorrenciaPage {
 
   ocorrenciasAbertas() {
 
-    this.navCtrl.push('OcoabertasPage');
+    if(this.perfil_user=="3"){
+      this.navCtrl.push('OcorrenciasAbertasAgentePage')
+    }
+    else{
+      this.navCtrl.push('OcoabertasPage');
+    }
+
+    
 
   }
 

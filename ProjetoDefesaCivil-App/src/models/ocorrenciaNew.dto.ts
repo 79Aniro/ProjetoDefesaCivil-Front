@@ -14,7 +14,8 @@ export interface OcorrenciaNewDTO {
     numeroResidenciaSolicitante: string,
     telefoneSolicitante: string,
     telefoneSolicitante2: string,
-    endSolicitante: string
+    endSolicitante: string,
+    agente: string;
 
 
 

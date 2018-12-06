@@ -12,6 +12,7 @@ export interface OcorrenciaDTO{
     numeroLocal:string;
     tipo:string;
     origem;
+    agente:string;
     
 
     

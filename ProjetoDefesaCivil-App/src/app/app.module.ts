@@ -30,6 +30,7 @@ import { EsqueciSenhaPage } from '../pages/esqueci-senha/esqueci-senha';
 import { MudarSenhaPage } from '../pages/mudar-senha/mudar-senha';
 import { UpdateRelatorioPage } from '../pages/update-relatorio/update-relatorio';
 import { IOcorrenciaPage } from '../pages/i-ocorrencia/i-ocorrencia';
+import { OcorrenciasAbertasAgentePage } from '../pages/ocorrencias-abertas-agente/ocorrencias-abertas-agente';
 
 
 
@@ -88,6 +89,7 @@ import { IOcorrenciaPage } from '../pages/i-ocorrencia/i-ocorrencia';
     EsqueciSenhaPage,
     MudarSenhaPage,
     UpdateRelatorioPage,   
+    OcorrenciasAbertasAgentePage
     
     
    

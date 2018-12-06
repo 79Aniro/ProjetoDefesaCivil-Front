@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { OcorrenciaService } from '../../services/domain/ocorrencia.service';
-import { OcorrenciaDTO } from '../../models/ocorrencia.dto';
-import { FuncionarioDTO } from '../../models/funcionario.dto';
 import { FuncionarioService } from '../../services/domain/funcionario.service';
 import { StorageService } from '../../services/storage.service';
-import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
+import { OcorrenciaDTO } from '../../models/ocorrencia.dto';
+import { FuncionarioDTO } from '../../models/funcionario.dto';
+
+
 
 
 @IonicPage()
 @Component({
-  selector: 'page-ocoabertas',
-  templateUrl: 'ocoabertas.html',
+  selector: 'page-ocorrencias-abertas-agente',
+  templateUrl: 'ocorrencias-abertas-agente.html',
 })
-export class OcoabertasPage {
-  page: number = 0;
+export class OcorrenciasAbertasAgentePage {
+
   items: OcorrenciaDTO[] = [];
   id_user: string;
   funcionarioDto: FuncionarioDTO;
@@ -29,39 +30,35 @@ export class OcoabertasPage {
   }
 
   ionViewDidLoad() {
+
     this.loadData();
-
-
+   
   }
 
-  loadData() {
+  loadData(){
     let loader = this.presentLoading();
-    this.ocorrenciaService.findOcoAbertasPage(this.page,3)
-      .subscribe(response => {
-        
-        this.items = this.items.concat(response['content']);
-        loader.dismiss();
-       
-      },
-        error => { loader.dismiss()});
-        
-    
     let varId = this.localStorage.getLocalUser();
     this.id_user = varId.iduser;
+    this.perfil_user = this.localStorage.getPerfil();
 
- 
-        this.perfil_user = this.localStorage.getPerfil();
-     
+    this.ocorrenciaService.ocoAgente(this.id_user).
+    subscribe(response=>{
+      this.items=response;
+      loader.dismiss();
+    }),
+    error=>{
+      loader.dismiss();
+    }
 
   }
 
-  abreRelatorios(ocorrencia_id: string) {
+  abreRelatorios(ocorrencia_id: string, agente:string) {
 
     if (this.perfil_user == '2') {
       this.handlePermissaoNegada();
     }
     else {
-      this.navCtrl.push('IRelatorioPage', { ocorrencia_id: ocorrencia_id });
+      this.navCtrl.push('IRelatorioPage', { ocorrencia_id: ocorrencia_id ,agente:agente});
     }
 
 
@@ -74,22 +71,7 @@ export class OcoabertasPage {
     return loader;
   }
 
-  doRefresh(refresher) {
-    this.page = 0;
-    this.items = [];
-    this.loadData();
-    setTimeout(() => {
-      refresher.complete();
-    }, 1000);
-  }
-
-  doInfinite(infiniteScroll) {
-    this.page++;
-    this.loadData();
-    setTimeout(() => {
-      infiniteScroll.complete();
-    }, 1000);
-  }
+  
 
   handlePermissaoNegada() {
     let alert = this.alertCrtl.create({
@@ -107,5 +89,4 @@ export class OcoabertasPage {
     });
     alert.present();
   }
-
 }

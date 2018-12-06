@@ -8,6 +8,7 @@ import { FuncionarioService } from "./funcionario.service";
 import { TipoOcorrenciaDTO } from "../../models/tipoOcorrencia.dto";
 import { OrigemOcorrenciaDTO } from "../../models/origemOcorenciaDTO";
 import { DepartamentoDTO } from "../../models/departamento.dto";
+import { StorageService } from '../storage.service';
 
 
 @Injectable()
@@ -16,7 +17,8 @@ export class OcorrenciaService{
     funcionarioService: FuncionarioService
     deps:Observable<DepartamentoDTO[]>
     dep:Observable<DepartamentoDTO>
-    constructor(public http: HttpClient){
+    constructor(public http: HttpClient,
+        public storage: StorageService){
 
 
     }
@@ -58,6 +60,14 @@ export class OcorrenciaService{
         return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/regiao/${regiao}`);
 
     }
+
+    ocoAgente(agente:string): Observable<OcorrenciaDTO[]>{
+
+        return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/agente?agente=${agente}`);
+
+    }
+
+
       ocoRegiaoPage(regiao:string,page : number = 0, linesPerPage : number = 4): Observable<OcorrenciaDTO[]>{
 
         return this.http.get<OcorrenciaDTO[]>(`${API_CONFIG.herokuBaseUrl}/ocorrencias/regiao/page?regiao=${regiao}&page=${page}&linesPerPage=${linesPerPage}`);
@@ -112,12 +122,16 @@ export class OcorrenciaService{
     }
 
     insert(obj : OcorrenciaNewDTO) {
+        let tok=this.storage.getToken();
         return this.http.post(
             `${API_CONFIG.herokuBaseUrl}/ocorrencias/nova`, 
             obj,
             { 
                 observe: 'response', 
-                responseType: 'text'
+                responseType: 'text',
+                headers:{
+                    tok
+                }
             }
         ); 
     }

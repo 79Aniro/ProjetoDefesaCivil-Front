@@ -33,7 +33,7 @@ export class MyApp {
       { title: 'Ocorrencias', component: 'MenuOcorrenciaPage ' },
       { title: 'Nova Ocorrencia ', component: 'IOcorrenciaPage'},
       { title: 'Relatorios', component: 'MenuRelatorioPage ' },
-      { title: 'Profile', component: 'ProfilePage' },
+      { title: 'Profile', component: 'ProfilePage' },     
       { title: 'Logout', component: ''},
       
    

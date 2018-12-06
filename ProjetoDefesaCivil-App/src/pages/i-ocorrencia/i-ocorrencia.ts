@@ -38,6 +38,7 @@ desabilitador:boolean=false;
   origemOco:OrigemOcorrenciaDTO[];
   departamentos:DepartamentoDTO[];
   dep:DepartamentoDTO;
+  agente:string;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
@@ -48,7 +49,8 @@ desabilitador:boolean=false;
     public localStorage: StorageService,
   public alertCrtl: AlertController,
   public modalCtrl: ModalController,
-  public loadingCtrl: LoadingController) {
+  public loadingCtrl: LoadingController,
+  public modalCrt: ModalController) {
 
     this.formGroup = this.formBuilder.group({
       origemOcorrencia: ['', [Validators.required]],
@@ -65,6 +67,7 @@ desabilitador:boolean=false;
       telefoneSolicitante2: ['', [Validators.required]],
       funcionario: ['', [Validators.required]],
       departamento:[''],
+      agente:['']
 
     });
   }
@@ -80,17 +83,37 @@ desabilitador:boolean=false;
   }
 
   insereOco() {
-    this.ocorrenciaService.insert(this.formGroup.value)//inserindo ocorrencia
-      .subscribe(response => {        
-        this.handleOcorrenciaInserida();// mensagem que ocorrencia foi inserida       
-      },
-        error => {
-          this.handleOcorrenciaNaoInserida();// mensagem que ocorrencia não foi inserida
-         });
+
+this.modalFuncionarios();
+
+
+   
   }
 
+modalFuncionarios(){
+  const modal= this.modalCrt.create('ModalFuncionariosPage',{},{enableBackdropDismiss:false})
 
+  modal.onDidDismiss(data=>{
  
+    this.agente=data;
+   this.formGroup.controls.agente.setValue(this.agente);
+   this.gravar();
+  });
+
+  modal.present();
+}
+ 
+
+gravar(){
+  this.ocorrenciaService.insert(this.formGroup.value)//inserindo ocorrencia
+  .subscribe(response => {        
+    this.handleOcorrenciaInserida();// mensagem que ocorrencia foi inserida       
+  },
+    error => {
+      this.handleOcorrenciaNaoInserida();// mensagem que ocorrencia não foi inserida
+     });
+}
+
 // Função que chama o servico que busca todos os tipos de ocorrencias
   tiposOcorrencia(){
 

@@ -137,4 +137,17 @@ getDepartamentos(){
     return JSON.parse(departamentos);
 }
 
+setToken(token:string){
+    if(token==''){
+        localStorage.removeItem(STORAGE_KEYS.token);
+    }
+    else{
+        localStorage.setItem(STORAGE_KEYS.token,token);
+    }
+}
+
+getToken(){
+    return localStorage.getItem(STORAGE_KEYS.token);
+}
+
 }

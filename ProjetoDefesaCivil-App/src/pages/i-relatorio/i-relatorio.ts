@@ -24,6 +24,7 @@ export class IRelatorioPage {
   ruas: EnderecoDTO[];
   id_user: string;
   oco_id: string;
+  agente:string;
 
   
   constructor(public navCtrl: NavController,
@@ -49,6 +50,8 @@ export class IRelatorioPage {
 
     let ocorrenciaId = this.navParams.get('ocorrencia_id');
     this.oco_id = ocorrenciaId;
+    let agenteV=this.navParams.get('agente');
+    this.agente=agenteV;
     
     this.formGroup.controls.ocorrencia.setValue(this.oco_id);
     if(this.localStorage.getLocalUser()==null){
@@ -59,7 +62,7 @@ export class IRelatorioPage {
     this.id_user = varId.iduser;
 
    
-    this.formGroup.controls.funcionario.setValue(this.id_user);
+    this.formGroup.controls.funcionario.setValue(this.agente);
 
   
   

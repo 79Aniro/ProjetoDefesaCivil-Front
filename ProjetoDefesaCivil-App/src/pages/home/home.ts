@@ -56,13 +56,14 @@ export class HomePage {
     this.auth.authenticate(this.creds)
       .subscribe(response => {
         this.auth.successfulLogin(response.headers.get('Authorization'), response.headers.get('idUser'));
+        this.storage.setToken(response.headers.get('Authorization').substring(7));
         this.navCtrl.setRoot('MenuPage');
-        console.log(this.storage.verificaRuas());
+        this.storage.verificaRuas();
       },
 
         error => { });
     if (this.storage.verificaRuas()==false) {
-      console.log("buscou ruas");
+      
       this.endService.findByEnderecoAll().
         subscribe(response => {
           this.ruas = response;
@@ -71,7 +72,7 @@ export class HomePage {
         });
       }
       else{
-        console.log(this.storage.getRuaDTO);
+        
       }
       this.ocorrenciaService.departamentos().
         subscribe(response => {
